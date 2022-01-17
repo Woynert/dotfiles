@@ -17,3 +17,4 @@ alias xquery='xbps-query -Rs'
 
 # dotfiles
 alias dot='git --git-dir="$HOME/.dot.git" --work-tree="$HOME"'
+alias dotrm='dot rm -r --cached -f $HOME'

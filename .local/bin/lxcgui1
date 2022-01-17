@@ -1,0 +1,4 @@
+
+CONTAINER=$1
+lxc profile remove $CONTAINER gui0
+lxc profile add    $CONTAINER gui1

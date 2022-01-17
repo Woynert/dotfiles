@@ -112,9 +112,19 @@
 
 !/.xbindkeysrc
 
+!/.waterfox/
 !/.waterfox/chrome/
 !/.waterfox/chrome/userChrome.css
 !/.waterfox/chrome/userContent.css
+
+
+!/.local/
+!/.local/bin/
+!/.local/bin/**
+/.local/bin/waterfoxbin/**
+
+!/.script/
+!/.script/**
 
 !/.config/
 

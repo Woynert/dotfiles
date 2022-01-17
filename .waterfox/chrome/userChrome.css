@@ -1,0 +1,30 @@
+/* hides the native tabs */
+#TabsToolbar {
+  visibility: collapse;
+}
+
+#sidebar-header {
+  visibility: collapse !important;
+} 
+
+@-moz-document url(chrome://browser/content/browser.xhtml)
+{
+
+  #main-window,
+  browser[type="content-primary"],
+  browser[type="content"],
+  tabbrowser#content,
+  #content,
+  browser[type="content"] > html
+  {
+     background: #323234 !important;
+  }
+
+}
+
+/*.sidebar-splitter {
+	border: 0px solid red !important;
+	width: 4px !important;
+	background-color: white !important;
+}*/
+
