@@ -1,0 +1,70 @@
+csv_cmd             = apps
+tint2_look          = 0
+
+menu_width          = 337
+#menu_height_min     = 180
+menu_height_max     = 250
+
+menu_height_mode = static
+
+menu_padding_top    = 1000
+menu_padding_bottom = 40
+menu_padding_right  = 10
+menu_padding_left   = 10
+menu_border         = 4
+
+item_height         = 1
+item_radius         = 0
+item_border         = 0
+item_padding_x      = 19
+
+
+item_margin_x = 0
+item_margin_y = 0
+
+#color_menu_bg       = #212121 100
+color_menu_bg       = #f0f0f0 100
+color_menu_border   = #eeeeee 20
+
+color_norm_bg     = #ffffff 5
+color_norm_fg       = #FFFFFF 100
+#color_sel_bg        = #ffffff 20
+#color_sel_fg        = #eeeeee 100
+#color_sel_border    = #eeeeee 8
+color_scroll_ind    = #000000 0
+
+#name format
+#csv_name_format     = %n<span size="0">%g</span>
+#csv_name_format     = <span size="0">%g</span>
+
+csv_no_dirs         = 1
+stay_alive			= 0
+
+icon_size = 60
+
+#position up
+position_mode = center
+
+#font
+#sep_markup = font="Sans"
+font = Liberation Sans 20px
+color_norm_fg = #000000 100
+
+color_sel_bg = #3584E4 100
+color_sel_fg = #000000 100
+
+#icon
+#icon_theme = "/home/woynert/.local/share/themes/Papirus"
+icon_theme = Papirusw
+#icon_theme_fallback = "gxt"
+
+#multimonitor
+#position_mode = ipc
+stay_alive = 1
+
+#terminal_exec = "/usr/bin/mousepad"
+#terminal_args = " "
+
+
+# misc
+columns = 3

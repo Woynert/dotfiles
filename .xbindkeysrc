@@ -1,0 +1,127 @@
+
+# win + numpad 1 
+"~/dev/script/change_keyboard_map_switch.sh 1"
+    m:0x50 + c:87
+    Mod2+Mod4 + KP_End
+
+# win + numpad 2
+"~/dev/script/change_keyboard_map_switch.sh 2"
+    m:0x50 + c:88
+    Mod2+Mod4 + KP_Down
+
+# win + numpad 3
+"~/dev/script/change_keyboard_map_switch.sh 3"
+	m:0x50 + c:89
+	Mod2+Mod4 + KP_Next
+
+# win + numpad 4
+#"xdotool keyup super keyup KP_4 key 0x0027 keydown super"
+#	m:0x50 + c:83
+#	Mod2+Mod4 + KP_Left
+
+# win + numpad 0
+"~/dev/script/change_keyboard_map_toggle.sh"
+	m:0x50 + c:90
+    Mod2+Mod4 + KP_Insert
+
+# flameshot manual
+"flameshot gui"
+    m:0x10 + c:107
+    Mod2 + Print
+
+# flameshot full screenshot
+"flameshot full -p /home/woynert/Pictures/"
+    m:0x11 + c:107
+    Shift+Mod2 + Print
+
+
+# volume control
+
+# decrease
+"pactl set-sink-volume @DEFAULT_SINK@ -3% && $HOME/dev/script/system/dwm/update_status.sh"
+    m:0x0 + c:122
+    XF86AudioLowerVolume
+
+# increase
+"pactl set-sink-volume @DEFAULT_SINK@ +3% && $HOME/dev/script/system/dwm/update_status.sh"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
+
+# mute
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    m:0x10 + c:121
+    Mod2 + XF86AudioMute
+
+# deadbeef
+
+"deadbeef --prev"
+    m:0x10 + c:173
+    Mod2 + XF86AudioPrev
+
+"deadbeef --next"
+    m:0x10 + c:171
+    Mod2 + XF86AudioNext
+
+"deadbeef --toggle-pause"
+    m:0x10 + c:172
+    Mod2 + XF86AudioPlay
+
+"deadbeef --stop"
+    m:0x10 + c:174
+    Mod2 + XF86AudioStop
+
+	
+#"jgmenu_run"
+#	Release + Meta_L
+
+#"xte 'keyup Super_L'"
+#	jgmenu_run
+
+#    m:0x40 + c:133
+#    Mod4 + Super_L
+
+#"NoCommand"
+#    m:0x50 + c:84
+#    Mod2+Mod4 + KP_Begin
+#"NoCommand"
+#    m:0x50 + c:85
+#    Mod2+Mod4 + KP_Right
+#"NoCommand"
+#    m:0x50 + c:79
+#    Mod2+Mod4 + KP_Home
+#"NoCommand"
+#    m:0x50 + c:80
+#    Mod2+Mod4 + KP_Up
+#"NoCommand"
+#    m:0x50 + c:81
+#    Mod2+Mod4 + KP_Prior
+
+
+#"xvkbd -no-jump-pointer -xsendevent -text 'coco'"
+#	F6
+
+#"xdotool keyup F7 key a"
+#	F7
+
+#"xdotool keyup a key semicolon"
+#	m:0x10 + c:38
+#	Mod2 + a
+
+#"xdotool keyup Alt_L keyup KP_1 key semicolon keydown Alt_L"
+#	m:0x18 + c:87
+#	Alt+Mod2 + KP_End
+
+#"xdotool keyup Alt_L keyup KP_2 key colon keydown Alt_L"
+#	m:0x18 + c:88
+#	Alt+Mod2 + KP_Down
+
+#"xdotool key Alt_L"
+#	release + m:0x18 + c:64
+#	release + Alt+Mod2 + Alt_L
+
+#In case of wrong characters try to add these
+#setxkbmap latam setxkbmap us
+
+#"thunar"
+#    m:0x50 + c:133
+#    Mod2+Mod4 + Super_L

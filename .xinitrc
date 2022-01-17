@@ -1,0 +1,4 @@
+
+# Start openbox
+
+exec dbus-run-session openbox-session

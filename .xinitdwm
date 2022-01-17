@@ -1,0 +1,23 @@
+
+# Show time and volume
+
+while true
+do
+
+	$HOME/dev/script/system/dwm/update_status.sh
+
+	sleep 5s
+done &
+
+# Start dwm
+
+exec pulseaudio --start &
+exec nitrogen --restore &
+exec xbindkeys &
+exec lxpolkit &
+exec dunst &
+exec flameshot &
+
+exec dbus-run-session dwm 
+
+

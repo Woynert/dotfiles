@@ -1,0 +1,30 @@
+,,,
+
+# main buttons
+
+@rect,openbox --exit,10,60,99,125,2,left,top,#000000 40, #000000 2,
+@text,,25,160,150,0,0,left,top,#000000 100,#ffffff 250,Log out
+@rect,,30,80,59,59,5,left,top,#000000 0, #000000 100,
+@icon,,40,90,40,45,0,left,top,#000000 0,#ff0000,/home/woynert/.config/jgmenu/logout/light/system-log-out-symbolic.svg
+
+@rect,loginctl reboot,119,60,99,125,2,left,top,#000000 40,#000000 2,
+@text,,136,160,150,0,0,left,top,#000000 100,#ffffff 250,Reboot
+@rect,,139,80,59,59,5,left,top,#000000 0, #000000 100,
+@icon,,149,90,40,45,0,left,top,#000000 0,#ff0000,/home/woynert/.config/jgmenu/logout/light/system-reboot-symbolic.svg
+
+@rect,loginctl poweroff,228,60,99,125,2,left,top,#000000 40,#000000 2,
+@text,,238,160,150,0,0,left,top,#000000 100,#ffffff 250,Poweroff
+@rect,,248,80,59,59,5,left,top,#880000 100, #bb0000 100,
+@icon,,258,90,40,45,0,left,top,#000000 0,#ff0000,/home/woynert/.config/jgmenu/logout/light/system-shutdown-symbolic.svg
+
+
+# title
+@text,,95,30,300,0,2,left,top,#000000 100,#000000 100,Log out Woynert
+
+# cancel button
+@rect,^quit(),227,200,100,35,2,left,top,#000000 40,#000000 2,
+@text,,245,200,142,35,2,left,top,#000000 100,#ffffff 250,Cancel
+
+
+# workaround deselect buttons
+@rect,,0,0,337,250,2,left,top,#000000 0, #000000 0,
