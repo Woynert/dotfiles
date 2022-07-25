@@ -139,6 +139,9 @@
 !/.config/openbox/
 !/.config/openbox/**
 
+!/.config/herbstluftwm/
+!/.config/herbstluftwm/**
+
 !/.config/tint2/
 !/.config/tint2/**
 /.config/tint2/tint2rc.backup.*
