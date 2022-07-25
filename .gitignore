@@ -110,6 +110,7 @@
 !/.bash_aliases
 !/.bash_profile
 !/.bashrc
+!/.git-prompt.sh
 
 !/.xbindkeysrc
 
@@ -122,6 +123,8 @@
 !/.local/
 !/.local/bin/
 !/.local/bin/*
+!/.local/bin/hidden/
+!/.local/bin/hidden/*
 #/.local/bin/waterfoxbin/**
 
 !/.script/
