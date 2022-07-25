@@ -66,7 +66,8 @@
     m:0x10 + c:172
     Mod2 + XF86AudioPlay
 
-"deadbeef --stop"
+#"deadbeef --stop"
+"dmenu_run"
     m:0x10 + c:174
     Mod2 + XF86AudioStop
 

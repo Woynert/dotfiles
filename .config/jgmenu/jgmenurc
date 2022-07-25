@@ -2,14 +2,15 @@ csv_cmd             = apps
 tint2_look          = 0
 
 menu_width          = 450
-menu_height_min     = 513
-menu_height_max     = 513
+menu_height_min     = 520
+menu_height_max     = 520
 
-menu_padding_top    = 40
+menu_padding_top    = 47
 menu_padding_bottom = 1
 menu_padding_right  = 2
 menu_padding_left   = 151
-menu_border         = 0
+#menu_border         = 1
+
 
 item_height         = 36
 item_radius         = 0
@@ -17,7 +18,7 @@ item_border         = 0
 item_padding_x      = 10
 
 #color_menu_bg       = #212121 100
-color_menu_bg       = #111111 100
+color_menu_bg       = #1D212E 100
 color_menu_border   = #eeeeee 20
 color_norm_fg       = #FFFFFF 100
 #color_sel_bg        = #ffffff 20
@@ -27,8 +28,8 @@ color_scroll_ind    = #000000 0
 
 #name format
 hide_overflow       = 1
-#csv_name_format     = <span foreground="red">%n</span>
-csv_name_format     = %n
+csv_name_format     = <span foreground="black" text_transform="lowercase">%n</span>
+#csv_name_format     = %n
 csv_no_dirs         = 1
 stay_alive			= 1
 
@@ -42,6 +43,7 @@ menu_margin_y = 40
 #font
 #sep_markup = font="Sans Italic 14" foreground="blue"
 #font = Liberation Sans 15
+font = Ubuntu Regular 15
 color_norm_fg = #000000 100
 
 color_sel_bg = #3584E4 100

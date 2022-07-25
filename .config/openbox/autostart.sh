@@ -4,7 +4,7 @@ pulseaudio --start &
 
 # System
 
-nitrogen --restore &
+#nitrogen --restore &
 tint2 &
 xbindkeys &
 
@@ -18,7 +18,9 @@ xfsettingsd & #settings manager
 
 sleep 1s &&
 
-lxpolkit &
+#lxpolkit &
+
+xfdesktop &
 
 dunst &
 

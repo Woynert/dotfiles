@@ -1,0 +1,4 @@
+
+# $1 is the container
+
+xhost +local:$1

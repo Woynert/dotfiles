@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Adapta-Nokto</name>
+    <name>AdaptaAdawaita</name>
     <titleLayout>NLC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -57,8 +57,8 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
-      <name>Sans</name>
-      <size>11</size>
+      <name>Ubuntu</name>
+      <size>12</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -66,8 +66,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>Sans</name>
-      <size>11</size>
+      <name>Ubuntu</name>
+      <size>12</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -75,7 +75,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
-      <name>Sans</name>
+      <name>Ubuntu</name>
       <size>12</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -84,7 +84,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuItem">
-      <name>Sans</name>
+      <name>Ubuntu</name>
       <size>12</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -93,19 +93,19 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name>Sans</name>
+      <name>Ubuntu</name>
       <size>12</size>
       <!-- font size in points -->
-      <weight>Bold</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
       <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>Sans</name>
+      <name>Ubuntu</name>
       <size>12</size>
       <!-- font size in points -->
-      <weight>Bold</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
       <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
@@ -120,7 +120,7 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>2</number>
+    <number>1</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>ONE</name>
@@ -162,7 +162,7 @@
     <floatingX>0</floatingX>
     <floatingY>0</floatingY>
     <noStrut>no</noStrut>
-    <stacking>Above</stacking>
+    <stacking>Normal</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
     <direction>Horizontal</direction>
     <!-- 'Vertical' or 'Horizontal' -->
@@ -684,21 +684,17 @@
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
   <applications>
-
-	<!-- Open waterfox without decorations (only the main window) -->
-	<application class="Waterfox" role="browser">
-		<decor>no</decor>
-	</application>
-
-	<application class="Alacritty">
-		<decor>no</decor>
-	</application>
-
-	<!-- Tray calendar widget -->
-	<application class="Gsimplecal">
-		<focus>yes</focus>
-	</application>
-
+    <!-- Open waterfox without decorations (only the main window) -->
+    <application class="Waterfox" role="browser">
+      <decor>no</decor>
+    </application>
+    <application class="Alacritty">
+      <decor>no</decor>
+    </application>
+    <!-- Tray calendar widget -->
+    <application class="Gsimplecal">
+      <focus>yes</focus>
+    </application>
     <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.

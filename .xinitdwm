@@ -4,7 +4,7 @@
 while true
 do
 
-	$HOME/.script/system/dwm/update_status.sh
+	$HOME/.script/dwm/update_status.sh
 
 	sleep 5s
 done &

@@ -102,6 +102,7 @@
 #
 # --- Add your entries below this line:
 
+
 !/.xinitrc
 !/.xinitdwm
 !/.nanorc
@@ -120,8 +121,8 @@
 
 !/.local/
 !/.local/bin/
-!/.local/bin/**
-/.local/bin/waterfoxbin/**
+!/.local/bin/*
+#/.local/bin/waterfoxbin/**
 
 !/.script/
 !/.script/**
@@ -138,6 +139,7 @@
 !/.config/tint2/
 !/.config/tint2/**
 /.config/tint2/tint2rc.backup.*
+/.config/tint2/*.tint2rc.backup.*
 
 !/.config/deadbeed/
 !/.config/deadbeed/config
@@ -153,4 +155,10 @@
 !/.config/cherrytree/config.cfg
 
 !/.config/picom.conf
+
+# cheat sheet
+!/.config/cheat/
+!/.config/cheat/cheatsheets/
+!/.config/cheat/cheatsheets/personal
+!/.config/cheat/cheatsheets/personal/**
 

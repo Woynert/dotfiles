@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cat << EOF
+du -hsc * | sort -h
+grep -rin word
+find -name "*word*" -print
+ip link set eth0 down
+git clone --depth 1 <URL> # lightweight clone
+git diff --cached         # staged diff
+git reset --hard origin/dev # reset to origin
+git diff <commit-before-commit1> <commit1> > commit1.diff # get commit diff
+xbps-query -f <package> # package files
+EOF

@@ -1,0 +1,16 @@
+# see in which remote a file is available
+git annex whereis <file/files>
+
+# get file from remote
+git annex get <file>
+
+# get file from specific remote
+git annex copy <file> --from <remote_name>
+
+# add new file
+git annex add <file>
+git annex commit -m <message>
+git annex sync
+
+# find unlocked files
+git annex find --unlocked

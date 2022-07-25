@@ -88,3 +88,8 @@ include "~/.nano/xresources.nanorc"
 include "~/.nano/yaml.nanorc"
 include "~/.nano/yum.nanorc"
 include "~/.nano/zsh.nanorc"
+include "~/.nano/R.nanorc"
+include "~/.nano/ts.nanorc"
+
+# my conf
+bind ^c copy main
