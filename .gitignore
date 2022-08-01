@@ -152,6 +152,9 @@
 !/.config/herbstluftwm/
 !/.config/herbstluftwm/**
 
+!/.config/awesome/
+!/.config/awesome/**
+
 !/.config/tint2/
 !/.config/tint2/**
 /.config/tint2/tint2rc.backup.*
