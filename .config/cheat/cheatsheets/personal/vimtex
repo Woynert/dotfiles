@@ -1,0 +1,8 @@
+# check errors or warning
+\le
+
+# start/stop compiling
+\ll
+
+# scroll viewer to vim cursor position
+\lv

@@ -103,8 +103,10 @@
 # --- Add your entries below this line:
 
 
-!/.xinitrc
+!/.xinitopenbox
 !/.xinitdwm
+!/.xinitherb
+!/.xinitawesome
 !/.nanorc
 
 !/.bash_aliases

@@ -1,16 +1,24 @@
 # see in which remote a file is available
-git annex whereis <file/files>
+git annex whereis <files>
 
 # get file from remote
-git annex get <file>
+git annex get <files>
 
 # get file from specific remote
-git annex copy <file> --from <remote_name>
+git annex copy <files> --from <remote_name>
 
 # add new file
-git annex add <file>
+git annex add <files>
 git annex commit -m <message>
-git annex sync
+git annex sync --content
+
+# unlock file
+git annex unlock <files>
 
 # find unlocked files
 git annex find --unlocked
+
+# sshcaching
+# it speeds up remote operations
+git config --add annex.sshcaching true
+git config --get annex.sshcaching

@@ -129,9 +129,30 @@ fi
 
 
 # Path
-export PATH="$PATH:~/.local/bin:/home/woynert/bin:/opt/pt/:/opt/git-annex/"
+export PATH="$PATH:~/.local/bin:/home/woynert/bin"
+export PATH="$PATH:/opt/pt"
+export PATH="$PATH:/opt/git-annex"
+export PATH="$PATH:/opt/node16/bin"
+export PATH="$PATH:/opt/compass/bin"
+export PATH="$PATH:/opt/insomnia/bin"
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/anaconda/anaconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/anaconda/anaconda/etc/profile.d/conda.sh" ]; then
+#         . "/opt/anaconda/anaconda/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/anaconda/anaconda/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+

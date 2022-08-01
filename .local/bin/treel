@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tree -aCI .git | perl -ne 'while(/^.+?(?= -> |$)/g){print "$&\n";}'

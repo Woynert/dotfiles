@@ -22,8 +22,8 @@ map H :bp<cr>
 " 80 char mark
 " set colorcolumn=80
 " highlight ColorColumn ctermbg=7
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%91v.\+/
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%91v.\+/
 
 " set ls=3
 
@@ -64,6 +64,7 @@ hi MBEVisibleActiveChanged ctermfg=Black ctermbg=Red
 " fzf
 nnoremap <C-b> :Buffers<CR><Space>
 nnoremap <C-p> :GFiles<Cr>
+nnoremap <C-P> :Files<Cr>
 
 " let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'relative': v:true, 'border':'sharp', 'hightlight':'Keyword' } }
 let g:fzf_layout = { 'down': '50%' }

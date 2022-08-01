@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# colors
+# more colors: https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
+
+TASK_COLOR_NORMAL='\033[0;31m'
+TASK_COLOR_DONE='\033[0;32m'
+NC='\033[0m' # No Color
+
+HOMEWORK_PATH='/data/annex/upb'
+file=`find $HOMEWORK_PATH -type f | grep homework`
+
+list_homework()
+{
+	local set="`awk 'NR==1' $1`"
+	local due="`awk 'NR==2' $1`"
+	local done="`awk 'NR==3' $1`"
+
+	local relative_path=$(echo $1 | sed -n "s|^$HOMEWORK_PATH||p")
+	local folder=`echo $relative_path | cut -sd / -f 2`
+	local file_name=${1##*/}
+
+	local task_color=""
+
+	# done?
+	if [[ $done = *1* ]]
+	then
+		task_color="$TASK_COLOR_DONE✔ "
+	else
+		task_color="${TASK_COLOR_NORMAL}X "
+	fi
+
+	#echo $1
+	printf "$task_color$folder $file_name\n"
+	printf "$NC$set\n$due\n\n"
+}
+
+# iterate
+for eachDir in $file;do
+	list_homework $eachDir
+	#echo $eachDir
+done

@@ -1,4 +1,2 @@
-
-# Start openbox
-
+# start openbox
 exec dbus-run-session openbox-session

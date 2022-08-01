@@ -1,0 +1,19 @@
+# List instances
+lxc list
+
+# Create new instance (See reference)
+lxc launch imageserver:imagename instancename
+lxc launch images:debian/10 debian10MySQL
+
+# Delete instace
+lxc delete instancename
+
+# Start an instance
+lxc start instancename
+
+# Stop an instance
+lxc stop instancename
+
+# Shell/Terminal inside Container
+lxc exec instancename -- /bin/bash
+(alternative) lxc exec instancename bash 

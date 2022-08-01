@@ -1,0 +1,5 @@
+# start
+/opt/hadoop-3.3.3/sbin/start-dfs.sh
+
+# stop
+/opt/hadoop-3.3.3/sbin/stop-dfs.sh
