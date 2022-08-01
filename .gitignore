@@ -2,13 +2,13 @@
 #
 # --- Initialization:
 #
-#     git init --bare "$HOME/.dtf.git"
+#     git init --bare "$HOME/.dot.git"
 #
 # --- Installation:
 #
-#     alias dtf='git --git-dir="$HOME/.dtf.git" --work-tree="$HOME"'
-#     dft add -A
-#     dtf checkout
+#     alias dot='git --git-dir="$HOME/.dot.git" --work-tree="$HOME"'
+#     dot add -A
+#     dot checkout
 #
 #     We could have just initialized the repository directly in the home
 #     folder, but the advantage of doing it with a bare repo and a work tree
@@ -18,7 +18,7 @@
 # --- Usage:
 #
 #     You can use `git add/commit/status/push` as usual, just replace `git`
-#     with `dtf`. Note that before using `add`, you need to list the file
+#     with `dot`. Note that before using `add`, you need to list the file
 #     below.
 #
 # --- How it works:
