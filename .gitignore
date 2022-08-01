@@ -15,6 +15,14 @@
 #     is that normal uses of `git` won't try and use the home folder if you
 #     aren't in a git repository.
 #
+# --- Installation on other device:
+#
+#     First be sure to empty your home directory, or at least files that will be
+#     replaced by git.
+#
+#     git init <git-repository-url> --bare "$HOME/.dot.git"
+#     git checkout master
+#
 # --- Usage:
 #
 #     You can use `git add/commit/status/push` as usual, just replace `git`

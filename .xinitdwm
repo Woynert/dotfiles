@@ -1,11 +1,8 @@
-
 # Show time and volume
 
 while true
 do
-
 	$HOME/.script/dwm/update_status.sh
-
 	sleep 5s
 done &
 

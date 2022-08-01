@@ -1,2 +1,2 @@
-# start openbox
-exec dbus-run-session openbox-session
+# start herbstluftwm
+exec dbus-run-session herbstluftwm --locked --autostart /home/woynert/.config/herbstluftwm/autostart
