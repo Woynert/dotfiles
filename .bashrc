@@ -129,12 +129,13 @@ fi
 
 
 # Path
-export PATH="$PATH:~/.local/bin:/home/woynert/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 export PATH="$PATH:/opt/pt"
 export PATH="$PATH:/opt/git-annex"
 export PATH="$PATH:/opt/node16/bin"
 export PATH="$PATH:/opt/compass/bin"
 export PATH="$PATH:/opt/insomnia/bin"
+export PATH="$PATH:/opt/litemdview/bin"
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION

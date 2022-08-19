@@ -2,6 +2,7 @@
 lxc list
 
 # Create new instance (See reference)
+# https://us.lxd.images.canonical.com/
 lxc launch imageserver:imagename instancename
 lxc launch images:debian/10 debian10MySQL
 
