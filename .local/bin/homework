@@ -8,7 +8,7 @@ TASK_COLOR_DONE='\033[0;32m'
 NC='\033[0m' # No Color
 
 HOMEWORK_PATH='/data/annex/upb'
-file=`find $HOMEWORK_PATH -type f | grep homework`
+file=`find $HOMEWORK_PATH -mindepth 3 -maxdepth 3 -type f,l | grep homework`
 
 list_homework()
 {
@@ -25,9 +25,10 @@ list_homework()
 	# done?
 	if [[ $done = *1* ]]
 	then
+		return
 		task_color="$TASK_COLOR_DONE✔ "
 	else
-		task_color="${TASK_COLOR_NORMAL}X "
+		task_color="${TASK_COLOR_NORMAL}"
 	fi
 
 	#echo $1

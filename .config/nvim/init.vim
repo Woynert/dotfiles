@@ -39,6 +39,11 @@ Plug 'psliwka/vim-smoothie'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" latex
+Plug 'lervag/vimtex'
+
+Plug 'preservim/nerdcommenter'
+
 "Plug 'leafgarland/typescript-vim'
 "Plug 'styled-components/vim-styled-components', { 'branch' : 'main' }
 
@@ -46,6 +51,9 @@ Plug 'junegunn/fzf.vim'
 "Plug 'peitalin/vim-jsx-typescript'
 "Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
+
+" nerd commenter
+let g:NERDCreateDefaultMappings = 1
 
 " buftabline
 let g:buftabline_show=1

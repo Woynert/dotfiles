@@ -135,6 +135,7 @@ export PATH="$PATH:/opt/git-annex"
 export PATH="$PATH:/opt/node16/bin"
 export PATH="$PATH:/opt/compass/bin"
 export PATH="$PATH:/opt/insomnia/bin"
+export PATH="$PATH:/opt/litemdview/bin"
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION

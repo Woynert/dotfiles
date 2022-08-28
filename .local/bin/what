@@ -12,4 +12,8 @@ git diff <commit-before-commit1> <commit1> > commit1.diff # get commit diff
 xbps-query -f <package> # package files
 acpi # battery info
 ar -xv <deb-file> # extract deb
+xrandr --output eDP1 --brightness 0.8
+xbacklight -get
+xbacklight -set 60
+man xkeyboard-config
 EOF
