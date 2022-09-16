@@ -1,0 +1,14 @@
+https://www.typescriptlang.org/
+
+# install typescript
+npm install -g typescript
+
+# one file
+npx tsc --version
+npx tsc ./src/app.ts --target es6 --outfile ./js/app.js -w
+
+# init
+npx tsc --init
+
+# watch changes and build automatically
+npx tsc -w

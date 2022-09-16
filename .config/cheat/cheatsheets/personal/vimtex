@@ -1,8 +1,13 @@
-# check errors or warning
-\le
+# VIMTEX
 
-# start/stop compiling
-\ll
+\le # check errors or warnings
 
-# scroll viewer to vim cursor position
-\lv
+\ll # start/stop compiling
+
+\lv # scroll viewer to vim cursor position
+
+# nerdcommenter https://github.com/preservim/nerdcommenter
+
+\c<space> # toggle
+
+\cm # comment minimal

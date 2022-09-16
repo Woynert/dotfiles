@@ -437,8 +437,13 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 			  
     -- Custom 
+	-- toggle keyboard layout
     awful.key({ modkey }, "#21", function () awful.spawn("/home/woynert/.config/awesome/script/toggleKbLayout") end,
-              {description = "Switch keyboard distribution", group = "woynert"})
+              {description = "Switch keyboard distribution", group = "woynert"}),
+
+	-- set keyboard layout dvorak
+    awful.key({ modkey, "Control" }, "#21", function () awful.spawn("/home/woynert/.config/awesome/script/toggleKbLayoutDvorak") end,
+              {description = "Switch keyboard to us(Dvorak)", group = "woynert"})
 )
 
 clientkeys = gears.table.join(
@@ -692,3 +697,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- 		awful.titlebar.hide(c)
 -- 	end
 -- end)
+
+
+

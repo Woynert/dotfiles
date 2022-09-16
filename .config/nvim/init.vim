@@ -43,6 +43,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
 
 Plug 'preservim/nerdcommenter'
+Plug 'luochen1990/rainbow' " rainbow brackets
+
+" solarized
+Plug 'lifepillar/vim-solarized8'
+
 
 "Plug 'leafgarland/typescript-vim'
 "Plug 'styled-components/vim-styled-components', { 'branch' : 'main' }
@@ -52,8 +57,17 @@ Plug 'preservim/nerdcommenter'
 "Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
+" solarized
+set termguicolors
+"set background=dark
+"set background=light
+"colorscheme solarized8
+
 " nerd commenter
 let g:NERDCreateDefaultMappings = 1
+
+" rainbow
+let g:rainbow_active = 1
 
 " buftabline
 let g:buftabline_show=1

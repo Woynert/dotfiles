@@ -216,3 +216,9 @@ git clone ssh://user@host/absolute/path/repo
 
 # Merge two independent files
 git diff --no-index --no-color file1 file2 > out
+
+# Git add all files modified, deleted, and untracked
+git add -A .
+
+# Get history of single file
+git log -p -- docker-compose.yml

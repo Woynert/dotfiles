@@ -1,0 +1,5 @@
+# validates the ui file. If the ui file includes some syntactical error, gtk4-builder-tool prints the error.
+gtk4-builder-tool validate <ui file name>
+
+# simplifies the ui file and prints the result. If --replace option is given, it replaces the ui file with the simplified one. If the ui file specifies a value of property but it is default, then it will be removed. And some values are simplified. For example, "TRUE"and "FALSE" becomes "1" and "0" respectively. However, "TRUE" or "FALSE" is better for maintenance.
+gtk4-builder-tool simplify <ui file name>
