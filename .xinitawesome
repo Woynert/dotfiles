@@ -8,4 +8,8 @@
 #/bin/flameshot &
 #/home/woynert/.local/bin/grayon &
 
+# exec xbindkeys &
+#exec picom &
+#exec xmousepasteblock &
+#pulseaudio --start &
 exec dbus-run-session awesome

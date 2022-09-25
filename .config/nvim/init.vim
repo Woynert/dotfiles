@@ -50,12 +50,12 @@ Plug 'preservim/nerdcommenter'
 Plug 'luochen1990/rainbow' " rainbow brackets
 
 " solarized
-Plug 'lifepillar/vim-solarized8'
+" Plug 'lifepillar/vim-solarized8'
 
 
-Plug 'habamax/vim-godot'
+" Plug 'habamax/vim-godot'
 
-Plug 'lifepillar/vim-solarized8'
+" Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
 
 Plug 'preservim/nerdtree'
@@ -75,7 +75,7 @@ if !empty($DISPLAY)
 endif
 
 " solarized
-set termguicolors
+"set termguicolors
 "set background=dark
 "set background=light
 "colorscheme solarized8

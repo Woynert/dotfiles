@@ -8,6 +8,6 @@
 
 # nerdcommenter https://github.com/preservim/nerdcommenter
 
-\c<space> # toggle
-
+\cc # comment
 \cm # comment minimal
+\c<space> # toggle
