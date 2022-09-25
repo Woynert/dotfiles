@@ -39,3 +39,9 @@ docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
 
 # To remove all volumes not used by at least one container:
 docker volume prune
+
+# Build DockerFile with name
+docker build . -t woy/spark1
+
+# Run image
+docker run <image-name>

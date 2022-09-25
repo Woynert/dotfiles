@@ -18,3 +18,10 @@ lxc stop instancename
 # Shell/Terminal inside Container
 lxc exec instancename -- /bin/bash
 (alternative) lxc exec instancename bash 
+
+# Set container to not autostart
+lxc config set mycontainer boot.autostart false
+
+# Set containers not to autostart as default
+# (will only affect new containers)
+lxc profile set default boot.autostart=false

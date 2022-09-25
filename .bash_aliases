@@ -11,6 +11,8 @@ alias vsv='sudo vsv'
 alias tree='tree -C --dirsfirst'
 alias timer='termdown -c 60 --no-figlet -a'
 alias grep='grep -i'
+alias diff='diff --color=always'
+alias quickhtml='python3 -m http.server 8000'
 
 #appimages / portable apps
 alias godot='/appimages/Godot_v3.64'

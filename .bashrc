@@ -60,6 +60,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 source ~/.git-prompt.sh
+source ~/.z.sh
 
 #export GIT_PS1_SHOWDIRTYSTATE=0
 
