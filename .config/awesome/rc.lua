@@ -172,7 +172,8 @@ local tasklist_buttons = gears.table.join(
                                           end))
 
 local function set_wallpaper(s)
-    gears.wallpaper.set("#357941")
+    --gears.wallpaper.set("#357941")
+    gears.wallpaper.set("#AA4747")
 	--[[ Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
@@ -296,7 +297,7 @@ awful.screen.connect_for_each_screen(function(s)
 	}
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", screen = s })
+    s.mywibox = awful.wibar({ position = "top", ontop = false, screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -324,6 +325,17 @@ awful.screen.connect_for_each_screen(function(s)
             -- s.mylayoutbox,
         },
     }
+
+	--hide wibar when app on fullscren. Wibar has ontop=true
+	--client.connect_signal("property::fullscreen", function (c)
+		--if c.fullscreen and c == client.focus then
+			--s.mywibox.visible = not s.mywibox.visible
+		--else
+			--s.mywibox.visible = not s.mywibox.visible
+		--end
+	--end)
+
+
 end)
 -- }}}
 
@@ -692,3 +704,11 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- 		awful.titlebar.hide(c)
 -- 	end
 -- end)
+--
+
+
+--beautiful.useless_gap = 4
+beautiful.gap_single_client = true
+
+-- Autostart
+awful.spawn.with_shell("~/.config/awesome/autorun.sh");

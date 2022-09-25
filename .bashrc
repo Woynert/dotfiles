@@ -137,6 +137,12 @@ export PATH="$PATH:/opt/compass/bin"
 export PATH="$PATH:/opt/insomnia/bin"
 export PATH="$PATH:/opt/litemdview/bin"
 
+# app specific
+export BAT_THEME="Solarized (dark)"
+
+# ls colors
+export LS_COLORS+=':ow=00;34;47'
+
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi

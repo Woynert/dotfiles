@@ -8,12 +8,12 @@ done &
 
 # Start dwm
 
-exec pulseaudio --start &
-exec nitrogen --restore &
-exec xbindkeys &
-exec lxpolkit &
-exec dunst &
-exec flameshot &
+pulseaudio --start &
+nitrogen --restore &
+xbindkeys &
+lxpolkit &
+dunst &
+flameshot &
 
 exec dbus-run-session dwm 
 

@@ -1,3 +1,11 @@
 # start awesome
-# exec xbindkeys &
+
+#/bin/pulseaudio --start &
+#/bin/xbindkeys &
+#/bin/xfsettingsd -D --replace &
+#/bin/volctl &
+#/bin/lxpolkit &
+#/bin/flameshot &
+#/home/woynert/.local/bin/grayon &
+
 exec dbus-run-session awesome

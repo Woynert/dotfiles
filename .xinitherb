@@ -1,2 +1,2 @@
 # start herbstluftwm
-exec dbus-run-session herbstluftwm --locked --autostart /home/woynert/.config/herbstluftwm/autostart
+exec dbus-run-session /bin/herbstluftwm

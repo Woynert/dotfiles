@@ -9,3 +9,4 @@ RANGER_LOAD_DEFAULT_RC=FALSE
 # Stop tty beep
 setterm -blength 0
 
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin"

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+TERM_LIGHT_THEME="Solarized-Light"
+TERM_DARK_THEME="Solarized-Dark"
+GTK_LIGHT_THEME="Adwaita"
+GTK_DARK_THEME="Adwaita-dark"
+
+function vimSignal()
+{
+	vimPids=`pidof nvim`
+	for pid in $vimPids; do
+		kill -SIGUSR1 $pid
+	done
+}
+
+if [ $# -eq 0 ]; then
+    echo "No arguments supplied"
+
+elif [ $1 == "on" ]; then
+	echo "on"
+	xfconf-query -c xsettings -p /Net/ThemeName -s $GTK_DARK_THEME
+	alacritty-themes $TERM_DARK_THEME
+	vimSignal
+
+elif [ $1 == "off" ]; then
+	echo "off"
+	xfconf-query -c xsettings -p /Net/ThemeName -s $GTK_LIGHT_THEME
+	alacritty-themes $TERM_LIGHT_THEME
+	vimSignal
+
+else
+	echo "wrong argument"
+fi
+

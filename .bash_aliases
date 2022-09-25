@@ -10,6 +10,7 @@ alias lxcls='lxc list -c ns4'
 alias vsv='sudo vsv'
 alias tree='tree -C --dirsfirst'
 alias timer='termdown -c 60 --no-figlet -a'
+alias grep='grep -i'
 
 #appimages / portable apps
 alias godot='/appimages/Godot_v3.64'
