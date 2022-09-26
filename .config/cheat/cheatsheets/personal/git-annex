@@ -27,3 +27,11 @@ git config --get annex.sshcaching
 git annex sync --content # sync both ways
 git annex sync --no-push --no-commit --content # sync from remote, not commit local changes
 
+# setup a remote repository: Check the git annex webpage walktrough
+# Server side:
+# 	mkdir annex && cd annex
+# 	git init
+# 	git annex init
+# Client side:
+# 	make sure you can ssh into the server passwordless
+# 	git annex webapp, then add the remote server
