@@ -28,6 +28,7 @@ git annex sync --content # sync both ways
 git annex sync --no-push --no-commit --content # sync from remote, not commit local changes
 
 # commit local changes to origin and sync
+git annex add a b
 git annex copy a b --to origin 
 git annex sync
 
