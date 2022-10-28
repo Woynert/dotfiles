@@ -1,0 +1,5 @@
+# create new app
+ng new my-app
+
+# start server
+ng serve --open

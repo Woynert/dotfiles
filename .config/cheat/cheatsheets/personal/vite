@@ -1,0 +1,2 @@
+# create new vite project
+npm create vite@latest
