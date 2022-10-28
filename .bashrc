@@ -142,8 +142,8 @@ export PATH="$PATH:/opt/litemdview/bin"
 export BAT_THEME="Solarized (dark)"
 
 # ls colors
-export LS_COLORS+=':ow=00;34;47'
-
+# export LS_COLORS+=':ow=00;34;47'
+export LS_COLORS+=':ow=00;35' # make them purple
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
@@ -164,3 +164,7 @@ export LS_COLORS+=':ow=00;34;47'
 # unset __conda_setup
 # <<< conda initialize <<<
 
+
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
