@@ -11,3 +11,5 @@
 \cc # comment
 \cm # comment minimal
 \c<space> # toggle
+
+= # fix indentation

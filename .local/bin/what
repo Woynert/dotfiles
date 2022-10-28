@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cat << EOF
+du -hsc \`\ls -A\`
 du -hsc * | sort -h
 grep -rin word
 find -name "*word*" -print

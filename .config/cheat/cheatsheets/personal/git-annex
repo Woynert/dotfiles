@@ -39,4 +39,8 @@ git annex sync
 # 	git annex init
 # Client side:
 # 	make sure you can ssh into the server passwordless
+# linux
 # 	git annex webapp, then add the remote server
+# termux
+#	git clone ssh://annex@20.168.99.237/~/annex.git
+#	git clone ssh://user@host[:port]/path/to/repo
