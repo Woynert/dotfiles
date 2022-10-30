@@ -75,14 +75,17 @@ source ~/.z.sh
 
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	# no ssh
+	# ssh
 	PS1='\[\033[01;33m\]\w\[\033[01;34m\]$(__git_ps1 " %s")\[\033[33m\]\$\[\033[00m\] '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-	# ssh
+	# no ssh
 	PS1='\[\033[01;32m\]\w\[\033[01;34m\]$(__git_ps1 " %s")\[\033[00m\]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
+
+# remote server
+#PS1='\[\033[01;34m\]\u \[\033[01;33m\]\w\[\033[33m\]\$\[\033[00m\] '
 
 
 unset color_prompt force_color_prompt
@@ -181,3 +184,4 @@ export LS_COLORS+=':ow=00;35' # make them purple
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+

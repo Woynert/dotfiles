@@ -13,6 +13,7 @@ alias timer='termdown -c 60 --no-figlet -a'
 alias grep='grep -i'
 alias diff='diff --color=always'
 alias quickhtml='python3 -m http.server 8000'
+alias swapreset='sudo swapoff -a && sudo swapon -a'
 
 #appimages / portable apps
 alias godot='/appimages/Godot_v3.64'
@@ -29,3 +30,11 @@ alias dotrm='dot rm -r --cached -f $HOME'
 
 # docker
 alias dockerremove='docker rm $(docker ps -qa)'
+
+docker-ips() {
+	for conId in $(docker ps -q); do
+		printf "$conId "
+		docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{.Name}}' $conId
+		#docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{.Id}}' $(docker ps -q)
+	done
+}

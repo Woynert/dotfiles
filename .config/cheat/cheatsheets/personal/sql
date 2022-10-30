@@ -1,0 +1,2 @@
+# pgcli
+pgcli -h 172.22.0.2 -p 5432 -u buenavida-user -W -d buenavida

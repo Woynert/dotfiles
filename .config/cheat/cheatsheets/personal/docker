@@ -45,3 +45,6 @@ docker build . -t woy/spark1
 
 # Run image
 docker run <image-name>
+
+# Start a stopped image
+docker start 7eb43e3a232e
