@@ -184,3 +184,10 @@
 !/.config/cheat/cheatsheets/personal
 !/.config/cheat/cheatsheets/personal/**
 
+# lf (file manager)
+!/.config/lf/
+!/.config/lf/lfrc
+
+# pistol
+!/.config/pistol/
+!/.config/pistol/pistol.conf

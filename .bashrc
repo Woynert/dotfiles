@@ -159,7 +159,8 @@ export BAT_THEME="Solarized (dark)"
 
 # ls colors
 # export LS_COLORS+=':ow=00;34;47'
-export LS_COLORS+=':ow=00;35' # make them purple
+export LS_COLORS+=':ow=00;35' # make nfts folder purple
+export BAT_THEME='gruvbox-dark'
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
