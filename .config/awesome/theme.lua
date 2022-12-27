@@ -1,7 +1,11 @@
 ---------------------------
 -- Default awesome theme --
 ---------------------------
+--
+-- some reference:
+-- https://github.com/alfunx/.dotfiles/blob/master/.config/awesome/themes/blackout/theme.lua#L256-L263
 
+--local t_util           = require("config.util_theme")
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -9,13 +13,52 @@ local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
+-- gruvbox colors
+local colors = { }
+
+colors.black_1          = "#282828"
+colors.black_2          = "#928374"
+colors.red_1            = "#cc241d"
+colors.red_2            = "#fb4934"
+colors.green_1          = "#98971a"
+colors.green_2          = "#b8bb26"
+colors.yellow_1         = "#d79921"
+colors.yellow_2         = "#fabd2f"
+colors.blue_1           = "#458588"
+colors.blue_2           = "#83a598"
+colors.purple_1         = "#b16286"
+colors.purple_2         = "#d3869b"
+colors.aqua_1           = "#689d6a"
+colors.aqua_2           = "#8ec07c"
+colors.white_1          = "#a89984"
+colors.white_2          = "#ebdbb2"
+colors.orange_1         = "#d65d0e"
+colors.orange_2         = "#fe8019"
+
+colors.bw_0_h           = "#1d2021"
+colors.bw_0             = "#282828"
+colors.bw_0_s           = "#32302f"
+colors.bw_1             = "#3c3836"
+colors.bw_2             = "#504945"
+colors.bw_3             = "#665c54"
+colors.bw_4             = "#7c6f64"
+colors.bw_5             = "#928374"
+colors.bw_6             = "#a89984"
+colors.bw_7             = "#bdae93"
+colors.bw_8             = "#d5c4a1"
+colors.bw_9             = "#ebdbb2"
+colors.bw_10            = "#fbf1c7"
+
+--colors = t_util.set_colors(colors)
+
+
 local theme = {}
 
-theme.font          = "sans 13"
+theme.font          = "sans 14"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
+theme.bg_urgent     = "#cc241d"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
 
@@ -28,7 +71,8 @@ theme.useless_gap   = dpi(4)
 theme.border_width  = dpi(2)
 theme.border_normal = "#1A2A2F"
 --theme.border_focus  = theme.border_normal
-theme.border_focus  = "#444444"
+theme.border_focus  = "#458588"
+--theme.border_focus  = "#444444"
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
@@ -58,6 +102,16 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+
+theme.notification_bg           = theme.bg_normal
+--theme.notification_border_color = colors.bw_2
+theme.notification_border_color = colors.orange_1
+theme.notification_border_width = 2
+theme.notification_icon_size    = 80
+theme.notification_opacity      = 1
+theme.notification_max_width    = 710
+theme.notification_max_height   = 400
+theme.notification_margin       = 20
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]

@@ -2,6 +2,7 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- oh dear who did this??
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -49,7 +50,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/theme.lua")
+--beautiful.init("~/.config/awesome/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
@@ -68,8 +70,8 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
     awful.layout.suit.floating,
+    --awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
@@ -78,7 +80,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
+    --awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -449,9 +451,14 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),]]--
+
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "p", function() awful.spawn("rofi -show drun") end,
               {description = "show the menubar", group = "launcher"}),
+
+    -- Menubar
+    --awful.key({ modkey }, "p", function() menubar.show() end,
+              --{description = "show the menubar", group = "launcher"}),
 			  
     -- Custom 
 	-- toggle keyboard layout
@@ -703,7 +710,8 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
+      --}, properties = { titlebars_enabled = true }
+	  }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -778,26 +786,77 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --
 
 -- show title bars only on floating mode
--- client.connect_signal("property::floating", function(c)
--- 	if c.floating then
--- 		awful.titlebar.show(c)
--- 	else
--- 		awful.titlebar.hide(c)
--- 	end
--- end)
--- 
--- client.connect_signal("manage", function(c)
--- 	if c.floating then
--- 		awful.titlebar.show(c)
--- 	else
--- 		awful.titlebar.hide(c)
--- 	end
--- end)
---
+--client.connect_signal("property::floating", function(c)
+	--if c.floating then
+		--awful.titlebar.show(c)
+	--else
+		--awful.titlebar.hide(c)
+	--end
+--end)
+
+--client.connect_signal("manage", function(c)
+	--if c.floating then
+		--awful.titlebar.show(c)
+	--else
+		--awful.titlebar.hide(c)
+	--end
+--end)
+----
+
+---- https://github.com/mphe/dotfiles/blob/5d111e4a74e1b29a5b556b58bccd47a1adf0cc8a/configdir/awesome/rc.lua
+---- show title bars only on floating mode
+
+local function checktitlebar(c, float)
+	-- if c.floating and not c.maximized and not c.requests_no_titlebar then
+	-- if c.floating and not c.maximized then
+	--local float = t.layout.name == "floating"
+
+	if float and not c.maximized then
+		awful.titlebar.show(c)
+	else
+		awful.titlebar.hide(c)
+	end
+
+	-- shadow ?
+	--if c.floating and not c.maximized and not c.fullscreen then
+		--awful.spawn("xprop -id " .. c.window .. " -f _COMPTON_SHADOW 32c -set _COMPTON_SHADOW 1")
+	--else
+		--awful.spawn("xprop -id " .. c.window .. " -f _COMPTON_SHADOW 32c -set _COMPTON_SHADOW 0")
+	--end
+end
+
+awful.tag.attached_connect_signal(nil, "property::layout", function (t)
+	local float = t.layout.name == "floating"
+	for _,c in pairs(t:clients()) do
+		--c.floating = float
+		checktitlebar(c, float)
+	end
+end)
+
+---- Signal function to execute when a new client appears.
+--client.connect_signal("manage", function (c)
+    --checktitlebar(c)
+--end)
+
+---- Add titlebars to floating windows
+---- client.connect_signal("property::floating", checktitlebar)
+--client.connect_signal("property::floating",  function (c)
+    --checktitlebar(c)
+--end)
+
+
+-- Hide titlebar when maximized
+-- Needs request::geometry because when property::maximized is called,
+-- the window was already transformed, not filling up the space freed by hiding titlebar.
+--client.disconnect_signal("request::geometry", awful.ewmh.geometry)
+--client.connect_signal("request::geometry", function(c, ...)
+    --checktitlebar(c)
+    --return awful.ewmh.geometry(c, ...)
+--end)
 
 
 --beautiful.useless_gap = 4
 beautiful.gap_single_client = true
 
 -- Autostart
-awful.spawn.with_shell("~/.config/awesome/autorun.sh");
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
