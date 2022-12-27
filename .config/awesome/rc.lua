@@ -803,15 +803,16 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --end)
 ----
 
----- https://github.com/mphe/dotfiles/blob/5d111e4a74e1b29a5b556b58bccd47a1adf0cc8a/configdir/awesome/rc.lua
 ---- show title bars only on floating mode
+---- https://github.com/mphe/dotfiles/blob/5d111e4a74e1b29a5b556b58bccd47a1adf0cc8a/configdir/awesome/rc.lua
 
-local function checktitlebar(c, float)
-	-- if c.floating and not c.maximized and not c.requests_no_titlebar then
-	-- if c.floating and not c.maximized then
-	--local float = t.layout.name == "floating"
+local function checktitlebar(c)
+	
+	-- is current layout floating?
+	local float = c.first_tag.layout.name == "floating"
 
 	if float and not c.maximized then
+	--if c.floating and not c.maximized then
 		awful.titlebar.show(c)
 	else
 		awful.titlebar.hide(c)
@@ -825,18 +826,18 @@ local function checktitlebar(c, float)
 	--end
 end
 
+-- on change layout
 awful.tag.attached_connect_signal(nil, "property::layout", function (t)
 	local float = t.layout.name == "floating"
 	for _,c in pairs(t:clients()) do
-		--c.floating = float
-		checktitlebar(c, float)
+		checktitlebar(c)
 	end
 end)
 
 ---- Signal function to execute when a new client appears.
---client.connect_signal("manage", function (c)
-    --checktitlebar(c)
---end)
+client.connect_signal("manage", function (c)
+	checktitlebar(c)
+end)
 
 ---- Add titlebars to floating windows
 ---- client.connect_signal("property::floating", checktitlebar)
