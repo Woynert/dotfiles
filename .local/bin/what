@@ -20,4 +20,12 @@ xbacklight -set 60
 man xkeyboard-config
 systemctl list-unit-files --type=service --state=enabled
 cat /etc/[A-Za-z]*[_-][rv]e[lr]* # distro info
+ps aux | awk '{sum+=$6} END {print sum / 1024}'
+ps aux | egrep "Z|defunct"
 EOF
+
+# https://unix.stackexchange.com/questions/259659/high-memory-usage-but-no-process-is-using-it
+# ps aux | awk '{sum+=$6} END {print sum / 1024}
+
+# https://www.howtogeek.com/701971/how-to-kill-zombie-processes-on-linux/
+# ps aux | egrep "Z|defunct"
