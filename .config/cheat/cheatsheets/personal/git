@@ -222,3 +222,13 @@ git add -A .
 
 # Get history of single file
 git log -p -- docker-compose.yml
+
+# abort merge
+git merge --abort
+
+# Add a remote origin and replace branch
+git remote add origin <url>
+git branch -M master
+git push -u origin master
+git push origin --delete main # You may need to change the default branch from github
+

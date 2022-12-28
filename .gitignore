@@ -191,3 +191,7 @@
 # pistol
 !/.config/pistol/
 !/.config/pistol/pistol.conf
+
+# rofi
+!/.config/rofi/
+!/.config/rofi/config.rasi

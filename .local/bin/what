@@ -19,5 +19,6 @@ xbacklight -get
 xbacklight -set 60
 man xkeyboard-config
 systemctl list-unit-files --type=service --state=enabled
+systemctl --type=service --state=running 
 cat /etc/[A-Za-z]*[_-][rv]e[lr]* # distro info
 EOF

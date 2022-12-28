@@ -13,3 +13,5 @@
 \c<space> # toggle
 
 = # fix indentation
+
+set list # show whitespaces/tabs

@@ -14,6 +14,9 @@ alias grep='grep -i'
 alias diff='diff --color=always'
 alias quickhtml='python3 -m http.server 8000'
 alias swapreset='sudo swapoff -a && sudo swapon -a'
+alias vsvu='vsv -d ~/service'
+alias vsvx='vsv -d ~/servicex'
+alias lf1='lf -command "set nopreview; set ratios 1"'
 
 #appimages / portable apps
 alias godot='/appimages/Godot_v3.64'
@@ -22,6 +25,7 @@ alias godot='/appimages/Godot_v3.64'
 # package manager
 alias xinstall='xbps-install'
 alias xquery='xbps-query -Rs'
+alias xqueryl='xbps-query -s'
 
 
 # dotfiles
@@ -37,4 +41,8 @@ docker-ips() {
 		docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{.Name}}' $conId
 		#docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{.Id}}' $(docker ps -q)
 	done
+}
+
+xqueryex() {
+	xbps-query -Rs $1 | awk '{ print $1,$2 }' | grep $1
 }
