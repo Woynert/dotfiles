@@ -802,5 +802,5 @@ beautiful.gap_single_client = true
 -- Autostart
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
-     
-awful.spawn.with_shell("/bin/notify-send 'refresh titlebar'" .. beautiful.titlebar_height)
+-- welcome message     
+awful.spawn("notify-send 'Welcome back'")
