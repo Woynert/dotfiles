@@ -22,7 +22,6 @@ client.connect_signal("tagged", function (c)
 	if not (c.first_tag.layout == awful.layout.suit.floating) then return end
 
 	if debug then awful.spawn.with_shell("/bin/notify-send 'changed tag' ") end
-	--if debug then awful.spawn.with_shell("/bin/notify-send 'changed tag set geometry' " .. (floatgeoms[c.window].height)) end
 
 	-- restore geometry
 	floatgeoms[c.window] = prevFloatgeoms[c.window]

@@ -266,36 +266,37 @@ awful.screen.connect_for_each_screen(function(s)
 		end,
 		layout = wibox.layout.align.vertical,
 	    },]]--
-	widget_template = {
-		   nil,
-		   {
-		     {
-		      {
-			id = "clienticon",
-			widget = awful.widget.clienticon,
-			valign = 'center',
-		      },
-		      margins = 0,
-		      id = "icon_margin_role",
-		      widget = wibox.container.margin,
-		    },
-		    valign = 'center',
-		    halign = 'center',
-		    widget = wibox.container.place,
-		  },
-		  {
-		    wibox.widget.base.make_widget(),
-		    forced_height = 2,
-		    id            = "background_role",
-		    widget        = wibox.container.background,
-		  },
-		  -- forced_height = 50,
-		  forced_width = 40,
-		  create_callback = function(self, c, index, objects)
-		      self:get_children_by_id("clienticon")[1].client = c
-		  end,
-		  layout = wibox.layout.align.vertical,
-	    },
+		widget_template = {
+			nil,
+			{
+				{
+					{
+						id = "clienticon",
+						widget = awful.widget.clienticon,
+						valign = 'center',
+					},
+					margins = 0,
+					id = "icon_margin_role",
+					widget = wibox.container.margin,
+				},
+				valign = 'center',
+				halign = 'center',
+				widget = wibox.container.place,
+			},
+			{
+				-- horizontal bottom line
+				wibox.widget.base.make_widget(),
+				forced_height = 3,
+				id            = "background_role",
+				widget        = wibox.container.background,
+			},
+			-- forced_height = 50,
+			forced_width = 40,
+			create_callback = function(self, c, index, objects)
+				self:get_children_by_id("clienticon")[1].client = c
+			end,
+			layout = wibox.layout.align.vertical,
+		},
 	}
 
     -- Create the wibox
@@ -749,7 +750,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
+    awful.titlebar(c, { size=beautiful.titlebar_height } ) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
@@ -765,6 +766,7 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Right
             -- awful.titlebar.widget.floatingbutton (c),
+            awful.titlebar.widget.minimizebutton(c),
             awful.titlebar.widget.maximizedbutton(c),
             -- awful.titlebar.widget.stickybutton   (c),
             -- awful.titlebar.widget.ontopbutton    (c),
@@ -800,4 +802,5 @@ beautiful.gap_single_client = true
 -- Autostart
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
-
+     
+awful.spawn.with_shell("/bin/notify-send 'refresh titlebar'" .. beautiful.titlebar_height)

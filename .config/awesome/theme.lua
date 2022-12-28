@@ -5,6 +5,7 @@
 -- some reference:
 -- https://github.com/alfunx/.dotfiles/blob/master/.config/awesome/themes/blackout/theme.lua#L256-L263
 
+
 --local t_util           = require("config.util_theme")
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
@@ -151,6 +152,10 @@ theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar
 theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
+
+-- titlebar vars
+theme.titlebar_height = 24
+
 
 theme.wallpaper = themes_path.."default/background.png"
 
