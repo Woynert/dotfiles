@@ -785,75 +785,13 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 --
 
--- show title bars only on floating mode
---client.connect_signal("property::floating", function(c)
-	--if c.floating then
-		--awful.titlebar.show(c)
-	--else
-		--awful.titlebar.hide(c)
-	--end
---end)
+-- the order is important
 
---client.connect_signal("manage", function(c)
-	--if c.floating then
-		--awful.titlebar.show(c)
-	--else
-		--awful.titlebar.hide(c)
-	--end
---end)
-----
+-- 1. toggle titlebars when not floating
+require('floating_titlebar_toggle')
 
----- show title bars only on floating mode
----- https://github.com/mphe/dotfiles/blob/5d111e4a74e1b29a5b556b58bccd47a1adf0cc8a/configdir/awesome/rc.lua
-
-local function checktitlebar(c)
-	
-	-- is current layout floating?
-	local float = c.first_tag.layout.name == "floating"
-
-	if float and not c.maximized then
-	--if c.floating and not c.maximized then
-		awful.titlebar.show(c)
-	else
-		awful.titlebar.hide(c)
-	end
-
-	-- shadow ?
-	--if c.floating and not c.maximized and not c.fullscreen then
-		--awful.spawn("xprop -id " .. c.window .. " -f _COMPTON_SHADOW 32c -set _COMPTON_SHADOW 1")
-	--else
-		--awful.spawn("xprop -id " .. c.window .. " -f _COMPTON_SHADOW 32c -set _COMPTON_SHADOW 0")
-	--end
-end
-
--- on change layout
-awful.tag.attached_connect_signal(nil, "property::layout", function (t)
-	local float = t.layout.name == "floating"
-	for _,c in pairs(t:clients()) do
-		checktitlebar(c)
-	end
-end)
-
----- Signal function to execute when a new client appears.
-client.connect_signal("manage", function (c)
-	checktitlebar(c)
-end)
-
----- Add titlebars to floating windows
----- client.connect_signal("property::floating", checktitlebar)
---client.connect_signal("property::floating",  function (c)
-    --checktitlebar(c)
---end)
-
-
--- Hide titlebar when maximized
--- Needs request::geometry because when property::maximized is called,
--- the window was already transformed, not filling up the space freed by hiding titlebar.
---client.disconnect_signal("request::geometry", awful.ewmh.geometry)
---client.connect_signal("request::geometry", function(c, ...)
-    --checktitlebar(c)
-    --return awful.ewmh.geometry(c, ...)
---end)
+-- 2. remember floating window positions
+require('restore_floating_clients')
 
 
 --beautiful.useless_gap = 4
@@ -861,3 +799,5 @@ beautiful.gap_single_client = true
 
 -- Autostart
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
+
