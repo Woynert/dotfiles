@@ -24,6 +24,8 @@ local function refreshTitlebar(c)
 
 	if debug then awful.spawn.with_shell("/bin/notify-send 'refresh titlebar'") end
 	
+	if not c.first_tag then return end
+
 	-- is current layout floating?
     local float = c.first_tag.layout == awful.layout.suit.floating 
 

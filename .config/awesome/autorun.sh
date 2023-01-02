@@ -10,7 +10,6 @@ function run {
 	fi
 }
 
-#~/.local/bin/grayon &
 run /bin/pulseaudio --start 
 run /bin/xbindkeys 
 run /bin/xfsettingsd -D --replace 
@@ -18,3 +17,8 @@ run /bin/volctl
 run /bin/lxpolkit 
 run /bin/flameshot 
 run /bin/runsvdir -P $HOME/servicex
+
+# visual
+#~/.local/bin/grayon &
+run /bin/nitrogen --restore
+run /bin/picom

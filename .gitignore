@@ -124,18 +124,23 @@
 
 !/.xbindkeysrc
 
-!/.waterfox/
-!/.waterfox/chrome/
-!/.waterfox/chrome/userChrome.css
-!/.waterfox/chrome/userContent.css
+#!/.waterfox/
+#!/.waterfox/chrome/
+#!/.waterfox/chrome/userChrome.css
+#!/.waterfox/chrome/userContent.css
+!/.mozilla/
+!/.mozilla/chrome/
+!/.mozilla/chrome/*
 
+!/.mozilla/
+!/.mozilla/homepage/
+!/.mozilla/homepage/**
 
 !/.local/
 !/.local/bin/
 !/.local/bin/*
 !/.local/bin/hidden/
 !/.local/bin/hidden/*
-#/.local/bin/waterfoxbin/**
 
 !/.script/
 !/.script/**

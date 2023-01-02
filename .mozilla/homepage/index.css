@@ -1,0 +1,43 @@
+*{
+	font-family: sans-serif;
+	font-size: 1.05em;
+	box-sizing: border-box;
+}
+
+body, html{
+	padding: 0;
+	margin: 0;
+	background-color: #3C3836;
+}
+
+img{
+	width: 30px;
+	display: inline-block;
+	margin-right: 10px;
+	/*height: 20px;*/
+}
+
+a{
+	text-decoration: none;
+	color: #fbf1c7;
+}
+
+#container{
+	/*! margin: auto; */
+	width: fit-content;
+	margin: 20px;
+}
+
+.item{
+	display: flex;
+	text-align: center;
+	vertical-align: middle;
+	/*! justify-content: center; */
+	align-items: center;
+	margin-bottom: 5px;
+	width: fit-content;
+}
+
+.itemname{
+	display: inline-block;
+}

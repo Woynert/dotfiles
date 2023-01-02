@@ -300,7 +300,8 @@ awful.screen.connect_for_each_screen(function(s)
 	}
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", ontop = false, screen = s })
+	s.mywibox = awful.wibar({ position = "top", ontop = false, screen = s })
+    --s.mywibox = awful.wibar({ position = "bottom", ontop = false, screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -750,7 +751,11 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, { size=beautiful.titlebar_height } ) : setup {
+    awful.titlebar(c, {
+		size = beautiful.titlebar_height,
+		bg_normal = beautiful.titlebar_bg_normal,
+		bg_focus  = beautiful.titlebar_bg_focus,
+	}) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
@@ -765,11 +770,11 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            -- awful.titlebar.widget.floatingbutton (c),
+            --awful.titlebar.widget.floatingbutton (c),
+			--awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.minimizebutton(c),
             awful.titlebar.widget.maximizedbutton(c),
-            -- awful.titlebar.widget.stickybutton   (c),
-            -- awful.titlebar.widget.ontopbutton    (c),
+            --awful.titlebar.widget.stickybutton   (c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },
@@ -795,8 +800,7 @@ require('floating_titlebar_toggle')
 -- 2. remember floating window positions
 require('restore_floating_clients')
 
-
---beautiful.useless_gap = 4
+-- useless gap
 beautiful.gap_single_client = true
 
 -- Autostart

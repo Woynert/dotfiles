@@ -155,6 +155,8 @@ theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/m
 
 -- titlebar vars
 theme.titlebar_height = 24
+theme.titlebar_bg_normal = theme.bg_normal
+theme.titlebar_bg_focus  = theme.bg_normal
 
 
 theme.wallpaper = themes_path.."default/background.png"
