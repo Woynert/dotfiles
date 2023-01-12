@@ -20,5 +20,5 @@ run /bin/runsvdir -P $HOME/servicex
 
 # visual
 #~/.local/bin/grayon &
-run /bin/nitrogen --restore
+#run /bin/nitrogen --restore
 run /bin/picom

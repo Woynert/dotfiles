@@ -17,6 +17,7 @@ alias swapreset='sudo swapoff -a && sudo swapon -a'
 alias vsvu='vsv -d ~/service'
 alias vsvx='vsv -d ~/servicex'
 alias lf1='lf -command "set nopreview; set ratios 1"'
+alias ips="ifconfig 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
 
 #appimages / portable apps
 alias godot='/appimages/Godot_v3.64'
