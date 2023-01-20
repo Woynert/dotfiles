@@ -128,6 +128,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
+
+-- pomodoro widget
+pomodoro = require("pomodoro")
+
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 local month_calendar = awful.widget.calendar_popup.month({start_sunday=true})
@@ -317,6 +321,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
             wibox.widget.systray(),
+			pomodoro,
 			{
 				widget = awful.widget.watch('/home/woynert/.config/awesome/script/battery.sh', 10),
 			},
@@ -808,3 +813,5 @@ awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 -- welcome message     
 awful.spawn("notify-send 'Welcome back'")
+
+
