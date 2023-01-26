@@ -98,6 +98,23 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
+-- Taglist colors
+
+--theme.taglist_bgcolor_middle = "#0066ff88"
+theme.taglist_bgcolor_middle = "#A8194544"
+
+theme.taglist_bgcolors = {
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    theme.taglist_bgcolor_middle,
+    theme.taglist_bgcolor_middle,
+    theme.taglist_bgcolor_middle,
+    "#00000000",
+    "#00000000",
+    "#00000000",
+}
+
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]
@@ -159,7 +176,8 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus  = theme.bg_normal
 
 
-theme.wallpaper = themes_path.."default/background.png"
+--theme.wallpaper = themes_path.."default/background.png"
+theme.wallpaper = "~/.config/awesome/min16x16.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"

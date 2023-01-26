@@ -179,16 +179,19 @@ local tasklist_buttons = gears.table.join(
 
 local function set_wallpaper(s)
     --gears.wallpaper.set("#357941")
-    gears.wallpaper.set("#AA4747")
-	--[[ Wallpaper
+    --gears.wallpaper.set("#AA4747")
+	--gears.wallpaper.maximized("", s)
+
+	-- Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
         -- If wallpaper is a function, call it with the screen
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end]]--
+        --gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.centered(wallpaper, s, "#AA4747", 0.01)
+    end
 end
 
 --
@@ -213,12 +216,62 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
+    --s.mytaglist = awful.widget.taglist {
+        --screen  = s,
+        --filter  = awful.widget.taglist.filter.all,
+        --buttons = taglist_buttons,
+		--widget_template = {
+		   --{
+			  --id     = 'text_role',
+			  --widget = wibox.widget.textbox,
+		   --},
+		   --widget = wibox.container.background,
+		   --id = 'bg',
+		   --create_callback = function(self, t, index, objects)
+			  --self.bg = beautiful.taglist_bgcolors[index]
+		   --end
+		--}
+    --}
+
+	--s.mytaglist = awful.widget.taglist {
+		--screen  = s,
+		--filter  = awful.widget.taglist.filter.all,
+		--buttons = taglist_buttons,
+	--}
+
+	s.mytaglist = awful.widget.taglist {
+		screen  = s,
+		filter  = awful.widget.taglist.filter.all,
+		widget_template = {
+			{
+				{
+					{
+						{
+							id     = 'text_role',
+							widget = wibox.widget.textbox,
+						},
+						layout = wibox.layout.fixed.horizontal,
+					},
+					left  = 4,
+					right = 4,
+					widget = wibox.container.margin
+				},
+				id     = 'background_role',
+				widget = wibox.container.background,
+			},
+			id     = 'bg',
+			widget = wibox.container.background,
+			update_callback = function(self, t, index, objects) --luacheck: no unused args
+				self.bg = beautiful.taglist_bgcolors[index]
+			end,
+			create_callback = function(self, t, index, objects) --luacheck: no unused args
+				self.bg = beautiful.taglist_bgcolors[index]
+			end,
+		},
+		buttons = taglist_buttons
+	}
 
     -- Create a tasklist widget
     -- s.mytasklist = awful.widget.tasklist {
@@ -226,6 +279,7 @@ awful.screen.connect_for_each_screen(function(s)
     --     filter  = awful.widget.tasklist.filter.currenttags,
     --     buttons = tasklist_buttons
     -- }
+	
     s.mytasklist = awful.widget.tasklist {
 	    screen   = s,
 	    filter   = awful.widget.tasklist.filter.currenttags,
