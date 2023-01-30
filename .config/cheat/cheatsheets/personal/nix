@@ -1,0 +1,88 @@
+
+# ==========================
+# nix-env package management
+
+# update package list
+sudo nix-channel --update 	
+
+# search
+# also try search.nixos.org/packages
+nix search <query> 	
+nix search nixpkgs simgrid # specific channel
+
+# install
+# no root, atomic, per user
+nix-env -i <package> 	
+
+# list channels
+nix-channel --list
+
+# installing from and specific channel
+nix-env -iA nixpkgs.simgrid 
+nix-env -iA unstable.simgrid
+
+# upgrade installed
+# no root, atomic, per user
+sudo apt upgrade
+nix-env -u
+
+# remove
+# no root, atomic, per user
+sudo apt remove <package>
+nix-env -e <package>
+
+# undo last operation
+# no root, atomic, per user
+nix-env --rollback
+
+# list installed
+dpkg -l
+nix-env -q 	per user
+nix-env --query "*"
+
+# show generations
+nix-env --list-generations 	
+
+# cleans the Nix store of unused packages
+nix-collect-garbage 
+
+# =============================================
+# nix-shell isolated build/dev/run environments
+
+# start shell in env with <packages>
+nix-shell -p <packages>
+
+# start shell in the env defined by shell.nix or default.nix in current dir
+nix-shell
+
+# same, but outside env is inaccessible
+nix-shell --pure
+
+# ===========================================================
+# NixOS declarative operating system configuration management
+
+# define new system configuration
+# running system is unaffected
+edit /etc/nixos/configuration.nix
+
+# switch to the configuration defined in /etc/nixos/configuration.nix
+# atomic*
+nixos-rebuild switch
+
+# switch to previous configuration
+# atomic*
+nixos-rebuild switch --rollback
+
+# show option value and documentation
+# also try search.nixos.org/options
+nixos-option <option>
+
+*services can fail to start
+
+# links
+- https://jdheyburn.co.uk/blog/nix-cheat-sheet/
+- https://mynixos.com/
+- https://nixos.wiki/wiki/Cheatsheet
+- https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/first-package.html # building a package (recommended)
+- https://learnxinyminutes.com/docs/nix/
+- https://gist.github.com/lheckemann/402e61e8e53f136f239ecd8c17ab1deb

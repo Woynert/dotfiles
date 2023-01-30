@@ -14,6 +14,7 @@ set scrolloff=10
 filetype plugin on
 syntax on
 set smartcase
+set mouse=
 
 " set number
 " set nonumber
