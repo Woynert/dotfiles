@@ -10,3 +10,11 @@
 	browser[type="content-primary"] {background: #011326 !important}
 }
 */
+
+/* ADDONS */
+/* Hides FireMonkey addon to protect SecurityPuzzle of being deactivated */
+@-moz-document url-prefix(about:addons) {
+	addon-card[addon-id="firemonkey@eros.man"]{
+		display: none !important;
+	}
+}

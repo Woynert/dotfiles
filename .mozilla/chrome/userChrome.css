@@ -57,3 +57,10 @@
 	background-color: white !important;
 }*/
 
+
+/* ADDONS */
+/* Hides FireMonkey addon to protect SecurityPuzzle of being deactivated */
+toolbarpaletteitem[id="wrapper-firemonkey_eros_man-browser-action"] {
+	display: none !important;
+}
+
