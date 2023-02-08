@@ -53,3 +53,6 @@ docker image rm $(docker images list -qa)
 
 # To remove all volumes not used by at least one container:
 docker volume prune
+
+# Remove unused Docker data (optionally with "-a")
+docker system prune

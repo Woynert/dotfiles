@@ -23,6 +23,7 @@ systemctl --type=service --state=running
 cat /etc/[A-Za-z]*[_-][rv]e[lr]* # distro info
 ps aux | awk '{sum+=$6} END {print sum / 1024}'
 ps aux | egrep "Z|defunct"
+ while :; do echo 'Hit CTRL+C'; sleep 1; done #infinite loop
 EOF
 
 # https://unix.stackexchange.com/questions/259659/high-memory-usage-but-no-process-is-using-it
