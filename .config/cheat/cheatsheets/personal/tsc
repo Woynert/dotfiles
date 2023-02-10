@@ -1,14 +1,42 @@
 https://www.typescriptlang.org/
+https://khalilstemmler.com/blogs/typescript/node-starter-project/
 
-# install typescript
-npm install -g typescript
+# Quick setup ===============================
 
-# one file
-npx tsc --version
-npx tsc ./src/app.ts --target es6 --outfile ./js/app.js -w
+# 1. Install typescript
+npm i typescript --save-dev
 
-# init
+# 2. Init project
 npx tsc --init
+npx tsc --init --rootDir src --outDir build \
+--esModuleInterop --resolveJsonModule --lib es6 \
+--noImplicitAny true \
+--module commonjs --allowJs true --noImplicitAny true # don't copy this part if you don't need it
+
+# 3. Create your file
+mkdir src
+echo 'console.log("Hello world!");' >> src/index.ts
+vim src/index.ts
+
+# run the project without compiling first
+npm install --save-dev ts-node
+
+# run script in package.json
+,"scripts": {
+  "start": "npx ts-node ./src/index.ts"
+}
+
+
 
 # watch changes and build automatically
 npx tsc -w
+
+
+# One file ===============================
+npx tsc --version
+npx tsc ./src/app.ts --target es6 --outfile ./js/app.js -w
+
+
+# install globally
+npm install -g typescript
+npm install --location=user typescript
