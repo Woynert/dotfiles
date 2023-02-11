@@ -193,6 +193,11 @@ _G.packer_plugins = {
     path = "/home/woynert/.local/share/nvim/site/pack/packer/start/ripgrep",
     url = "https://github.com/BurntSushi/ripgrep"
   },
+  ["telescope-gitmoji.nvim"] = {
+    loaded = true,
+    path = "/home/woynert/.local/share/nvim/site/pack/packer/start/telescope-gitmoji.nvim",
+    url = "https://github.com/olacin/telescope-gitmoji.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/woynert/.local/share/nvim/site/pack/packer/start/telescope.nvim",

@@ -79,9 +79,6 @@ return require('packer').startup(function(use)
                 items = {
                     starter.sections.recent_files(10, true),
                     starter.sections.recent_files(20, false),
-                    --starter.sections.builtin_actions(),
-                    -- Use this if you set up 'mini.sessions'
-                    --starter.sections.sessions(5, true)
                 },
             })
         end
@@ -93,6 +90,8 @@ return require('packer').startup(function(use)
         },
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
+
+    use 'olacin/telescope-gitmoji.nvim'
 
 end)
 
