@@ -237,3 +237,6 @@ git rm --cached `git ls-files -i -c --exclude-from=.gitignore`
 
 # See commit resume
 git log --oneline --graph
+
+# create archive 
+git archive -o latest.zip HEAD

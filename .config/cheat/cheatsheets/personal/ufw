@@ -1,0 +1,21 @@
+
+# list rules when unactive
+ufw show added
+
+# list rules when active
+ufw status
+ufw status numbered
+ufw status verbose
+
+# reset to default config
+ufw reset
+
+# default
+ufw default deny incoming
+ufw default allow outgoing
+
+# allow specific service from /etc/services
+ufw allow ssh
+
+# allow by port/protocol
+ufw allow 22/tcp

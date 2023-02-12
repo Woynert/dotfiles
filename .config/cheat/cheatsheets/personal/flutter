@@ -7,3 +7,6 @@ flutter run
 
 # create new project
 flutter create --project-name mycalc --org dev.flutter --android-language java --ios-language objc mycalc
+
+# clean previous build
+flutter clean
