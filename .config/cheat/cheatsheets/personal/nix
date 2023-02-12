@@ -12,7 +12,7 @@ nix search nixpkgs simgrid # specific channel
 
 # install
 # no root, atomic, per user
-nix-env -i <package> 	
+nix-env -iv <package> 	
 
 # list channels
 nix-channel --list

@@ -42,14 +42,18 @@ docker start 7eb43e3a232e
 
 # ===== Commands for cleaning space =====
 
+# To stop all running containers:
+docker stop $(docker ps -qa)
+
 # To remove all stopped containers:
 docker rm $(docker ps -qa)
 
 # To remove all untagged images:
-docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
+docker rmi $(docker image list | grep "^<none>" | awk '{print $3}')
 
 # To remove all images
-docker image rm $(docker images list -qa)
+docker image rm $(docker image list -qa)
+docker image rm -f $(docker image list -qa)
 
 # To remove all volumes not used by at least one container:
 docker volume prune

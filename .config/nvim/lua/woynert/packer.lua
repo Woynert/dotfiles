@@ -42,7 +42,7 @@ return require('packer').startup(function(use)
 
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('ThePrimeagen/harpoon')
-	use('mbbill/undotree')
+	--use('mbbill/undotree')
 	use('tpope/vim-fugitive')
 
     use { 'preservim/nerdcommenter',
@@ -58,21 +58,44 @@ return require('packer').startup(function(use)
         end
     }
 
-    use { 'morhetz/gruvbox',
-        as = 'gruvbox',
+    --use { 'morhetz/gruvbox',
+            --vim.cmd('colorscheme gruvbox')
+
+    use { 'lifepillar/vim-gruvbox8',
+        as = 'gruvbox8',
         config = function()
-            vim.cmd('colorscheme gruvbox')
+            --set background=dark
+            vim.cmd('colorscheme gruvbox8')
         end
     }
 
-    use { 'ap/vim-buftabline',
-        config = function()
-            vim.g.buftabline_show = true
-            vim.g.buftabline_indicators = true
-        end
+    --use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons',
+        --config = function()
+            --vim.opt.termguicolors = true
+            --require("bufferline").setup{}
+        --end
+    --}
+    --use { 'ap/vim-buftabline',
+    --use { 'edibegovic/vim-buftabline',
+    --use { 'GopherJ/vim-buftabline',
+        --config = function()
+            --vim.g.buftabline_show = true
+            --vim.g.buftabline_indicators = true
+            --vim.g.buftabline_separators = true
+        --end,
+        --requires = {
+            --"nvim-tree/nvim-web-devicons",
+        --}
+    --}
+
+    use { 'echasnovski/mini.tabline',
+        config = function ()
+            require('mini.tabline').setup()
+        end,
+        requires = { 'nvim-tree/nvim-web-devicons' }
     }
 
-    use { 'echasnovski/mini.starter', branch = 'stable',
+    use { 'echasnovski/mini.starter',
         config = function()
             local starter = require('mini.starter')
             starter.setup({
@@ -84,14 +107,29 @@ return require('packer').startup(function(use)
         end
     }
 
-    use { 'nvim-tree/nvim-tree.lua',
+    use { 'nvim-neo-tree/neo-tree.nvim',
+        branch = "v2.x",
         requires = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
     use 'olacin/telescope-gitmoji.nvim'
+
+    use { 'echasnovski/mini.cursorword',
+        as = "mini.cursorword",
+        config = function ()
+            require('mini.cursorword').setup(
+                {
+                  delay = 100,
+                }
+            )
+        end
+    }
+
+    use 'psliwka/vim-smoothie'
 
 end)
 

@@ -8,7 +8,8 @@ local lsp = require('lsp-zero').preset({
 lsp.ensure_installed({
 	'tsserver',
 	'eslint',
-	'sumneko_lua',
+	--'lua_ls',
+    'sumneko_lua',
 	'rust_analyzer',
 })
 
@@ -26,10 +27,35 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 -- })
 
 lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
+    mapping = cmp_mappings,
+    preselect = 'none',
+    completion = {
+        --completeopt = 'menu,menuone,noinsert,noselect'
+        completeopt = 'menu,menuone,noselect'
+    },
+    experimental = {
+        ghost_text = true,
+    },
 })
+
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
 
 lsp.setup()
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = 'minimal',
+    border = 'rounded',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
+})

@@ -1,17 +1,83 @@
+# LSP
+<leader>[ ] start autocompletion 
+<leader>p   prev
+<leader>n   next
+<leader>y   select option 
+
+K     hover help     float window
+<C-k> signature help float window
+gl    diagnostics    float window
+
+gd = Jumps to symbol definition under the cursor
+gD = Jumps to symbol declaration under the cursor
+gi = Lists all the implementations for the symbol under the cursor in the quickfix window
+go = Jumps to the definition of the type of the symbol under the cursor
+gr = Lists all the references to the symbol under the cursor in the quickfix window
+
+# telescope
+<leader>pf fuzzy finder
+<leader>pp git fuzzy finder
+
+# harpoon
+<leader>e open menu
+<leader>a add buffer
+
+# neo-tree
+<leader>t  toggle
+<leader>n  focus
+<leader>pv locate current file
+<bs>       navigate up
+
+o          open
+.          set root to directory
+z          close all dirs
+Z          expand all dirs
+P          toggle preview {USEFUL}
+
+/     filter fuzzy
+f     filter on submit
+D     filter directory fuzzy
+<C-x> clear filter
+
+# window
+<C-w>_ maximize
+<C-w>w cycle
+
+# nerdcommenter preservim/nerdcommenter
+\cc       comment
+\cm       comment minimal
+\c<space> toggle
+
+|
+|
+|
+|
+|
+
+# packer
+cd ~/.config/nvim/lua/woynert/packer.lua 
+:so
+:PS
+
+# mason LSP manager
+:Mason
+:checkhealth mason
+:checkhealth nvim-treesitter
+
+|
+|
+|
+|
+|
+
 # VIMTEX
 
 \le # check errors or warnings
-
 \ll # start/stop compiling
-
 \lv # scroll viewer to vim cursor position
 
-# nerdcommenter https://github.com/preservim/nerdcommenter
-
-\cc # comment
-\cm # comment minimal
-\c<space> # toggle
 
 = # fix indentation
 
 set list # show whitespaces/tabs
+
