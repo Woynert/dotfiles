@@ -200,3 +200,7 @@
 # rofi
 !/.config/rofi/
 !/.config/rofi/config.rasi
+
+# alacritty
+!/.config/alacritty/
+!/.config/alacritty/alacritty.yml
