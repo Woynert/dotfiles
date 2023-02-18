@@ -1,5 +1,5 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
--- PackerSync
+-- :PackerSync
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
@@ -58,9 +58,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    --use { 'morhetz/gruvbox',
-            --vim.cmd('colorscheme gruvbox')
-
     use { 'lifepillar/vim-gruvbox8',
         as = 'gruvbox8',
         config = function()
@@ -68,25 +65,6 @@ return require('packer').startup(function(use)
             vim.cmd('colorscheme gruvbox8')
         end
     }
-
-    --use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons',
-        --config = function()
-            --vim.opt.termguicolors = true
-            --require("bufferline").setup{}
-        --end
-    --}
-    --use { 'ap/vim-buftabline',
-    --use { 'edibegovic/vim-buftabline',
-    --use { 'GopherJ/vim-buftabline',
-        --config = function()
-            --vim.g.buftabline_show = true
-            --vim.g.buftabline_indicators = true
-            --vim.g.buftabline_separators = true
-        --end,
-        --requires = {
-            --"nvim-tree/nvim-web-devicons",
-        --}
-    --}
 
     use { 'echasnovski/mini.tabline',
         config = function ()
@@ -130,6 +108,8 @@ return require('packer').startup(function(use)
     }
 
     use 'psliwka/vim-smoothie'
+
+    use 'tpope/vim-sleuth'
 
 end)
 

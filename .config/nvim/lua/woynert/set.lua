@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""
+--vim.opt.guicursor = "" # fat cursor
 
 vim.opt.nu = true
 -- vim.opt.relativenumber = true
@@ -33,3 +33,15 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "100"
 
 vim.g.mapleader = " "
+
+-- Don't auto commenting new lines
+vim.opt.formatoptions:remove("r")
+vim.opt.formatoptions:remove("o")
+vim.opt.formatoptions:remove("c")
+
+local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
+autocmd('BufEnter', {
+  pattern = '',
+  command = 'set fo-=c fo-=r fo-=o'
+})
+

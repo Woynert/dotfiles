@@ -6,12 +6,13 @@ local lsp = require('lsp-zero').preset({
 })
 
 lsp.ensure_installed({
-	'tsserver',
-	'eslint',
-	--'lua_ls',
-    'sumneko_lua',
-	'rust_analyzer',
+    'tsserver',
+    --'eslint',
+    'lua_ls',
+    'rust_analyzer',
 })
+
+-- mapings
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -22,9 +23,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-Space>'] = cmp.mapping.complete(),
 })
 
--- lsp.set_preferences({
-	-- sign_icons = { }
--- })
+-- format and detect tabs 
+vim.keymap.set("n", "gp", ":silent %!prettier --stdin-filepath %<CR>:Sleuth<CR>")
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings,

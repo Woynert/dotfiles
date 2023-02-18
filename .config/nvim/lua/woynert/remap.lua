@@ -25,8 +25,10 @@ vim.keymap.set("n", "<leader>P", "\"+P")
 vim.keymap.set("v", "<leader>P", "\"+P")
 
 -- quick file switch
-vim.keymap.set("n", "<C-n>", ":bp<cr>")
-vim.keymap.set("n", "<C-p>", ":bn<cr>")
+--vim.keymap.set("n", "<C-n>", ":bp<cr>")
+--vim.keymap.set("n", "<C-p>", ":bn<cr>")
+vim.keymap.set("n", "<C-h>", ":bp<cr>")
+vim.keymap.set("n", "<C-l>", ":bn<cr>")
 
 
 -- forward delete
