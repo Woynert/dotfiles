@@ -24,7 +24,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 -- format and detect tabs 
-vim.keymap.set("n", "gp", ":silent %!prettier --stdin-filepath %<CR>:Sleuth<CR>")
+vim.keymap.set("n", "gp", ":silent %!prettier --stdin-filepath %<CR>:DetectIndent<CR>")
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings,

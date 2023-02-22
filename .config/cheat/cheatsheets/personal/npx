@@ -1,1 +1,6 @@
 npx gitmoji-cli
+
+npx eslint `find . -type f | grep '.ts.\?$'`
+npx prettier -w `git diff --name-only dev _UserPlanLimitations`
+npx prettier -w `git diff --name-only`
+npx tsc --noEmit
