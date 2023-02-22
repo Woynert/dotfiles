@@ -109,7 +109,16 @@ return require('packer').startup(function(use)
 
     use 'psliwka/vim-smoothie'
 
-    use 'tpope/vim-sleuth'
+    use { 'timakro/vim-yadi',
+
+        -- auto detect at file events
+        config = function ()
+            vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPost", "BufFilePost"}, {
+              pattern = '*',
+              command = 'DetectIndent',
+            })
+        end
+    }
 
 end)
 

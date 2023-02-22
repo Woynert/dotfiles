@@ -240,3 +240,6 @@ git log --oneline --graph
 
 # create archive 
 git archive -o latest.zip HEAD
+
+# list files changed after commit
+git diff --name-only <commit>

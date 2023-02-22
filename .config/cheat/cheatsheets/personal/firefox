@@ -9,3 +9,12 @@ CTRL + SHIFT + T
 
 # open developer window
 CTRL + SHIFT + C
+
+# find
+Ctrl-F 
+
+# next find result
+F3
+
+# cycle tabs
+Ctrl-PgUp/PgDn

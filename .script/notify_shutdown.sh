@@ -35,13 +35,28 @@ hours=$(( dateDiff / 60 / 60 ))
 minutes=$(( (dateDiff / 60) - hours*60 ))
 echo "$hours:$minutes"
 
+# build message
+
+message=""
+if [ $hours -ne 0 ]; then
+	message="$hours horas "
+
+	if [ $minutes -ne 0 ]; then
+		message="$message y "
+	fi
+fi
+if [ $minutes -ne 0 ]; then
+	message="$message$minutes minutos"
+fi
+message="$message para las $destHour AM."
+
 # show notification
 
 option=$(notify-send \
 	-u normal -t 180000 \
-	-A "💤️ Terminar" \
+	-A "🌙️ Terminar" \
 	-A "👁️ Seguir" \
-	"$hours horas y $minutes minutos para las $destHour AM.")
+	"$message")
 
 case $option in
 0)

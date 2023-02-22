@@ -7,12 +7,17 @@
 K     hover help     float window
 <C-k> signature help float window
 gl    diagnostics    float window
+<F4>  show code action
+<F2>  replace symbol all references
 
 gd = Jumps to symbol definition under the cursor
 gD = Jumps to symbol declaration under the cursor
 gi = Lists all the implementations for the symbol under the cursor in the quickfix window
 go = Jumps to the definition of the type of the symbol under the cursor
 gr = Lists all the references to the symbol under the cursor in the quickfix window
+
+# formater
+<leader>gp = Apply prettier to file
 
 # telescope
 <leader>pf fuzzy finder
@@ -27,6 +32,12 @@ gr = Lists all the references to the symbol under the cursor in the quickfix win
 <leader>n  focus
 <leader>pv locate current file
 <bs>       navigate up
+
+a new file
+A new directory
+d delete file/directory
+r rename
+x cut to clipboard
 
 o          open
 .          set root to directory

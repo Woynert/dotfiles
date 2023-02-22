@@ -109,8 +109,8 @@ cmd zip ${{
 
 # previewer
 set preview
-#set previewer pistol
-set previewer bat
+set previewer pistol
+#set previewer bat
 
 # new directory
 cmd mkdir %{{
