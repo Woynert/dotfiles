@@ -1,5 +1,9 @@
-# pgcli
+# postgresql
+# connect
 pgcli -h 172.22.0.2 -p 5432 -u buenavida-user -W -d buenavida
+
+# run script
+\i ./script.sql
 
 # psql
 psql -U buenavida-user -h localhost -p 5432 -d buenavida -W
