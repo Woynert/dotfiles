@@ -204,3 +204,7 @@
 # alacritty
 !/.config/alacritty/
 !/.config/alacritty/alacritty.yml
+
+# lighttpd
+!/.config/lighttpd/
+!/.config/lighttpd/**
