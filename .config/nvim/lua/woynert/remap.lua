@@ -10,9 +10,10 @@ vim.keymap.set("n", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 
--- replace Ñ
+-- spanish mappings
 vim.keymap.set("n", "ñ", ":")
 vim.keymap.set("n", "Ñ", ":")
+vim.keymap.set("n", "°", "~")
 
 -- system clipboard
 vim.keymap.set("n", "<leader>y", "\"+y")
