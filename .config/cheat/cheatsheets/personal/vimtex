@@ -59,6 +59,12 @@ D     filter directory fuzzy
 \cm       comment minimal
 \c<space> toggle
 
+# gitsigns 
+Gitsigns prev_hunk
+Gitsigns next_hunk
+Gitsigns preview_hunk
+Gitsigns toggle_current_line_blame
+
 |
 |
 |

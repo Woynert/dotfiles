@@ -243,3 +243,6 @@ git archive -o latest.zip HEAD
 
 # list files changed after commit
 git diff --name-only <commit>
+
+# export stash as a patch
+git stash show -p > patch

@@ -40,6 +40,9 @@ docker run <image-name>
 # Start a stopped image
 docker start 7eb43e3a232e
 
+# List volumes 
+docker volume ls
+
 # ===== Commands for cleaning space =====
 
 # To stop all running containers:
@@ -54,6 +57,9 @@ docker rmi $(docker image list | grep "^<none>" | awk '{print $3}')
 # To remove all images
 docker image rm $(docker image list -qa)
 docker image rm -f $(docker image list -qa)
+
+# Remove all volumes
+docker volume rm $(docker volume ls -qf dangling=true)
 
 # To remove all volumes not used by at least one container:
 docker volume prune
