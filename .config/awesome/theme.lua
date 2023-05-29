@@ -13,6 +13,10 @@ local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
+local theme_dir = os.getenv("HOME") .. "/.config/awesome/"
+
+local surface = require("gears.surface")
+local shape = require("gears.shape")
 
 -- gruvbox colors
 local colors = { }
@@ -49,13 +53,14 @@ colors.bw_7             = "#bdae93"
 colors.bw_8             = "#d5c4a1"
 colors.bw_9             = "#ebdbb2"
 colors.bw_10            = "#fbf1c7"
+colors.transparent      = "#00000000"
 
 --colors = t_util.set_colors(colors)
 
 
 local theme = {}
 
-theme.font          = "sans 14"
+theme.font          = "sans 18"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
@@ -76,6 +81,55 @@ theme.border_focus  = "#458588"
 --theme.border_focus  = "#444444"
 theme.border_marked = "#91231c"
 
+-- theme colors
+
+theme.plan_font = theme.fg_normal
+theme.plan_bg = "#222222"
+theme.plan_dark1 = "#451F2B"
+theme.plan_dark2 = "#441F45"
+theme.plan_pale1 = "#664267"
+theme.plan_pale2 = "#453845"
+theme.plan_highlight = "#AA4747"
+
+-- panel
+
+theme.panel_height = dpi(40)
+theme.panel_text_separation = dpi(16)
+theme.tray_magin = dpi(2)
+
+-- tasklist
+
+theme.tasklist_bg_normal = theme.plan_pale2
+theme.tasklist_bg_focus = theme.plan_highlight
+theme.tasklist_bg_minimize = colors.transparent
+theme.tasklist_width = dpi(50)
+theme.tasklist_line_height = dpi(4)
+theme.tasklist_spacing = dpi(8)
+
+-- taglist
+
+theme.taglist_bg = colors.transparent
+theme.taglist_bg_focus = theme.plan_highlight
+theme.taglist_group_separation = theme.panel_text_separation
+
+-- taglist square
+
+theme.taglist_squares_color = "#cccccc"
+local taglist_square_size = dpi(7)
+theme.taglist_squares_resize = true
+
+theme.taglist_squares_sel   = surface.load_from_shape(
+    taglist_square_size, taglist_square_size,
+    shape.rounded_rect,
+    theme.taglist_squares_color
+)
+
+theme.taglist_squares_unsel = surface.load_from_shape(
+    taglist_square_size, taglist_square_size,
+    shape.arc, theme.taglist_squares_color, colors.transparent, dpi(1), 0, 2*math.pi, false, false
+)
+
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -90,30 +144,30 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
+--theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+    --taglist_square_size, theme.fg_normal
+--)
+--theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+    --taglist_square_size, theme.fg_normal
+--)
+
 
 -- Taglist colors
 
 --theme.taglist_bgcolor_middle = "#0066ff88"
-theme.taglist_bgcolor_middle = "#A8194544"
+--theme.taglist_bgcolor_middle = "#A8194544"
 
-theme.taglist_bgcolors = {
-    "#00000000",
-    "#00000000",
-    "#00000000",
-    theme.taglist_bgcolor_middle,
-    theme.taglist_bgcolor_middle,
-    theme.taglist_bgcolor_middle,
-    "#00000000",
-    "#00000000",
-    "#00000000",
-}
+--theme.taglist_bgcolors = {
+    --"#00000000",
+    --"#00000000",
+    --"#00000000",
+    --theme.taglist_bgcolor_middle,
+    --theme.taglist_bgcolor_middle,
+    --theme.taglist_bgcolor_middle,
+    --"#00000000",
+    --"#00000000",
+    --"#00000000",
+--}
 
 -- Variables set for theming notifications:
 -- notification_font

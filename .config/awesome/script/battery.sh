@@ -3,12 +3,22 @@
 # This script displays battery icon according to the charge level and charging state
 
 # Author: Piotr Miller
+# Hacked by:
+# - Woynert
 # e-mail: nwg.piotr@gmail.com
 # Website: http://nwg.pl
 # Project: https://github.com/nwg-piotr/tint2-executors
 # License: GPL3
 
-# Dependencies: `acpi`
+function is_bin_in_path {
+  builtin type -P "$1" &> /dev/null
+}
+
+# dependencie acpi is in path
+
+if ! is_bin_in_path acpi; then
+    exit 1
+fi
 
 bat=$(acpi -b)
 state=$(echo ${bat} | awk '{print $3}')

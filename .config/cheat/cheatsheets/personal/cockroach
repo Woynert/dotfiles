@@ -1,0 +1,4 @@
+
+
+# start a sql session
+./cockroach sql --insecure --host=node1:26257

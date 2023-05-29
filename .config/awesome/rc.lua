@@ -60,6 +60,9 @@ terminal = "alacritty"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
+-- disable edge snap
+awful.mouse.snap.edge_enabled = false
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -199,6 +202,13 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local vert_sep = wibox.widget {
+    widget = wibox.widget.separator,
+    orientation = "vertical",
+    forced_width = beautiful.panel_text_separation,
+    color = "#00000000",
+}
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -247,27 +257,45 @@ awful.screen.connect_for_each_screen(function(s)
 		widget_template = {
 			{
 				{
-					{
-						{
-							id     = 'text_role',
-							widget = wibox.widget.textbox,
-						},
-						layout = wibox.layout.fixed.horizontal,
-					},
-					left  = 4,
-					right = 4,
-					widget = wibox.container.margin
-				},
-				id     = 'background_role',
-				widget = wibox.container.background,
+                    {
+                        {
+                            {
+                                id     = 'icon_role',
+                                widget = wibox.widget.imagebox,
+                            },
+                            {
+                                id     = 'text_role',
+                                widget = wibox.widget.textbox,
+                            },
+                            layout = wibox.layout.fixed.horizontal,
+                        },
+                        left  = 4,
+                        right = 4,
+                        widget = wibox.container.margin
+                    },
+                    id     = 'background_role',
+                    widget = wibox.container.background,
+                },
+                id     = 'bg',
+                widget = wibox.container.background,
 			},
-			id     = 'bg',
-			widget = wibox.container.background,
+			id     = 'root',
+			widget = wibox.container.margin,
 			update_callback = function(self, t, index, objects) --luacheck: no unused args
-				self.bg = beautiful.taglist_bgcolors[index]
+                --self:get_children_by_id('background_role')[1].bgimage = nil
+                --self:get_children_by_id('icon_role')[1].visible = false
 			end,
 			create_callback = function(self, t, index, objects) --luacheck: no unused args
-				self.bg = beautiful.taglist_bgcolors[index]
+                -- margin
+                if index == 3 or index == 6 then
+                    self.right = beautiful.taglist_group_separation / 2
+                end
+                if index == 4 or index == 7 then
+                    self.left = beautiful.taglist_group_separation / 2
+                end
+
+                -- color
+                self:get_children_by_id('bg')[1].bg = beautiful.taglist_bg
 			end,
 		},
 		buttons = taglist_buttons
@@ -279,26 +307,13 @@ awful.screen.connect_for_each_screen(function(s)
     --     filter  = awful.widget.tasklist.filter.currenttags,
     --     buttons = tasklist_buttons
     -- }
-	
+
     s.mytasklist = awful.widget.tasklist {
 	    screen   = s,
 	    filter   = awful.widget.tasklist.filter.currenttags,
 	    buttons  = tasklist_buttons,
 	    layout   = {
-		spacing_widget = {
-		    {
-			forced_width  = 50,
-			forced_height = 24,
-			thickness     = 10,
-			color         = '#00000000',
-			widget        = wibox.widget.separator
-		    },
-		    valign = 'center',
-		    halign = 'center',
-		    widget = wibox.container.place,
-		},
-		spacing = 4,
-		layout  = wibox.layout.fixed.horizontal
+            layout  = wibox.layout.fixed.horizontal
 	    },
 	    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
 	    -- not a widget instance.
@@ -333,8 +348,8 @@ awful.screen.connect_for_each_screen(function(s)
 						widget = awful.widget.clienticon,
 						valign = 'center',
 					},
-					margins = 0,
-					id = "icon_margin_role",
+					margins = 1,
+					id = "icon_margin",
 					widget = wibox.container.margin,
 				},
 				valign = 'center',
@@ -344,12 +359,12 @@ awful.screen.connect_for_each_screen(function(s)
 			{
 				-- horizontal bottom line
 				wibox.widget.base.make_widget(),
-				forced_height = 3,
+				forced_height = beautiful.tasklist_line_height,
 				id            = "background_role",
 				widget        = wibox.container.background,
 			},
 			-- forced_height = 50,
-			forced_width = 40,
+			forced_width = beautiful.tasklist_width,
 			create_callback = function(self, c, index, objects)
 				self:get_children_by_id("clienticon")[1].client = c
 			end,
@@ -359,33 +374,58 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
 	--s.mywibox = awful.wibar({ position = "top", ontop = false, screen = s })
-	s.mywibox = awful.wibar({ position = "bottom", ontop = false, screen = s })
+	s.mywibox = awful.wibar({ position = "bottom", ontop = false, screen = s, height = beautiful.panel_height })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        layout = wibox.layout.stack,
+        -- Left widgets
+        {
             layout = wibox.layout.fixed.horizontal,
             -- mylauncher,
+            vert_sep,
             s.mytaglist,
+            vert_sep,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            -- mykeyboardlayout,
-            wibox.widget.systray(),
-			pomodoro,
-			{
-				widget = awful.widget.watch('/home/woynert/.config/awesome/script/battery.sh', 10),
-			},
-			wibox.widget.textbox('  ');
-			{
-				widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 10),
-			},
-			wibox.widget.textbox(' ');
-            mytextclock,
-            -- s.mylayoutbox,
+        -- Middle widget
+        {
+            widget = wibox.container.place,
+            valign = 'center',
+            halign = 'center',
+            s.mytasklist
+        },
+        -- Right widgets
+        {
+            widget = wibox.container.place,
+            halign = 'right',
+            {
+                layout = wibox.layout.fixed.horizontal,
+                {
+                    wibox.widget.systray(),
+                    widget = wibox.container.margin,
+                    margins = beautiful.tray_magin
+                },
+                {
+                    pomodoro,
+                    widget = wibox.container.margin,
+                    left = -beautiful.tray_magin/2,
+                    right = beautiful.tray_magin,
+                    up = beautiful.tray_magin,
+                    down = beautiful.tray_magin
+                },
+                --vert_sep,
+                {
+                    widget = awful.widget.watch('/home/woynert/.config/awesome/script/battery.sh', 10),
+                },
+                vert_sep,
+                {
+                    widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 10),
+                },
+                vert_sep,
+                mytextclock,
+                vert_sep,
+            },
         },
     }
 
@@ -630,7 +670,7 @@ clientkeys = gears.table.join(
 -- keycode:     Physical key (see xev)
 -- displayChar: Char to display in help
 
-function addGlobalTagKey (tagIndex, keycode, displayChar)
+local function addGlobalTagKey (tagIndex, keycode, displayChar)
 	globalkeys = gears.table.join(globalkeys,
 		-- View tag only.
 		awful.key({ modkey }, "#" .. keycode,
@@ -830,7 +870,7 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Right
             --awful.titlebar.widget.floatingbutton (c),
-			--awful.titlebar.widget.ontopbutton    (c),
+            awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.minimizebutton(c),
             awful.titlebar.widget.maximizedbutton(c),
             --awful.titlebar.widget.stickybutton   (c),
@@ -863,7 +903,7 @@ require('restore_floating_clients')
 beautiful.gap_single_client = true
 
 -- Autostart
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+awful.spawn.with_shell("~/.config/awesome/script/autorun.sh")
 
 -- welcome message     
 awful.spawn("notify-send 'Welcome back'")
