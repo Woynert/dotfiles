@@ -60,7 +60,7 @@ colors.transparent      = "#00000000"
 
 local theme = {}
 
-theme.font          = "sans 18"
+theme.font          = "sans " .. dpi(19)
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"

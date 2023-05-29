@@ -379,6 +379,13 @@ awful.screen.connect_for_each_screen(function(s)
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.stack,
+        -- Middle widget
+        {
+            widget = wibox.container.place,
+            valign = 'center',
+            halign = 'center',
+            s.mytasklist
+        },
         -- Left widgets
         {
             layout = wibox.layout.fixed.horizontal,
@@ -387,13 +394,6 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytaglist,
             vert_sep,
             s.mypromptbox,
-        },
-        -- Middle widget
-        {
-            widget = wibox.container.place,
-            valign = 'center',
-            halign = 'center',
-            s.mytasklist
         },
         -- Right widgets
         {
