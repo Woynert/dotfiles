@@ -1,3 +1,5 @@
+
+
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -18,6 +20,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+
+-- Autostart
+awful.spawn.with_shell("~/.config/awesome/script/autorun.sh")
 
 -- Load Debian menu entries
 -- local debian = require("debian.menu")
@@ -136,49 +141,49 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 pomodoro = require("pomodoro")
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock("%b %d, %H:%M")
 local month_calendar = awful.widget.calendar_popup.month({start_sunday=true})
 month_calendar:attach( mytextclock, "br", {on_hover=true})
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+awful.button({ }, 1, function(t) t:view_only() end),
+awful.button({ modkey }, 1, function(t)
+  if client.focus then
+    client.focus:move_to_tag(t)
+  end
+end),
+awful.button({ }, 3, awful.tag.viewtoggle),
+awful.button({ modkey }, 3, function(t)
+  if client.focus then
+    client.focus:toggle_tag(t)
+  end
+end),
+awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
 
 local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end),
-                     awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
+awful.button({ }, 1, function (c)
+  if c == client.focus then
+    c.minimized = true
+  else
+    c:emit_signal(
+    "request::activate",
+    "tasklist",
+    {raise = true}
+    )
+  end
+end),
+awful.button({ }, 3, function()
+  awful.menu.client_list({ theme = { width = 250 } })
+end),
+awful.button({ }, 4, function ()
+  awful.client.focus.byidx(1)
+end),
+awful.button({ }, 5, function ()
+  awful.client.focus.byidx(-1)
+end))
 
 local function set_wallpaper(s)
     --gears.wallpaper.set("#357941")
@@ -209,6 +214,9 @@ local vert_sep = wibox.widget {
     color = "#00000000",
 }
 
+-- horizontal clock
+local horizontal_clock = require("horizontal_clock")
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -226,30 +234,6 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-
-    -- Create a taglist widget
-    --s.mytaglist = awful.widget.taglist {
-        --screen  = s,
-        --filter  = awful.widget.taglist.filter.all,
-        --buttons = taglist_buttons,
-		--widget_template = {
-		   --{
-			  --id     = 'text_role',
-			  --widget = wibox.widget.textbox,
-		   --},
-		   --widget = wibox.container.background,
-		   --id = 'bg',
-		   --create_callback = function(self, t, index, objects)
-			  --self.bg = beautiful.taglist_bgcolors[index]
-		   --end
-		--}
-    --}
-
-	--s.mytaglist = awful.widget.taglist {
-		--screen  = s,
-		--filter  = awful.widget.taglist.filter.all,
-		--buttons = taglist_buttons,
-	--}
 
 	s.mytaglist = awful.widget.taglist {
 		screen  = s,
@@ -281,12 +265,11 @@ awful.screen.connect_for_each_screen(function(s)
 			},
 			id     = 'root',
 			widget = wibox.container.margin,
-			update_callback = function(self, t, index, objects) --luacheck: no unused args
-                --self:get_children_by_id('background_role')[1].bgimage = nil
-                --self:get_children_by_id('icon_role')[1].visible = false
-			end,
-			create_callback = function(self, t, index, objects) --luacheck: no unused args
+			create_callback = function(self, t, index, _)
                 -- margin
+                if index == 1 then
+                    self.left = beautiful.panel_text_separation
+                end
                 if index == 3 or index == 6 then
                     self.right = beautiful.taglist_group_separation / 2
                 end
@@ -301,13 +284,6 @@ awful.screen.connect_for_each_screen(function(s)
 		buttons = taglist_buttons
 	}
 
-    -- Create a tasklist widget
-    -- s.mytasklist = awful.widget.tasklist {
-    --     screen  = s,
-    --     filter  = awful.widget.tasklist.filter.currenttags,
-    --     buttons = tasklist_buttons
-    -- }
-
     s.mytasklist = awful.widget.tasklist {
 	    screen   = s,
 	    filter   = awful.widget.tasklist.filter.currenttags,
@@ -315,30 +291,6 @@ awful.screen.connect_for_each_screen(function(s)
 	    layout   = {
             layout  = wibox.layout.fixed.horizontal
 	    },
-	    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
-	    -- not a widget instance.
-	    --[[ widget_template = {
-		{
-		    {
-			id     = 'clienticon',
-			widget = awful.widget.clienticon,
-		    },
-		    --margins = 0,
-		    --forced_height = 5,
-		    widget  = wibox.container.margin
-		},
-		{
-		    wibox.widget.base.make_widget(),
-		    forced_height = 5,
-		    id            = 'background_role',
-		    widget        = wibox.container.background,
-		},
-		nil,
-		create_callback = function(self, c, index, objects) --luacheck: no unused args
-		    self:get_children_by_id('clienticon')[1].client = c
-		end,
-		layout = wibox.layout.align.vertical,
-	    },]]--
 		widget_template = {
 			nil,
 			{
@@ -365,79 +317,88 @@ awful.screen.connect_for_each_screen(function(s)
 			},
 			-- forced_height = 50,
 			forced_width = beautiful.tasklist_width,
-			create_callback = function(self, c, index, objects)
-				self:get_children_by_id("clienticon")[1].client = c
+			create_callback = function(self, client, _, _)
+                self:get_children_by_id("clienticon")[1].client = client
+
 			end,
 			layout = wibox.layout.align.vertical,
 		},
 	}
 
     -- Create the wibox
-	--s.mywibox = awful.wibar({ position = "top", ontop = false, screen = s })
-	s.mywibox = awful.wibar({ position = "bottom", ontop = false, screen = s, height = beautiful.panel_height })
+    s.mywibox = awful.wibar({ position = "bottom", ontop = false, screen = s, height = beautiful.panel_height })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
-        layout = wibox.layout.stack,
-        -- Middle widget
-        {
-            widget = wibox.container.place,
-            valign = 'center',
-            halign = 'center',
-            s.mytasklist
-        },
+      layout = wibox.layout.stack,
+      {
+        layout = wibox.layout.align.horizontal,
         -- Left widgets
         {
-            layout = wibox.layout.fixed.horizontal,
-            -- mylauncher,
-            vert_sep,
-            s.mytaglist,
-            vert_sep,
-            s.mypromptbox,
+          layout = wibox.layout.fixed.horizontal,
+          s.mytaglist,
+          vert_sep,
+        },
+        -- Middle widget
+        {
+          layout = wibox.layout.align.horizontal,
+          inner_fill_strategy = "inner_spacing",
+          wibox.widget.textbox(" "),
+          {
+            widget = wibox.container.place,
+            valign = 'bottom',
+            halign = 'center',
+            s.mytasklist,
+          },
+          {
+            widget = wibox.container.place,
+            {
+              layout = wibox.layout.fixed.horizontal,
+              valign = 'center',
+              halign = 'center',
+              horizontal_clock,
+            },
+          },
         },
         -- Right widgets
         {
-            widget = wibox.container.place,
-            halign = 'right',
-            {
-                layout = wibox.layout.fixed.horizontal,
-                {
-                    wibox.widget.systray(),
-                    widget = wibox.container.margin,
-                    margins = beautiful.tray_magin
-                },
-                {
-                    pomodoro,
-                    widget = wibox.container.margin,
-                    left = -beautiful.tray_magin/2,
-                    right = beautiful.tray_magin,
-                    up = beautiful.tray_magin,
-                    down = beautiful.tray_magin
-                },
-                --vert_sep,
-                {
-                    widget = awful.widget.watch('/home/woynert/.config/awesome/script/battery.sh', 10),
-                },
-                vert_sep,
-                {
-                    widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 10),
-                },
-                vert_sep,
-                mytextclock,
-                vert_sep,
-            },
+          layout = wibox.layout.fixed.horizontal,
+          vert_sep,
+          vert_sep,
+          {
+            wibox.widget.systray(),
+            widget = wibox.container.margin,
+            margins = beautiful.tray_magin
+          },
+          {
+            pomodoro,
+            widget = wibox.container.margin,
+            left = -beautiful.tray_magin/2,
+            right = beautiful.tray_magin,
+            up = beautiful.tray_magin,
+            down = beautiful.tray_magin
+          },
+          -- battery widget (optional)
+          --vert_sep,
+          {
+            widget = awful.widget.watch('/home/woynert/.config/awesome/script/battery.sh', 10),
+          },
+          vert_sep,
+          {
+            widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 10),
+          },
+          vert_sep,
+          mytextclock,
+          vert_sep,
         },
+      },
+      {
+        layout = wibox.layout.fixed.horizontal,
+        vert_sep,
+        s.mypromptbox,
+        vert_sep,
+      },
     }
-
-	--hide wibar when app on fullscren. Wibar has ontop=true
-	--client.connect_signal("property::fullscreen", function (c)
-		--if c.fullscreen and c == client.focus then
-			--s.mywibox.visible = not s.mywibox.visible
-		--else
-			--s.mywibox.visible = not s.mywibox.visible
-		--end
-	--end)
-
 
 end)
 -- }}}
@@ -504,7 +465,7 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "x", awesome.quit,
+    awful.key({ modkey, "Shift", "x"}, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
     --awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               --{description = "quit awesome", group = "awesome"}),
@@ -618,52 +579,6 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
---for i = 1, 3 do
-    --globalkeys = gears.table.join(globalkeys,
-        ---- View tag only.
-        --awful.key({ modkey }, "#" .. i + 9,
-                  --function ()
-                        --local screen = awful.screen.focused()
-                        --local tag = screen.tags[i]
-                        --if tag then
-                           --tag:view_only()
-                        --end
-                  --end,
-                  --{description = "view tag #"..i, group = "tag"}),
-        ---- Toggle tag display.
-        --awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  --function ()
-                      --local screen = awful.screen.focused()
-                      --local tag = screen.tags[i]
-                      --if tag then
-                         --awful.tag.viewtoggle(tag)
-                      --end
-                  --end,
-                  --{description = "toggle tag #" .. i, group = "tag"}),
-        ---- Move client to tag.
-        --awful.key({ modkey, "Shift" }, "#" .. i + 9,
-                  --function ()
-                      --if client.focus then
-                          --local tag = client.focus.screen.tags[i]
-                          --if tag then
-                              --client.focus:move_to_tag(tag)
-                          --end
-                     --end
-                  --end,
-                  --{description = "move focused client to tag #"..i, group = "tag"}),
-        ---- Toggle tag on focused client.
-        --awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  --function ()
-                      --if client.focus then
-                          --local tag = client.focus.screen.tags[i]
-                          --if tag then
-                              --client.focus:toggle_tag(tag)
-                          --end
-                      --end
-                  --end,
-                  --{description = "toggle focused client on tag #" .. i, group = "tag"})
-    --)
---end
 
 -- Bind keyboard keycode to tags.
 -- tagIndex:    Tag from 1 to 9
@@ -881,15 +796,25 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
--- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
---     c:emit_signal("request::activate", "mouse_enter", {raise = false})
--- end)
-
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
---
+
+-- client fallback icon
+
+client.connect_signal("manage", function(c)
+
+  local cairo = require("lgi").cairo
+  local default_icon = beautiful.tasklist_fallback_icon
+
+  if c and c.valid and not c.icon then
+    local s = gears.surface(default_icon)
+    local img = cairo.ImageSurface.create(cairo.Format.ARGB32, s:get_width(), s:get_height())
+    local cr = cairo.Context(img)
+    cr:set_source_surface(s, 0, 0)
+    cr:paint()
+    c.icon = img._native
+  end
+end)
 
 -- the order is important
 
@@ -902,10 +827,6 @@ require('restore_floating_clients')
 -- useless gap
 beautiful.gap_single_client = true
 
--- Autostart
-awful.spawn.with_shell("~/.config/awesome/script/autorun.sh")
-
 -- welcome message     
 awful.spawn("notify-send 'Welcome back'")
-
 

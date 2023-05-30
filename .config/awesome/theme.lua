@@ -1,14 +1,8 @@
----------------------------
--- Default awesome theme --
----------------------------
---
--- some reference:
--- https://github.com/alfunx/.dotfiles/blob/master/.config/awesome/themes/blackout/theme.lua#L256-L263
 
 
---local t_util           = require("config.util_theme")
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+xresources.set_dpi(102)
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
@@ -19,6 +13,7 @@ local surface = require("gears.surface")
 local shape = require("gears.shape")
 
 -- gruvbox colors
+
 local colors = { }
 
 colors.black_1          = "#282828"
@@ -53,14 +48,10 @@ colors.bw_7             = "#bdae93"
 colors.bw_8             = "#d5c4a1"
 colors.bw_9             = "#ebdbb2"
 colors.bw_10            = "#fbf1c7"
-colors.transparent      = "#00000000"
-
---colors = t_util.set_colors(colors)
-
 
 local theme = {}
 
-theme.font          = "sans " .. dpi(19)
+theme.font          = "sans " .. dpi(15)
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
@@ -80,6 +71,7 @@ theme.border_normal = "#1A2A2F"
 theme.border_focus  = "#458588"
 --theme.border_focus  = "#444444"
 theme.border_marked = "#91231c"
+theme.transparent   = "#00000000"
 
 -- theme colors
 
@@ -93,7 +85,7 @@ theme.plan_highlight = "#AA4747"
 
 -- panel
 
-theme.panel_height = dpi(40)
+theme.panel_height = dpi(38)
 theme.panel_text_separation = dpi(16)
 theme.tray_magin = dpi(2)
 
@@ -101,14 +93,15 @@ theme.tray_magin = dpi(2)
 
 theme.tasklist_bg_normal = theme.plan_pale2
 theme.tasklist_bg_focus = theme.plan_highlight
-theme.tasklist_bg_minimize = colors.transparent
+theme.tasklist_bg_minimize = theme.transparent
 theme.tasklist_width = dpi(50)
 theme.tasklist_line_height = dpi(4)
 theme.tasklist_spacing = dpi(8)
+theme.tasklist_fallback_icon = theme_dir .. "images/fallback-icon.svg"
 
 -- taglist
 
-theme.taglist_bg = colors.transparent
+theme.taglist_bg = theme.transparent
 theme.taglist_bg_focus = theme.plan_highlight
 theme.taglist_group_separation = theme.panel_text_separation
 
@@ -126,57 +119,12 @@ theme.taglist_squares_sel   = surface.load_from_shape(
 
 theme.taglist_squares_unsel = surface.load_from_shape(
     taglist_square_size, taglist_square_size,
-    shape.arc, theme.taglist_squares_color, colors.transparent, dpi(1), 0, 2*math.pi, false, false
+    shape.arc, theme.taglist_squares_color, theme.transparent, dpi(1), 0, 2*math.pi, false, false
 )
 
-
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- prompt_[fg|bg|fg_cursor|bg_cursor|font]
--- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
-
--- Generate taglist squares:
---theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    --taglist_square_size, theme.fg_normal
---)
---theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    --taglist_square_size, theme.fg_normal
---)
-
-
--- Taglist colors
-
---theme.taglist_bgcolor_middle = "#0066ff88"
---theme.taglist_bgcolor_middle = "#A8194544"
-
---theme.taglist_bgcolors = {
-    --"#00000000",
-    --"#00000000",
-    --"#00000000",
-    --theme.taglist_bgcolor_middle,
-    --theme.taglist_bgcolor_middle,
-    --theme.taglist_bgcolor_middle,
-    --"#00000000",
-    --"#00000000",
-    --"#00000000",
---}
-
--- Variables set for theming notifications:
--- notification_font
--- notification_[bg|fg]
--- notification_[width|height|margin]
--- notification_[border_color|border_width|shape|opacity]
+-- notifications
 
 theme.notification_bg           = theme.bg_normal
---theme.notification_border_color = colors.bw_2
 theme.notification_border_color = colors.orange_1
 theme.notification_border_width = 2
 theme.notification_icon_size    = 80
@@ -191,11 +139,6 @@ theme.notification_margin       = 20
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
-
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
 
 -- Define the image to load
 theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
@@ -229,9 +172,8 @@ theme.titlebar_height = 24
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus  = theme.bg_normal
 
-
 --theme.wallpaper = themes_path.."default/background.png"
-theme.wallpaper = "~/.config/awesome/min16x16.png"
+theme.wallpaper = theme_dir .. "images/min16x16.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
@@ -261,5 +203,3 @@ theme.awesome_icon = theme_assets.awesome_icon(
 theme.icon_theme = nil
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

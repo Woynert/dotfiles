@@ -37,7 +37,7 @@ sleep 5 && run \
 run_one /bin/safeeyes
 
 # startup sound
-sleep 2 && run /bin/mpg123 /usr/local/share/sounds/system/Login2.mp3 &
+#sleep 2 && run /bin/mpg123 /usr/local/share/sounds/system/Login2.mp3 &
 
 # visual
 #~/.local/bin/grayon &
