@@ -28,10 +28,10 @@ run_one /bin/runsvdir -P $HOME/servicex
 # text widgets
 killall stw
 sleep 5 && run \
-	/usr/local/bin/stw -F 'carlito:size=16' -A 0.1 -p 10 -f '#F8CB00' -b black -B 5 -- cat ~/today.md \
+	/usr/local/bin/stw -F 'carlito:size=16' -A 0.3 -p 10 -f '#F8CB00' -b black -B 10 -- cat ~/today.md \
 	&
 sleep 5 && run \
-	/usr/local/bin/stw -F 'carlito:size=16' -A 0.1 -p 20 -f '#F8CB00' -b black -B 5 -x 100% -X -100% -- ~/.local/bin/gtasks-pretty.sh \
+	/usr/local/bin/stw -F 'carlito:size=16' -A 0.3 -p 20 -f '#F8CB00' -b black -B 10 -x 100% -X -100% -- ~/.local/bin/gtasks-pretty.sh \
 	&
 
 run_one /bin/safeeyes
@@ -41,4 +41,4 @@ run_one /bin/safeeyes
 
 # visual
 #~/.local/bin/grayon &
-#run /bin/nitrogen --restore
+run /bin/nitrogen --restore

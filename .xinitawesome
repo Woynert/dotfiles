@@ -14,3 +14,4 @@
 #pulseaudio --start &
 
 exec dbus-run-session awesome
+

@@ -74,6 +74,7 @@ awful.mouse.snap.edge_enabled = false
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+modkey2 = "Mod2"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -465,10 +466,8 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift", "x"}, "q", awesome.quit,
+    awful.key({ modkey, "Control", "Shift" }, "Escape", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
-    --awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              --{description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
