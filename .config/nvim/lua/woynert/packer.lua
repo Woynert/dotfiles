@@ -2,20 +2,14 @@
 -- :PackerSync
 
 -- Only required if you have packer configured as `opt`
+
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
 
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
-		-- or                            , branch = '0.1.x',
-		requires = {
-			{'nvim-lua/plenary.nvim'},
-			{'BurntSushi/ripgrep'},
-		}
-	}
+    -- auto
+
+	use 'wbthomason/packer.nvim'
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
@@ -40,30 +34,40 @@ return require('packer').startup(function(use)
 		}
 	}
 
-	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-	use('ThePrimeagen/harpoon')
+    use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
+    use 'nvim-treesitter/playground'
+
 	--use('mbbill/undotree')
-	use('tpope/vim-fugitive')
 
-    use { 'preservim/nerdcommenter',
-        config = function()
-            vim.g.NERDCreateDefaultMappings = true
+    use { 'timakro/vim-yadi',
+
+        -- auto detect at file events
+        config = function ()
+            vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPost", "BufFilePost"}, {
+              pattern = '*',
+              command = 'DetectIndent',
+            })
         end
     }
 
-    use { 'luochen1990/rainbow',
-        config = function()
-            vim.g.rainbow_active = true
-            vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
-        end
+    -- UI aid
+
+    use { 'nvim-neo-tree/neo-tree.nvim',
+        branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+        },
     }
 
-    use { 'lifepillar/vim-gruvbox8',
-        as = 'gruvbox8',
-        config = function()
-            --set background=dark
-            vim.cmd('colorscheme gruvbox8')
-        end
+    use {
+      'lewis6991/gitsigns.nvim',
+      --tag = 'release',
+      config = function()
+        require('gitsigns').setup()
+      end
     }
 
     use { 'echasnovski/mini.tabline',
@@ -85,16 +89,22 @@ return require('packer').startup(function(use)
         end
     }
 
-    use { 'nvim-neo-tree/neo-tree.nvim',
-        branch = "v2.x",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-        },
+    -- visual
+
+    use { 'lifepillar/vim-gruvbox8',
+        setup = function()
+          vim.cmd([[colorscheme gruvbox8]])
+        end
     }
 
-    use 'olacin/telescope-gitmoji.nvim'
+    --use { 'luochen1990/rainbow',
+        --config = function()
+            --vim.g.rainbow_active = true
+            --vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
+        --end
+    --}
+
+    use 'psliwka/vim-smoothie'
 
     use { 'echasnovski/mini.cursorword',
         as = "mini.cursorword",
@@ -107,19 +117,36 @@ return require('packer').startup(function(use)
         end
     }
 
-    use 'psliwka/vim-smoothie'
+    use {
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+        require('colorizer').setup()
+      end
+    }
 
-    use { 'timakro/vim-yadi',
+    -- tools
 
-        -- auto detect at file events
-        config = function ()
-            vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPost", "BufFilePost"}, {
-              pattern = '*',
-              command = 'DetectIndent',
-            })
+	use {
+		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		requires = {
+			{'nvim-lua/plenary.nvim'},
+			{'BurntSushi/ripgrep'},
+		}
+	}
+
+    use { 'preservim/nerdcommenter',
+        config = function()
+            vim.g.NERDCreateDefaultMappings = true
         end
     }
 
+	use 'tpope/vim-fugitive'
+
+    use 'olacin/telescope-gitmoji.nvim'
+
 end)
+
+
+
 
 

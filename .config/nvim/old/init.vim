@@ -68,7 +68,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
 
 Plug 'preservim/nerdcommenter'
-Plug 'luochen1990/rainbow' " rainbow brackets
+" Plug 'luochen1990/rainbow' " rainbow brackets
 
 " solarized
 " Plug 'lifepillar/vim-solarized8'
@@ -77,9 +77,11 @@ Plug 'luochen1990/rainbow' " rainbow brackets
 " Plug 'habamax/vim-godot'
 
 " Plug 'lifepillar/vim-solarized8'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 
 Plug 'preservim/nerdtree'
+
+Plug 'lifepillar/vim-colortemplate'
 
 "Plug 'leafgarland/typescript-vim'
 "Plug 'styled-components/vim-styled-components', { 'branch' : 'main' }
@@ -101,7 +103,7 @@ endif
 
 " solarized
 "set termguicolors
-"set background=dark
+set background=dark
 "set background=light
 "colorscheme solarized8
 
@@ -109,7 +111,7 @@ endif
 let g:NERDCreateDefaultMappings = 1
 
 " rainbow
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 " buftabline
 let g:buftabline_show=1
@@ -168,7 +170,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " gruvbox
-autocmd vimenter * ++nested colorscheme gruvbox
+" autocmd vimenter * ++nested colorscheme gruvbox
 
 if (empty($TMUX))
   if (has("nvim"))

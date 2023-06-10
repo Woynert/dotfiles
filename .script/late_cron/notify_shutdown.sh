@@ -39,24 +39,24 @@ echo "$hours:$minutes"
 
 message=""
 if [ $hours -ne 0 ]; then
-	message="$hours horas "
+	message="$hours horas"
 
 	if [ $minutes -ne 0 ]; then
-		message="$message y "
+		message="$message, "
 	fi
 fi
 if [ $minutes -ne 0 ]; then
 	message="$message$minutes minutos"
 fi
-message="$message para las $destHour AM."
+message="$message para $destHour AM"
 
 # show notification
 
 option=$(notify-send \
 	-u normal -t 180000 \
-	-A "🌙️ Terminar" \
-	-A "👁️ Seguir" \
+	-A "🌙️ Dormir" \
 	"$message")
+	#-A "👁️ Seguir" \
 
 case $option in
 0)
