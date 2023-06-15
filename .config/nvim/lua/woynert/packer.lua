@@ -144,6 +144,13 @@ return require('packer').startup(function(use)
 
     use 'olacin/telescope-gitmoji.nvim'
 
+    use {
+        'simeji/winresizer',
+        config = function ()
+            vim.g.winresizer_start_key = '<C-w>e'
+        end
+    }
+
 end)
 
 
