@@ -31,7 +31,6 @@ vim.keymap.set("v", "<leader>P", "\"+P")
 vim.keymap.set("n", "<C-h>", ":bp<cr>")
 vim.keymap.set("n", "<C-l>", ":bn<cr>")
 
-
 -- forward delete
 vim.keymap.set("i", "<C-d>", "<Del>")
 

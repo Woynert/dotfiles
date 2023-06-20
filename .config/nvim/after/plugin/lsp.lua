@@ -5,11 +5,19 @@ local lsp = require('lsp-zero').preset({
   suggest_lsp_servers = true,
 })
 
+-- how to install and configure new LSPs
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/lsp.md#install-new-language-servers
+
+-- LSPs must be in this list
+-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+
 lsp.ensure_installed({
     'tsserver',
     --'eslint',
-    'lua_ls',
+    --'lua_ls',
     'rust_analyzer',
+    'gopls',
+    --'pylyzer'
 })
 
 --lsp.configure('dartls', {})
@@ -29,8 +37,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-Space>'] = cmp.mapping.complete(),
 })
 
--- format and detect tabs 
-vim.keymap.set("n", "gp", ":silent %!prettier --stdin-filepath %<CR>:DetectIndent<CR>")
+-- format and detect indentation 
+
+vim.keymap.set("n", "<leader>gp", ":silent %!prettier --stdin-filepath %<CR>:DetectIndent<CR>")
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings,
@@ -44,12 +53,31 @@ lsp.setup_nvim_cmp({
     },
 })
 
-
-
 -- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
 
+lsp.nvim_workspace()
 lsp.setup()
+
+-- Custom language servers
+
+-- dart
+
+require('lspconfig').dartls.setup{}
+
+-- python
+
+--require'lspconfig'.pylyzer.setup{}
+--require'lspconfig'.pylsp.setup{
+  --settings = {
+    --pylsp = {
+      --plugins = {
+        --pycodestyle = {
+          --enabled = false
+        --}
+      --}
+    --}
+  --}
+--}
 
 vim.diagnostic.config({
   virtual_text = true,

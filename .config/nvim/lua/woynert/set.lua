@@ -28,7 +28,7 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-vim.opt.updatetime = 100
+vim.opt.updatetime = 200
 
 vim.opt.colorcolumn = "100"
 
@@ -44,4 +44,38 @@ autocmd('BufEnter', {
   pattern = '',
   command = 'set fo-=c fo-=r fo-=o'
 })
+
+-- diff vertical split
+vim.opt.diffopt = vim.opt.diffopt + "vertical"
+
+-- diff wrap
+vim.opt.diffopt = vim.opt.diffopt + "followwrap"
+
+vim.opt.diffopt = vim.opt.diffopt + "filler"
+vim.opt.diffopt = vim.opt.diffopt + "internal"
+vim.opt.diffopt = vim.opt.diffopt + "algorithm:patience"
+vim.opt.diffopt = vim.opt.diffopt + "indent-heuristic"
+
+vim.opt.foldenable = false
+
+-- https://www.reddit.com/r/vim/comments/om1uyj/comment/h5jbg2i/?utm_source=share&utm_medium=web2x&context=3
+--set diffopt+=filler
+--set diffopt+=internal,algorithm:patience
+--set diffopt+=indent-heuristic
+
+-- Branch diff utilitty
+
+vim.api.nvim_exec([[
+command! -nargs=? Greview call s:greview(<f-args>)
+function! s:greview(...)
+  vsplit
+  execute 'Git! diff --diff-filter=AM ' . get(a:, 1, 'development')
+  setlocal buftype=nofile bufhidden=wipe noswapfile
+  setlocal foldmethod=syntax foldtext=fugitive#Foldtext()
+endfunction
+
+autocmd FileType * exe "normal zR"
+au WinEnter * set nofen " really disable folding
+au WinLeave * set nofen
+]], false)
 

@@ -54,6 +54,9 @@ D     filter directory fuzzy
 <C-w>_ maximize
 <C-w>w cycle
 
+# winresizer
+<C-w>e enter window resizing mode
+
 # nerdcommenter preservim/nerdcommenter
 \cc       comment
 \cm       comment minimal
@@ -97,4 +100,5 @@ cd ~/.config/nvim/lua/woynert/packer.lua
 = # fix indentation
 
 set list # show whitespaces/tabs
+
 
