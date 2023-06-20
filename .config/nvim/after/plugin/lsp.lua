@@ -12,6 +12,12 @@ lsp.ensure_installed({
     'rust_analyzer',
 })
 
+--lsp.configure('dartls', {})
+
+-- When you don't have mason.nvim installed
+-- You'll need to list the servers installed in your system
+lsp.setup_servers({ 'dartls' })
+
 -- mapings
 
 local cmp = require('cmp')
@@ -37,6 +43,7 @@ lsp.setup_nvim_cmp({
         ghost_text = true,
     },
 })
+
 
 
 -- (Optional) Configure lua language server for neovim
