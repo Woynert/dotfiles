@@ -51,24 +51,29 @@ colors.bw_10            = "#fbf1c7"
 
 local theme = {}
 
-theme.font          = "sans " .. dpi(15)
+local font_size = 15
+local titlebar_font_size = 12
+local font_name = "Hack"
+
+theme.font          = font_name .. " " .. dpi(font_size)
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
 theme.bg_urgent     = "#cc241d"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
+theme.systray_icon_spacing = dpi(8)
 
 theme.fg_normal     = "#aaaaaa"
 theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = dpi(4)
+theme.useless_gap   = dpi(3)
 theme.border_width  = dpi(2)
-theme.border_normal = "#1A2A2F"
+theme.border_normal = colors.bw_2
 --theme.border_focus  = theme.border_normal
-theme.border_focus  = "#458588"
+theme.border_focus  = colors.blue_1
 --theme.border_focus  = "#444444"
 theme.border_marked = "#91231c"
 theme.transparent   = "#00000000"
@@ -81,32 +86,37 @@ theme.plan_dark1 = "#451F2B"
 theme.plan_dark2 = "#441F45"
 theme.plan_pale1 = "#664267"
 theme.plan_pale2 = "#453845"
-theme.plan_highlight = "#AA4747"
+theme.plan_highlight = colors.blue_1
+--theme.plan_highlight = "#AA4747"
+theme.screen_bg = colors.blue_2
 
--- panel
+-- panel / wibar
 
-theme.panel_height = dpi(38)
+theme.panel_bg = colors.bw_0_h
+theme.panel_height = dpi(35)
 theme.panel_text_separation = dpi(16)
-theme.tray_magin = dpi(2)
+theme.tray_margin = dpi(4)
 
 -- tasklist
 
 theme.tasklist_bg_normal = theme.plan_pale2
 theme.tasklist_bg_focus = theme.plan_highlight
 theme.tasklist_bg_minimize = theme.transparent
-theme.tasklist_width = dpi(50)
-theme.tasklist_line_height = dpi(4)
+theme.tasklist_width = dpi(55)
+theme.tasklist_line_height = dpi(3)
 theme.tasklist_spacing = dpi(8)
 theme.tasklist_fallback_icon = theme_dir .. "images/fallback-icon.svg"
 
 -- taglist
 
+theme.taglist_button_width = dpi(30)
+theme.taglist_group_separation = dpi(25)
 theme.taglist_bg = theme.transparent
 theme.taglist_bg_focus = theme.plan_highlight
-theme.taglist_group_separation = theme.panel_text_separation
 
 -- taglist square
 
+theme.taglist_spacing = dpi(2)
 theme.taglist_squares_color = "#cccccc"
 local taglist_square_size = dpi(7)
 theme.taglist_squares_resize = true
@@ -168,12 +178,21 @@ theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/m
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
 -- titlebar vars
-theme.titlebar_height = 24
+
+theme.titlebar_font = font_name .. " " .. dpi(titlebar_font_size)
+theme.titlebar_close_button_bg = colors.bw_1
+theme.titlebar_close_button_width = dpi(50)
+theme.titlebar_button_width = dpi(25)
+
+theme.titlebar_icon_spacing = dpi(6)
+theme.titlebar_padding = dpi(4)
+theme.titlebar_height = dpi(font_size) + theme.titlebar_padding * 2 + dpi(7)
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus  = theme.bg_normal
 
 --theme.wallpaper = themes_path.."default/background.png"
 theme.wallpaper = theme_dir .. "images/min16x16.png"
+--theme.wallpaper = "/data/biblioteca/pictures/Wallpapers/plain/1920x1080_bay_leaf_square.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"

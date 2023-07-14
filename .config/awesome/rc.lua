@@ -187,6 +187,7 @@ awful.button({ }, 5, function ()
 end))
 
 local function set_wallpaper(s)
+    --gears.wallpaper.set(beautiful.colors.)
     --gears.wallpaper.set("#357941")
     --gears.wallpaper.set("#AA4747")
 	--gears.wallpaper.maximized("", s)
@@ -199,7 +200,7 @@ local function set_wallpaper(s)
             wallpaper = wallpaper(s)
         end
         --gears.wallpaper.maximized(wallpaper, s, true)
-        gears.wallpaper.centered(wallpaper, s, "#AA4747", 0.01)
+        gears.wallpaper.centered(wallpaper, s, beautiful.screen_bg, 0.01)
     end
 end
 
@@ -245,21 +246,32 @@ awful.screen.connect_for_each_screen(function(s)
                     {
                         {
                             {
-                                id     = 'icon_role',
-                                widget = wibox.widget.imagebox,
+                                {
+                                    id     = 'text_role',
+                                    widget = wibox.widget.textbox,
+                                },
+                                layout = wibox.layout.fixed.horizontal,
                             },
-                            {
-                                id     = 'text_role',
-                                widget = wibox.widget.textbox,
-                            },
-                            layout = wibox.layout.fixed.horizontal,
+                            --top  = 10,
+                            --bottom = 10,
+                            --left = 10,
+                            --right = 10,
+                            --widget = wibox.container.margin
+                            widget = wibox.container.place,
+                            halign = 'centered',
+                            forced_width = beautiful.taglist_button_width
                         },
-                        left  = 4,
-                        right = 4,
-                        widget = wibox.container.margin
+                        id     = 'background_role',
+                        widget = wibox.container.background,
                     },
-                    id     = 'background_role',
-                    widget = wibox.container.background,
+                    top = 3,
+                    bottom = 3,
+                    widget = wibox.container.margin
+                    --},
+                    --id     = 'bg2',
+                    --widget = wibox.container.place,
+                    --halign = 'centered',
+                    --forced_width = 50
                 },
                 id     = 'bg',
                 widget = wibox.container.background,
@@ -327,7 +339,13 @@ awful.screen.connect_for_each_screen(function(s)
 	}
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", ontop = false, screen = s, height = beautiful.panel_height })
+    s.mywibox = awful.wibar({
+        bg = beautiful.panel_bg,
+        position = "bottom",
+        ontop = false,
+        screen = s,
+        height = beautiful.panel_height
+    })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -351,15 +369,15 @@ awful.screen.connect_for_each_screen(function(s)
             halign = 'center',
             s.mytasklist,
           },
-          {
-            widget = wibox.container.place,
-            {
-              layout = wibox.layout.fixed.horizontal,
-              valign = 'center',
-              halign = 'center',
-              horizontal_clock,
-            },
-          },
+          --{
+            --widget = wibox.container.place,
+            --{
+              --layout = wibox.layout.fixed.horizontal,
+              --valign = 'center',
+              --halign = 'center',
+              --horizontal_clock,
+            --},
+          --},
         },
         -- Right widgets
         {
@@ -369,16 +387,16 @@ awful.screen.connect_for_each_screen(function(s)
           {
             wibox.widget.systray(),
             widget = wibox.container.margin,
-            margins = beautiful.tray_magin
+            margins = beautiful.tray_margin
           },
-          {
-            pomodoro,
-            widget = wibox.container.margin,
-            left = -beautiful.tray_magin/2,
-            right = beautiful.tray_magin,
-            up = beautiful.tray_magin,
-            down = beautiful.tray_magin
-          },
+          --{
+            --pomodoro,
+            --widget = wibox.container.margin,
+            --left = -beautiful.tray_margin/2,
+            --right = beautiful.tray_margin,
+            --up = beautiful.tray_margin,
+            --down = beautiful.tray_margin
+          --},
           -- battery widget (optional)
           --vert_sep,
           {
@@ -386,7 +404,11 @@ awful.screen.connect_for_each_screen(function(s)
           },
           vert_sep,
           {
-            widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 10),
+              widget = wibox.container.place,
+              valign = "center",
+              {
+                  widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 10),
+              }
           },
           vert_sep,
           mytextclock,
@@ -765,33 +787,67 @@ client.connect_signal("request::titlebars", function(c)
     )
 
     awful.titlebar(c, {
-		size = beautiful.titlebar_height,
+        size = beautiful.titlebar_height,
 		bg_normal = beautiful.titlebar_bg_normal,
 		bg_focus  = beautiful.titlebar_bg_focus,
 	}) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
+        widget = wibox.container.margin,
+        margins = beautiful.titlebar_padding,
+        {
+            { -- Left
+                awful.titlebar.widget.iconwidget(c),
+                wibox.widget {
+                    widget = wibox.widget.separator,
+                    orientation = "vertical",
+                    forced_width = beautiful.titlebar_icon_spacing,
+                    color = "#00000000",
+                },
+                { -- Title
+                    align  = "center",
+                    widget = awful.titlebar.widget.titlewidget(c),
+                    font = beautiful.titlebar_font,
+                },
+                buttons = buttons,
+                layout  = wibox.layout.fixed.horizontal
             },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            --awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.minimizebutton(c),
-            awful.titlebar.widget.maximizedbutton(c),
-            --awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
+            { -- Middle
+                --{ -- Title
+                    --align  = "center",
+                    --widget = awful.titlebar.widget.titlewidget(c),
+                    --font = beautiful.titlebar_font,
+                --},
+                buttons = buttons,
+                layout  = wibox.layout.flex.horizontal
+            },
+            { -- Right
+                --awful.titlebar.widget.floatingbutton (c),
+                --awful.titlebar.widget.stickybutton   (c),
+                {
+                    widget = wibox.container.background,
+                    forced_width = beautiful.titlebar_button_width,
+                    awful.titlebar.widget.ontopbutton(c),
+                },
+                {
+                    widget = wibox.container.background,
+                    forced_width = beautiful.titlebar_button_width,
+                    awful.titlebar.widget.minimizebutton(c),
+                },
+                {
+                    widget = wibox.container.background,
+                    forced_width = beautiful.titlebar_button_width,
+                    awful.titlebar.widget.maximizedbutton(c),
+                },
+                {
+                    widget = wibox.container.background,
+                    bg = beautiful.titlebar_close_button_bg,
+                    forced_width = beautiful.titlebar_close_button_width,
+                    awful.titlebar.widget.closebutton (c),
+                },
+
+                layout  = wibox.layout.fixed.horizontal(),
+            },
+            layout = wibox.layout.align.horizontal
+        }
     }
 end)
 
@@ -829,3 +885,9 @@ beautiful.gap_single_client = true
 -- welcome message     
 awful.spawn("notify-send 'Welcome back'")
 
+
+--awful.mouse.resize.add_leave_callback(function(c)
+    ---- this is called at the end of "client move" action
+    ---- for example awful.placement.no_offscreen(c)
+    --awful.placement.no_offscreen(c)
+--end, "mouse.move")

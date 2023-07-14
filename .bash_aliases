@@ -22,6 +22,7 @@ alias ips="ip ad 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
 
 #appimages / portable apps
 alias godot='/appimages/Godot_v3.64'
+alias godot4='/appimages/Godot_misc/Godot_v4.1-stable_linux.x86_64/Godot_v4.1-stable_linux.x86_64'
 
 
 # package manager
@@ -48,3 +49,4 @@ docker-ips() {
 xqueryex() {
 	xbps-query -Rs $1 | awk '{ print $1,$2 }' | grep $1
 }
+
