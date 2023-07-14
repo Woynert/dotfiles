@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # ⏰️🕘️💤️☕️🏠️.🤕️🌘️🌓️🌙️💢️👁️🦉️🔪️
-# 3 * 60 * 1000
 
 # https://unix.stackexchange.com/questions/596194/absolute-value-of-number
 abs() {
@@ -8,11 +7,12 @@ abs() {
 }
 
 # calculate time left till wake up
-destHour=6
+
+destHour=22
 destMin=0
 destDate=0
 
-if [[ $(date +%H) -gt $destHour ]]; then
+if [ $(date +%H) -gt $destHour ]; then
 
 	# get next day at 6am
 	# destDate = currDate.dateOnly + 1day + desHour * 360000
@@ -28,6 +28,13 @@ else
 	destDate=`date -d "$(date --date=@$destDate +%D) $destHour:$destMin:00" +%s`
 fi
 
+# shutdown
+
+if [ $(date +%H) -ge $destHour ]; then
+	loginctl poweroff
+	exit 0
+fi
+
 # calculate difference
 
 dateDiff=`date --date=@$(( destDate - $(date +%s) )) +%s`
@@ -37,9 +44,9 @@ echo "$hours:$minutes"
 
 # build message
 
-message=""
+message="⏰️ "
 if [ $hours -ne 0 ]; then
-	message="$hours horas"
+	message="$message$hours horas"
 
 	if [ $minutes -ne 0 ]; then
 		message="$message, "
@@ -48,13 +55,13 @@ fi
 if [ $minutes -ne 0 ]; then
 	message="$message$minutes minutos"
 fi
-message="$message para $destHour AM"
+message="$message para auto apagado."
 
 # show notification
 
 option=$(notify-send \
 	-u normal -t 180000 \
-	-A "🌙️ Dormir" \
+	-A "Apagar ya" \
 	"$message")
 	#-A "👁️ Seguir" \
 

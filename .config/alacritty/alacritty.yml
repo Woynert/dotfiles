@@ -1,5 +1,10 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
+window:
+  padding:
+    x: 4
+    y: 4
+
 font:
   normal:
     family: Hack Nerd Font Mono
