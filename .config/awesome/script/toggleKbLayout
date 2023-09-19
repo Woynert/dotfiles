@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 layout=`setxkbmap -query | grep layout`
 
@@ -7,3 +7,5 @@ if [[ "$layout" != *"us" ]]; then
 else
 	setxkbmap latam
 fi
+
+notify-send "$(setxkbmap -query | grep layout | awk '{print "layout",toupper($2)}')"

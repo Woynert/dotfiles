@@ -17,7 +17,7 @@ lsp.ensure_installed({
     --'lua_ls',
     'rust_analyzer',
     'gopls',
-    'pylyzer'
+    --'pylyzer'
 })
 
 -- mapings

@@ -1,6 +1,6 @@
 -- color corrections
 
--- sign columns
+-- sign columns workaround for lifepillar/vim-gruvbox8. Broken by default
 
 local diffAdd = vim.api.nvim_get_hl_by_name("DiffAdd", true)
 vim.api.nvim_set_hl(0, 'DiffAdd', { bg = diffAdd.background, fg = diffAdd.foreground })

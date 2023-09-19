@@ -9,6 +9,7 @@ sudo nix-channel --update
 # also try search.nixos.org/packages
 nix search <query> 	
 nix search nixpkgs simgrid # specific channel
+nix search nixpkgs docker --extra-experimental-features nix-command --extra-experimental-features flakes
 
 # install
 # no root, atomic, per user

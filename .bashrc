@@ -60,7 +60,6 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 source ~/.git-prompt.sh
-source ~/.z.sh
 
 #export GIT_PS1_SHOWDIRTYSTATE=0
 
@@ -80,7 +79,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
 	# no ssh
-	PS1='\[\033[01;32m\]\w\[\033[01;34m\]$(__git_ps1 " %s")\[\033[00m\]\$ '
+	PS1='\[\033[01;34m\]\w\[\033[01;35m\]$(__git_ps1 " %s")\[\033[00m\]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
@@ -142,6 +141,9 @@ fi
 
 
 
+eval "$(zoxide init bash)"
+
+export EDITOR=vim
 
 
 

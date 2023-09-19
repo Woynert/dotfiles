@@ -19,10 +19,12 @@ alias swapreset='sudo swapoff -a && sudo swapon -a'
 alias lf1='lf -command "set nopreview; set ratios 1"'
 alias lf2='lf -command "set ratios 1:3"'
 alias ips="ip ad 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
+alias vims="steam-run vim"
 
 #appimages / portable apps
 alias godot='/appimages/Godot_v3.64'
-alias godot4='/appimages/Godot_misc/Godot_v4.1-stable_linux.x86_64/Godot_v4.1-stable_linux.x86_64'
+#alias godot4='/appimages/Godot_misc/Godot_v4.1-stable_linux.x86_64/Godot_v4.1-stable_linux.x86_64'
+alias godot4='steam-run /data/app/appimage/godot/Godot_v4.1-stable_linux.x86_64'
 
 
 # package manager
@@ -30,6 +32,11 @@ alias xinstall='xbps-install'
 alias xquery='xbps-query -Rs'
 alias xqueryl='xbps-query -s'
 
+# nix
+alias nixquery='nix --extra-experimental-features nix-command --extra-experimental-features flakes search nixpkgs'
+
+# git
+alias gits='git status'
 
 # dotfiles
 alias dot='git --git-dir="$HOME/.dot.git" --work-tree="$HOME"'
@@ -49,4 +56,11 @@ docker-ips() {
 xqueryex() {
 	xbps-query -Rs $1 | awk '{ print $1,$2 }' | grep $1
 }
+
+# navigation
+
+# cd to next     directory in stack (left  rotate)
+ncd(){ pushd +1 > /dev/null ; }
+# cd to previous directory in stack (right rotate)
+pcd(){ pushd -0 > /dev/null ; }
 
