@@ -91,11 +91,17 @@ return require('packer').startup(function(use)
 
     -- visual
 
-    use { 'lifepillar/vim-gruvbox8',
-        setup = function()
-          vim.cmd([[colorscheme gruvbox8]])
-        end
-    }
+	--use { 'lifepillar/vim-gruvbox8',
+		--setup = function()
+		  --vim.cmd([[colorscheme gruvbox8]])
+		--end
+	--}
+
+	use { 'NLKNguyen/papercolor-theme',
+		setup = function()
+		  vim.cmd([[colorscheme PaperColor]])
+		end
+	}
 
     --use { 'luochen1990/rainbow',
         --config = function()
@@ -150,6 +156,14 @@ return require('packer').startup(function(use)
             vim.g.winresizer_start_key = '<C-w>e'
         end
     }
+
+    -- install without yarn or npm
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
+    --use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
 end)
 

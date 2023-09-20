@@ -19,8 +19,15 @@ python3 -m venv my_project
 # Open an Environment
 source my_project/bin/activate
 
+deactivate # close
+
 # check packages
 pip freeze
 
-# Close an Environment
-deactivate
+# export requirements.txt
+pip freeze > requirements.txt
+
+# install requirements.txt
+pip install -r requirements.txt
+
+

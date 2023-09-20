@@ -87,7 +87,7 @@ awful.layout.layouts = {
      --awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
      --awful.layout.suit.spiral.dwindle,
-     --awful.layout.suit.max,
+     awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
     --awful.layout.suit.magnifier,
      --awful.layout.suit.corner.nw,
@@ -550,7 +550,11 @@ globalkeys = gears.table.join(
 
 	-- set keyboard layout dvorak
     awful.key({ modkey, "Control" }, "#21", function () awful.spawn("/home/woynert/.config/awesome/script/toggleKbLayoutDvorak") end,
-              {description = "Switch keyboard to us(Dvorak)", group = "woynert"})
+              {description = "Switch keyboard to us(Dvorak)", group = "woynert"}),
+
+	-- toggle keynav (keyboard driven mouse)
+    awful.key({ modkey }, "#47", function () awful.spawn("keynav start") end,
+              {description = "Open keynav", group = "woynert"})
 )
 
 clientkeys = gears.table.join(
@@ -863,11 +867,12 @@ client.connect_signal("manage", function(c)
 
   if c and c.valid and not c.icon then
     local s = gears.surface(default_icon)
-    local img = cairo.ImageSurface.create(cairo.Format.ARGB32, s:get_width(), s:get_height())
-    local cr = cairo.Context(img)
-    cr:set_source_surface(s, 0, 0)
-    cr:paint()
-    c.icon = img._native
+    c.icon = s and s._native or nil
+    --local img = cairo.ImageSurface.create(cairo.Format.ARGB32, s:get_width(), s:get_height())
+    --local cr = cairo.Context(img)
+    --cr:set_source_surface(s, 0, 0)
+    --cr:paint()
+    --c.icon = img._native
   end
 end)
 

@@ -14,16 +14,16 @@ function run_one {
 	fi
 }
 
-run_one /bin/pulseaudio --start 
-run_one /bin/picom
+run_one pulseaudio --start 
+run_one picom
 
-run_one /bin/xbindkeys 
-run_one /bin/xfsettingsd -D --replace 
+run_one xbindkeys 
+run_one xfsettingsd -D --replace 
 
-run_one /bin/volctl 
-run_one /bin/lxpolkit 
-run_one /bin/flameshot 
-run_one /bin/runsvdir -P $HOME/servicex
+run_one volctl 
+run_one lxpolkit 
+run_one flameshot 
+run_one runsvdir -P $HOME/servicex
 
 # text widgets
 #killall stw
@@ -34,7 +34,10 @@ run_one /bin/runsvdir -P $HOME/servicex
 	#/usr/local/bin/stw -F 'carlito:size=16' -A 0.3 -p 20 -f '#F8CB00' -b black -B 10 -x 100% -X -100% -- ~/.local/bin/gtasks-pretty.sh \
 	#&
 
-run_one /bin/safeeyes
+run_one safeeyes
+
+# screen saver (TODO add proper user services)
+run_one xfce4-screensaver
 
 # startup sound
 #sleep 2 && run /bin/mpg123 /usr/local/share/sounds/system/Login2.mp3 &

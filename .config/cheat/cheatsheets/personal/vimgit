@@ -1,0 +1,19 @@
+# fugitive plugin
+# ---------------
+
+# stage current file
+
+:Git add %
+
+# compare diff files
+
+vim -p $(git diff --name-only)
+vim -p $(git diff --name-only) -c "tabdo Gvdiffsplit" 
+vim -p $(git diff --name-only) -c "tabdo Gvdiffsplit" -c "tabdo lua WoyDiffHighlight()"
+
+# compare diff files relative to a point
+
+BASE=$(git rev-parse HEAD);        # last commit
+BASE=$(git rev-parse --verify dev) # dev branch
+
+vim -p $(git diff $BASE --name-only) -c "tabdo Gvdiffsplit $BASE" -c "tabdo windo Gitsigns change_base $BASE true" -c "tabdo lua WoyDiffHighlight()"

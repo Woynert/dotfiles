@@ -13,6 +13,13 @@ require("neo-tree").setup({
                 ["Z"] = "expand_all_nodes",
             }
         }
+    },
+    window = {
+      mappings = {
+        -- workaround: don't use floatting window 
+        -- see https://github.com/nvim-neo-tree/neo-tree.nvim/issues/1038
+        ["P"] = { "toggle_preview", config = { use_float = false } },
+      }
     }
 })
 

@@ -2,7 +2,8 @@
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
-xresources.set_dpi(102)
+-- xresources.set_dpi(102)
+-- xresources.set_dpi()
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
@@ -53,7 +54,7 @@ local theme = {}
 
 local font_size = 15
 local titlebar_font_size = 12
-local font_name = "Hack"
+local font_name = "Hack Nerd Font Mono"
 
 theme.font          = font_name .. " " .. dpi(font_size)
 
@@ -93,7 +94,7 @@ theme.screen_bg = colors.blue_2
 -- panel / wibar
 
 theme.panel_bg = colors.bw_0_h
-theme.panel_height = dpi(35)
+theme.panel_height = dpi(30)
 theme.panel_text_separation = dpi(16)
 theme.tray_margin = dpi(4)
 
