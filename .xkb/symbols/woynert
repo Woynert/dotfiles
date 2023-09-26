@@ -1,0 +1,69 @@
+// Based on latam, personal woynert modifications
+
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+
+    include "us"
+    name[Group1]="woynert (us)";
+
+    // use type default
+    // spanish letters
+
+    replace key <AC01> {[ a,         A,     aacute,       Aacute]};     
+    replace key <AD03> {[ e,         E,     eacute,       Eacute]};     
+    replace key <AD08> {[ i,         I,     iacute,       Iacute]};     
+    replace key <AD09> {[ o,         O,     oacute,       Oacute]};     
+    replace key <AD07> {[ u,         U,     uacute,       Uacute]};     
+    replace key <AD07> {[ u,         U,     uacute,       Uacute]};     
+    replace key <AC10> {[ semicolon, colon, ntilde,       Ntilde]};     
+    replace key <AE12> {[ equal,     plus,  questiondown, exclamdown]}; 
+
+    // delete with Ctrl+H
+
+    replace key <AC06> {
+        type="EIGHT_LEVEL_BY_CTRL",
+        symbols[Group1]= [ h, H, hstroke, Hstroke, NoSymbol ],
+        actions[Group1]= [ NoAction(), NoAction(), NoAction(), NoAction(), RedirectKey(key=<HENK>, clearmods=Control) ]
+    };
+
+    key.type = "ONE_LEVEL";
+    replace key <HENK>{ [BackSpace] };
+
+    // CAPS -> Escape
+
+    replace key <CAPS> { [ Escape ] };
+
+    // Menu -> Control
+
+    replace key <MENU> { [ Control_R, Control_R ] };
+    modifier_map Control { Control_L, Control_R, <MENU> };
+
+    include "level3(ralt_switch)" // AltGr
+};
+
+partial alphanumeric_keys
+xkb_symbols "latam" {
+
+    include "latam"
+    name[Group1]="woynert (latam)";
+
+    // delete with Ctrl+H
+
+    replace key <HENK>{ [BackSpace] };
+    replace key <AC06> {
+        type="EIGHT_LEVEL_BY_CTRL",
+        symbols[Group1]= [ h, H, hstroke, Hstroke, NoSymbol ],
+        actions[Group1]= [ NoAction(), NoAction(), NoAction(), NoAction(), RedirectKey(key=<HENK>, clearmods=Control) ]
+    };
+
+    key.type = "ONE_LEVEL";
+
+    // CAPS to Escape
+
+    replace key <CAPS> { [ Escape ] };
+
+    // Right Menu to Ctrl
+
+    replace key <MENU> { [ Control_R, Control_R ] };
+    modifier_map Control { Control_L, Control_R, <MENU> };
+};
