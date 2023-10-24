@@ -3,42 +3,45 @@
 window:
   padding:
     x: 4
-    y: 4
+    y: 0
+
+  dynamic_padding: true
 
 font:
   normal:
     family: Hack Nerd Font Mono
+    #family: MxPlus IBM VGA 8x16
+    #family: PxPlus IBM VGA 8x14
   bold:
     style: Regular
   size: 12.0
+  offset:
+    x: 1
 
 colors:
-  # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
+    background: '#222324'
+    foreground: '#BABABA'
 
   # Normal colors
   normal:
-    black: '#282828'
-    red: '#cc241d'
-    green: '#98971a'
-    yellow: '#d79921'
-    blue: '#458588'
-    magenta: '#b16286'
-    cyan: '#689d6a'
-    white: '#a89984'
+    black: '#000000'
+    red: '#E8341C'
+    green: '#68C256'
+    yellow: '#F2D42C'
+    blue: '#1C98E8'
+    magenta: '#8E69C9'
+    cyan: '#1C98E8'
+    white: '#BABABA'
 
   # Bright colors
   bright:
-    black: '#928374'
-    red: '#fb4934'
-    green: '#b8bb26'
-    yellow: '#fabd2f'
-    blue: '#83a598'
-    magenta: '#d3869b'
-    cyan: '#8ec07c'
-    white: '#ebdbb2'
-theme: Gruvbox-Dark
+    black: '#666666'
+    red: '#E05A4F'
+    green: '#77B869'
+    yellow: '#EFD64B'
+    blue: '#387CD3'
+    magenta: '#957BBE'
+    cyan: '#3D97E2'
+    white: '#BABABA'
+theme: Darkside

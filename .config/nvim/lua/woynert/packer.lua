@@ -7,7 +7,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
 
-    -- auto
+    -- core
 
 	use 'wbthomason/packer.nvim'
 
@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
         branch = "v2.x",
         requires = {
             "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "nvim-tree/nvim-web-devicons", -- not required, but recommended
             "MunifTanjim/nui.nvim",
         },
     }
@@ -77,25 +77,26 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons' }
     }
 
-    use { 'echasnovski/mini.starter',
-        config = function()
-            local starter = require('mini.starter')
-            starter.setup({
-                items = {
-                    starter.sections.recent_files(10, true),
-                    starter.sections.recent_files(20, false),
-                },
-            })
-        end
-    }
+    -- TODO: A plugin to list recent files
+    --use { 'echasnovski/mini.starter',
+        --config = function()
+            --local starter = require('mini.starter')
+            --starter.setup({
+                --items = {
+                    --starter.sections.recent_files(10, true),
+                    --starter.sections.recent_files(20, false),
+                --},
+            --})
+        --end
+    --}
 
     -- visual
 
-    use { 'lifepillar/vim-gruvbox8',
-        setup = function()
-          vim.cmd([[colorscheme gruvbox8]])
-        end
-    }
+    --use { 'lifepillar/vim-gruvbox8',
+        --setup = function()
+          --vim.cmd([[colorscheme gruvbox8]])
+        --end
+    --}
 
     --use { 'luochen1990/rainbow',
         --config = function()
@@ -103,6 +104,12 @@ return require('packer').startup(function(use)
             --vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
         --end
     --}
+
+    use { 'NLKNguyen/papercolor-theme',
+        setup = function()
+          vim.cmd([[colorscheme PaperColor]])
+        end
+    }
 
     use 'psliwka/vim-smoothie'
 
@@ -134,6 +141,10 @@ return require('packer').startup(function(use)
 		}
 	}
 
+    use { "LinArcX/telescope-command-palette.nvim" }
+
+    use 'olacin/telescope-gitmoji.nvim'
+
     use { 'preservim/nerdcommenter',
         config = function()
             vim.g.NERDCreateDefaultMappings = true
@@ -142,8 +153,6 @@ return require('packer').startup(function(use)
 
 	use 'tpope/vim-fugitive'
 
-    use 'olacin/telescope-gitmoji.nvim'
-
     use {
         'simeji/winresizer',
         config = function ()
@@ -151,6 +160,8 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- sudo write
+    use 'lambdalisue/suda.vim'
 end)
 
 

@@ -226,11 +226,26 @@ git log -p -- docker-compose.yml
 # abort merge
 git merge --abort
 
+# Keep changes from only one side of a merge
+# During a merge, you can pass --ours or --theirs to git checkout to take all
+# changes for a file from one side or the other of a merge.
+
+git checkout --ours   -- file1.txt # Use our version, delete their changes
+git checkout --theirs -- file2.txt # Use their version, delete our changes
+
 # Add a remote origin and replace branch
 git remote add origin <url>
 git branch -M master
 git push -u origin master
 git push origin --delete main # You may need to change the default branch from github
+
+# Merge keeping changes from only one branch
+git checkout main
+git pull
+git checkout dev
+git pull
+git merge -s ours main
+git push
 
 # How to remove files that are listed in the .gitignore but still on the repository
 git rm --cached `git ls-files -i -c --exclude-from=.gitignore`
@@ -246,3 +261,5 @@ git diff --name-only <commit>
 
 # export stash as a patch
 git stash show -p > patch
+
+

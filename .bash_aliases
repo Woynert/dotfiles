@@ -1,6 +1,6 @@
 #system
-alias ols='\ls --group-directories-first --color=auto'
-alias ls='ls --group-directories-first --color=auto -X -1'
+alias ols='\ls --group-directories-first --color=auto -X'
+alias ls='ls --group-directories-first --color=auto -1'
 alias nano='nano -a -j -x -T 4 -$ -U -i'
 alias c='clear &&'
 alias cls='clear && ls'
@@ -19,11 +19,7 @@ alias swapreset='sudo swapoff -a && sudo swapon -a'
 alias lf1='lf -command "set nopreview; set ratios 1"'
 alias lf2='lf -command "set ratios 1:3"'
 alias ips="ip ad 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
-
-#appimages / portable apps
-alias godot='/appimages/Godot_v3.64'
-alias godot4='/appimages/Godot_misc/Godot_v4.1-stable_linux.x86_64/Godot_v4.1-stable_linux.x86_64'
-
+alias gs="git status"
 
 # package manager
 alias xinstall='xbps-install'
@@ -48,5 +44,11 @@ docker-ips() {
 
 xqueryex() {
 	xbps-query -Rs $1 | awk '{ print $1,$2 }' | grep $1
+}
+
+vimfzf() {
+	file=$(fzf)
+	echo $file
+	vim $file
 }
 

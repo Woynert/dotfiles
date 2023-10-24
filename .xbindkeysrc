@@ -1,16 +1,17 @@
 
 # win + numpad 1 
-"~/dev/script/change_keyboard_map_switch.sh 1"
+#"~/dev/script/change_keyboard_map_switch.sh 1"
+"~/dev/script/switchKeyboardLayout us"
     m:0x50 + c:87
     Mod2+Mod4 + KP_End
 
 # win + numpad 2
-"~/dev/script/change_keyboard_map_switch.sh 2"
+"~/dev/script/switchKeyboardLayout latam"
     m:0x50 + c:88
     Mod2+Mod4 + KP_Down
 
 # win + numpad 3
-"~/dev/script/change_keyboard_map_switch.sh 3"
+"~/dev/script/switchKeyboardLayout dvorak"
 	m:0x50 + c:89
 	Mod2+Mod4 + KP_Next
 
@@ -20,7 +21,7 @@
 #	Mod2+Mod4 + KP_Left
 
 # win + numpad 0
-"~/dev/script/change_keyboard_map_toggle.sh"
+"~/dev/script/switchKeyboardLayout"
 	m:0x50 + c:90
     Mod2+Mod4 + KP_Insert
 

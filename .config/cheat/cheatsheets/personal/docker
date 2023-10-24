@@ -37,6 +37,10 @@ docker build . -t woy/spark1
 # Run image
 docker run <image-name>
 
+# Build & run
+docker run -it $(docker build -q .)
+docker build -t foo . && docker run -it foo
+
 # Start a stopped image
 docker start 7eb43e3a232e
 

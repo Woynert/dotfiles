@@ -12,12 +12,12 @@ local lsp = require('lsp-zero').preset({
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 
 lsp.ensure_installed({
+    'gopls',
     'tsserver',
     --'eslint',
     --'lua_ls',
-    'rust_analyzer',
-    'gopls',
-    'pylyzer'
+    --'rust_analyzer',
+    --'pylyzer'
 })
 
 -- mapings
@@ -30,10 +30,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-y>'] = cmp.mapping.confirm({ select = true }),
 	['<C-Space>'] = cmp.mapping.complete(),
 })
-
--- format and detect indentation 
-
-vim.keymap.set("n", "<leader>gp", ":silent %!prettier --stdin-filepath %<CR>:DetectIndent<CR>")
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings,
@@ -77,7 +73,7 @@ vim.diagnostic.config({
   virtual_text = true,
   signs = true,
   update_in_insert = true,
-  underline = true,
+  underline = false, -- true
   severity_sort = true,
   float = {
     focusable = false,

@@ -51,13 +51,14 @@ colors.bw_10            = "#fbf1c7"
 
 local theme = {}
 
-local font_size = 15
+local font_size = 14
 local titlebar_font_size = 12
 local font_name = "Hack"
+--local font_name = "MxPlus IBM VGA 8x16"
 
 theme.font          = font_name .. " " .. dpi(font_size)
 
-theme.bg_normal     = "#222222"
+theme.bg_normal     = "#000000"
 theme.bg_focus      = "#535d6c"
 theme.bg_urgent     = "#cc241d"
 theme.bg_minimize   = "#444444"
@@ -65,15 +66,18 @@ theme.bg_systray    = theme.bg_normal
 theme.systray_icon_spacing = dpi(8)
 
 theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
+theme.fg_focus      = "#FFFF00"
+--theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(3)
 theme.border_width  = dpi(2)
-theme.border_normal = colors.bw_2
+--theme.border_normal = colors.bw_2
+--theme.border_normal  = "#101040"
 --theme.border_focus  = theme.border_normal
 theme.border_focus  = colors.blue_1
+theme.border_normal  = "#101010"
 --theme.border_focus  = "#444444"
 theme.border_marked = "#91231c"
 theme.transparent   = "#00000000"
@@ -88,12 +92,13 @@ theme.plan_pale1 = "#664267"
 theme.plan_pale2 = "#453845"
 theme.plan_highlight = colors.blue_1
 --theme.plan_highlight = "#AA4747"
-theme.screen_bg = colors.blue_2
+--theme.screen_bg = colors.blue_2
+theme.screen_bg = "#000000"
 
 -- panel / wibar
 
-theme.panel_bg = colors.bw_0_h
-theme.panel_height = dpi(35)
+theme.panel_bg = "#000000"
+theme.panel_height = 30
 theme.panel_text_separation = dpi(16)
 theme.tray_margin = dpi(4)
 
@@ -102,35 +107,37 @@ theme.tray_margin = dpi(4)
 theme.tasklist_bg_normal = theme.plan_pale2
 theme.tasklist_bg_focus = theme.plan_highlight
 theme.tasklist_bg_minimize = theme.transparent
-theme.tasklist_width = dpi(55)
-theme.tasklist_line_height = dpi(3)
+theme.tasklist_width = dpi(60)
+theme.tasklist_line_height = dpi(2)
 theme.tasklist_spacing = dpi(8)
 theme.tasklist_fallback_icon = theme_dir .. "images/fallback-icon.svg"
 
 -- taglist
 
-theme.taglist_button_width = dpi(30)
-theme.taglist_group_separation = dpi(25)
+theme.taglist_button_width = dpi(25)
+theme.taglist_group_separation = dpi(15)
 theme.taglist_bg = theme.transparent
-theme.taglist_bg_focus = theme.plan_highlight
+theme.taglist_bg_focus = theme.transparent
+theme.taglist_fg_occupied = colors.blue_1
+--theme.taglist_fg_empty = theme.transparent
 
 -- taglist square
 
-theme.taglist_spacing = dpi(2)
-theme.taglist_squares_color = "#cccccc"
-local taglist_square_size = dpi(7)
-theme.taglist_squares_resize = true
+--theme.taglist_spacing = dpi(2)
+--theme.taglist_squares_color = "#cccccc"
+--local taglist_square_size = dpi(7)
+--theme.taglist_squares_resize = true
 
-theme.taglist_squares_sel   = surface.load_from_shape(
-    taglist_square_size, taglist_square_size,
-    shape.rounded_rect,
-    theme.taglist_squares_color
-)
+--theme.taglist_squares_sel   = surface.load_from_shape(
+    --taglist_square_size, taglist_square_size,
+    --shape.rounded_rect,
+    --theme.taglist_squares_color
+--)
 
-theme.taglist_squares_unsel = surface.load_from_shape(
-    taglist_square_size, taglist_square_size,
-    shape.arc, theme.taglist_squares_color, theme.transparent, dpi(1), 0, 2*math.pi, false, false
-)
+--theme.taglist_squares_unsel = surface.load_from_shape(
+    --taglist_square_size, taglist_square_size,
+    --shape.arc, theme.taglist_squares_color, theme.transparent, dpi(1), 0, 2*math.pi, false, false
+--)
 
 -- notifications
 
@@ -220,5 +227,9 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+
+theme.tabbar_style = "simple-icons"
+--theme.tabbar_size = 38
+--theme.tabbar_font = "Sans 7"
 
 return theme

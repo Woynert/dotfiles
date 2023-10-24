@@ -208,3 +208,7 @@
 # lighttpd
 !/.config/lighttpd/
 !/.config/lighttpd/**
+
+# xkb, setxkbmap, xkbcomp
+!/.xkb/
+!/.xkb/**

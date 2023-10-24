@@ -28,8 +28,8 @@ vim.keymap.set("v", "<leader>P", "\"+P")
 -- quick file switch
 --vim.keymap.set("n", "<C-n>", ":bp<cr>")
 --vim.keymap.set("n", "<C-p>", ":bn<cr>")
-vim.keymap.set("n", "<C-h>", ":bp<cr>")
-vim.keymap.set("n", "<C-l>", ":bn<cr>")
+vim.keymap.set("n", "<C-k>", ":bp<cr>")
+vim.keymap.set("n", "<C-j>", ":bn<cr>")
 
 -- forward delete
 vim.keymap.set("i", "<C-d>", "<Del>")
@@ -40,4 +40,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- package
 vim.api.nvim_create_user_command('PS', function()
     vim.cmd("PackerSync")
+end, {})
+
+-- close buffer without closing window
+vim.api.nvim_create_user_command('Bd', function()
+    vim.cmd("bp|bd #")
 end, {})
