@@ -38,6 +38,10 @@ REVIEW_BASE=\$(git rev-parse HEAD); vim -p \$(git diff \$REVIEW_BASE... --name-o
 for f in */log/run; do sudo ln -svf /usr/bin/vlogger "\$f"; done
 # use perl regex
 grep -oP '<pattern>'
+# trash locations
+/root/.local/share/Trash
+# print tree with find
+find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"
 EOF
 
 # https://unix.stackexchange.com/questions/259659/high-memory-usage-but-no-process-is-using-it

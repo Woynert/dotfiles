@@ -5,7 +5,7 @@ layout=`setxkbmap -query | grep layout`
 if [[ "$layout" != *"woynert" ]]; then
 	setxkbmap woynert
 else
-	setxkbmap latam
+	setxkbmap latam && xmodmap ~/.xmodmaprc
 fi
 
 notify-send "$(setxkbmap -query | grep layout | awk '{print "layout",toupper($2)}')"

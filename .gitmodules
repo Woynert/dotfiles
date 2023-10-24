@@ -1,0 +1,4 @@
+[submodule ".config/awesome/bling"]
+	path = .config/awesome/bling
+	url = https://github.com/Woynert/bling
+	branch = devwoy

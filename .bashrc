@@ -8,6 +8,11 @@
 #      *) return;;
 #esac
 
+#  /| ､      
+# (°､ ｡ 7   
+#  |､  ~ヽ 
+#  じしf_,)〳
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -60,6 +65,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 source ~/.git-prompt.sh
+# source ~/.z.sh
+eval "$(zoxide init bash)"
 
 #export GIT_PS1_SHOWDIRTYSTATE=0
 
@@ -72,6 +79,32 @@ source ~/.git-prompt.sh
 #    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 #fi
 
+#plen () {
+   #local ps len
+   #ps="$(perl -pe 's|\\\[.*?\\\]||g' <<<"${PS1O}X")"
+   #len="$(wc -m <<<"${ps@P}")"
+   #printf '%s\n' "$((len-2))"
+#}
+
+#pblock () {
+   #local ps
+   #ps="$(perl -pe 's|\\\[.*?\\\]||g' <<<"${PS1}X")"
+   #ps="${ps@P}"
+   #printf '%s' "${ps::-1}" | tr -c '\n\r' 'M'
+#}
+
+#pcondnewline () {
+    #local len max
+    #len=$(plen)
+    #max=$(tput cols)
+
+    #if [ $len -gt $(( max / 2 )) ]; then
+        #echo '\n'
+        ##printf '\\n '
+    #else
+        #printf ' '
+    #fi
+#}
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	# ssh
@@ -79,9 +112,24 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
 	# no ssh
-	PS1='\[\033[01;34m\]\w\[\033[01;35m\]$(__git_ps1 " %s")\[\033[00m\]\$ '
+    #PS1O='\[\033[01;32m\]\w\[\033[01;34m\]$(__git_ps1 " %s")\[\033[00m\]\$ '
+    #PS1='\[\033[01;32m\]\w\[\033[01;34m\]$(__git_ps1 " %s")$(pcondnewline)\[\033[00m\]\$ '
+    #PS1='\[\033[01;32m\]\w\[\033[01;34m\]$(__git_ps1 " %s")\n\[\033[00m\]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w$(__git_ps1 " %s")\[\033[00m\]\$ '
+    #PS1='\[\033[01;34m\]$(if [ "$?" -ne "0" ]; then printf "\[\e[0;31m\]"; fi)>>> \[\033[01;34m\]\w\[\033[01;35m\]$(__git_ps1 " %s")\n\[\033[00m\]$ '
+    PS1='\[\033[01;34m\]$(if [ "$?" -ne "0" ]; then printf "\[\e[0;35m\]"; fi)>>> \w\[\033[00m\]$(__git_ps1 " %s")\n\[\033[00m\]$ '
+
+    #if [ ]; then
+        #PS1="$PS1\n$ "
+    #else
+        #PS1="$PS1$ "
+    #fi
 fi
+
+#echo `pblock`
+#echo `plen`
+
 
 # remote server
 #PS1='\[\033[01;34m\]\u \[\033[01;33m\]\w\[\033[33m\]\$\[\033[00m\] '
@@ -164,6 +212,17 @@ export BAT_THEME="Solarized (dark)"
 export LS_COLORS+=':ow=00;35' # make nfts folder purple
 export BAT_THEME='gruvbox-dark'
 
+# react native
+export ANDROID_HOME=/misc/dev/android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# flutter
+export PATH="$PATH:/misc/dev/android/flutter/bin"
+
+# kubernetes
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
 # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
@@ -187,4 +246,10 @@ export BAT_THEME='gruvbox-dark'
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
+# Print a random pokemon
+
+#if type pokemon-colorscripts 2> /dev/null 1> /dev/null; then
+    #pokemon-colorscripts -r 1
+#fi
 
