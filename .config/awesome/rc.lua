@@ -376,11 +376,6 @@ awful.screen.connect_for_each_screen(function(s)
         height = beautiful.panel_height
     })
 
-    -- togglable systray
-
-    --s.systrayy = wibox.widget.systray()
-    --s.systrayy.visible = false
-
     -- Add widgets to the wibox
     s.mywibox:setup {
       layout = wibox.layout.stack,
@@ -421,7 +416,6 @@ awful.screen.connect_for_each_screen(function(s)
           vert_sep,
           vert_sep,
           {
-            --s.systrayy,
             widget = wibox.container.margin,
             margins = beautiful.tray_margin
           },
@@ -593,11 +587,6 @@ globalkeys = gears.table.join(
   	-- toggle keynav (keyboard driven mouse)
     awful.key({ modkey }, "#47", function () awful.spawn("keynav start") end,
               {description = "Open keynav", group = "woynert"}),
-
-    -- toggle systray
-    awful.key({ modkey }, "=", function ()
-        awful.screen.focused().systrayy.visible = not awful.screen.focused().systrayy.visible
-        end, {description = "Toggle systray visibility", group = "custom"}),
 
     -- bling tabbed 
     -- https://blingcorp.github.io/bling/#/module/tabbed
