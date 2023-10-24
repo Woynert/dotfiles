@@ -1,7 +1,8 @@
 // Based on latam, personal woynert modifications
 
 default partial alphanumeric_keys
-xkb_symbols "basic" {
+// xkb_symbols "basic" {
+xkb_symbols "woynert" {
 
     include "us"
     name[Group1]="woynert (us)";

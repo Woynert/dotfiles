@@ -156,6 +156,7 @@ export PATH="$PATH:/opt/compass/bin"
 export PATH="$PATH:/opt/insomnia/bin"
 export PATH="$PATH:/opt/litemdview/bin"
 export PATH="$PATH:/usr/lib/psql14/bin"
+export PATH="$PATH:/data/app/appimage/godot"
 
 # app specific
 export BAT_THEME="Solarized (dark)"
