@@ -149,14 +149,12 @@ export EDITOR=vim
 
 # Path
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
-export PATH="$PATH:/opt/pt"
-export PATH="$PATH:/opt/git-annex"
-export PATH="$PATH:/opt/node16/bin"
-export PATH="$PATH:/opt/compass/bin"
-export PATH="$PATH:/opt/insomnia/bin"
-export PATH="$PATH:/opt/litemdview/bin"
-export PATH="$PATH:/usr/lib/psql14/bin"
-export PATH="$PATH:/data/app/appimage/godot"
+
+# device specific paths
+
+if [ -f ~/.bash_paths ]; then
+    source ~/.bash_paths
+fi
 
 # app specific
 export BAT_THEME="Solarized (dark)"
