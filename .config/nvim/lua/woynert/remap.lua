@@ -41,3 +41,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.api.nvim_create_user_command('PS', function()
     vim.cmd("PackerSync")
 end, {})
+
+-- vim tabs
+vim.api.nvim_exec([[
+nnoremap <Left> :tabp<CR>
+nnoremap <Right> :tabn<CR>
+]], false)

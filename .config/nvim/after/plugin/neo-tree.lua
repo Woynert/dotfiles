@@ -14,6 +14,14 @@ require("neo-tree").setup({
             }
         }
     },
+    git_status = {
+        window = {
+            mappings = {
+                ["o"] = "open",
+                ["Z"] = "expand_all_nodes",
+            }
+        }
+    },
     window = {
       mappings = {
         -- workaround: don't use floatting window 
