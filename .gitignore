@@ -182,6 +182,7 @@
 
 !/.config/nvim/
 !/.config/nvim/**
+.config/nvim/plugin/
 
 # cheat sheet
 !/.config/cheat/
