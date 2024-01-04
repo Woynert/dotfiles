@@ -53,52 +53,64 @@ local theme = {}
 
 local font_size = 14
 local titlebar_font_size = 12
-local font_name = "Hack"
+local font_name = "Comic Sans MS"
 --local font_name = "MxPlus IBM VGA 8x16"
+
+theme.name = "light"
+
+if theme.name == "light" then
+    theme.final_fg_normal = "#000000"
+    theme.final_fg_highlight = "#000000"
+    theme.final_bg_normal = "#cccccc"
+    theme.final_bg_border = "#5A85B4"
+    theme.final_bg_minimize = "#B2A395"
+else -- dark is default
+    theme.final_fg_normal = "#ffffff"
+    theme.final_fg_highlight = colors.yellow_2
+    theme.final_bg_normal = "#222222"
+    theme.final_bg_border = colors.blue_1
+    theme.final_bg_minimize = "#444444"
+end
+
 
 theme.font          = font_name .. " " .. dpi(font_size)
 
-theme.bg_normal     = "#000000"
-theme.bg_focus      = "#535d6c"
+theme.bg_normal     = theme.final_bg_normal
+theme.bg_focus      = theme.final_bg_border
 theme.bg_urgent     = "#cc241d"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+theme.bg_minimize   = theme.final_bg_minimize
+theme.bg_systray    = theme.final_bg_normal
 theme.systray_icon_spacing = dpi(8)
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#FFFF00"
---theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = theme.final_fg_normal
+theme.fg_focus      = theme.final_fg_highlight
+theme.fg_urgent     = theme.final_fg_normal
+theme.fg_minimize   = theme.final_fg_normal
 
 theme.useless_gap   = dpi(3)
 theme.border_width  = dpi(2)
---theme.border_normal = colors.bw_2
---theme.border_normal  = "#101040"
---theme.border_focus  = theme.border_normal
-theme.border_focus  = colors.blue_1
-theme.border_normal  = "#101010"
---theme.border_focus  = "#444444"
+theme.border_focus  = theme.final_bg_border
+theme.border_normal = theme.final_bg_normal
 theme.border_marked = "#91231c"
 theme.transparent   = "#00000000"
 
 -- theme colors
 
-theme.plan_font = theme.fg_normal
-theme.plan_bg = "#222222"
-theme.plan_dark1 = "#451F2B"
-theme.plan_dark2 = "#441F45"
-theme.plan_pale1 = "#664267"
-theme.plan_pale2 = "#453845"
-theme.plan_highlight = colors.blue_1
+--theme.plan_font = theme.fg_normal
+--theme.plan_bg = "#222222"
+--theme.plan_dark1 = "#451F2B"
+--theme.plan_dark2 = "#441F45"
+--theme.plan_pale1 = "#664267"
+--theme.plan_pale2 = "#453845"
+--theme.plan_highlight = colors.blue_1
 --theme.plan_highlight = "#AA4747"
 --theme.screen_bg = colors.blue_2
 theme.screen_bg = "#000000"
 
 -- panel / wibar
 
-theme.panel_bg = "#000000"
-theme.panel_height = 30
+theme.panel_bg = theme.final_bg_normal
+theme.panel_height = dpi(31)
 theme.panel_text_separation = dpi(16)
 theme.tray_margin = dpi(4)
 
@@ -106,9 +118,9 @@ theme.tray_margin = dpi(4)
 
 theme.tasklist_bg_normal = theme.plan_pale2
 theme.tasklist_bg_focus = theme.plan_highlight
-theme.tasklist_bg_minimize = theme.transparent
+theme.tasklist_bg_minimize = theme.bg_minimize
 theme.tasklist_width = dpi(60)
-theme.tasklist_line_height = dpi(2)
+theme.tasklist_line_height = dpi(15)
 theme.tasklist_spacing = dpi(8)
 theme.tasklist_fallback_icon = theme_dir .. "images/fallback-icon.svg"
 
@@ -117,8 +129,10 @@ theme.tasklist_fallback_icon = theme_dir .. "images/fallback-icon.svg"
 theme.taglist_button_width = dpi(25)
 theme.taglist_group_separation = dpi(15)
 theme.taglist_bg = theme.transparent
-theme.taglist_bg_focus = theme.transparent
-theme.taglist_fg_occupied = colors.blue_1
+theme.taglist_bg_focus = theme.final_bg_border
+theme.taglist_fg_occupied = theme.final_fg_normal
+theme.taglist_bg_occupied = theme.final_bg_minimize
+--theme.taglist_fg_occupied = colors.blue_1
 --theme.taglist_fg_empty = theme.transparent
 
 -- taglist square
@@ -157,42 +171,45 @@ theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 
+--local titlebar_icons_path = themes_path.."default/titlebar" -- default
+local titlebar_icons_path = theme_dir.."images/titlebar" -- light custom
+
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = titlebar_icons_path.."/close_normal.png"
+theme.titlebar_close_button_focus  = titlebar_icons_path.."/close_focus.png"
 
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
+theme.titlebar_minimize_button_normal = titlebar_icons_path.."/minimize_normal.png"
+theme.titlebar_minimize_button_focus  = titlebar_icons_path.."/minimize_focus.png"
 
-theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive = titlebar_icons_path.."/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive  = titlebar_icons_path.."/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active = titlebar_icons_path.."/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active  = titlebar_icons_path.."/ontop_focus_active.png"
 
-theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive = titlebar_icons_path.."/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive  = titlebar_icons_path.."/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active = titlebar_icons_path.."/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active  = titlebar_icons_path.."/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_normal_inactive = titlebar_icons_path.."/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive  = titlebar_icons_path.."/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active = titlebar_icons_path.."/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active  = titlebar_icons_path.."/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = titlebar_icons_path.."/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive  = titlebar_icons_path.."/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active = titlebar_icons_path.."/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active  = titlebar_icons_path.."/maximized_focus_active.png"
 
 -- titlebar vars
 
 theme.titlebar_font = font_name .. " " .. dpi(titlebar_font_size)
-theme.titlebar_close_button_bg = colors.bw_1
-theme.titlebar_close_button_width = dpi(50)
+theme.titlebar_close_button_bg = theme.final_bg_normal
+theme.titlebar_close_button_width = dpi(25)
 theme.titlebar_button_width = dpi(25)
 
 theme.titlebar_icon_spacing = dpi(6)
-theme.titlebar_padding = dpi(4)
+theme.titlebar_padding = dpi(5)
 theme.titlebar_height = dpi(font_size) + theme.titlebar_padding * 2 + dpi(7)
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus  = theme.bg_normal
@@ -228,7 +245,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
-theme.tabbar_style = "simple-icons"
+--theme.tabbar_style = "simple-icons"
 --theme.tabbar_size = 38
 --theme.tabbar_font = "Sans 7"
 

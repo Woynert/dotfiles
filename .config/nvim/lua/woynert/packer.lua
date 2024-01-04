@@ -134,7 +134,7 @@ return require('packer').startup(function(use)
     -- tools
 
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		'nvim-telescope/telescope.nvim', tag = '0.1.4',
 		requires = {
 			{'nvim-lua/plenary.nvim'},
 			{'BurntSushi/ripgrep'},
@@ -160,8 +160,20 @@ return require('packer').startup(function(use)
         end
     }
 
+    use {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    }
+
     -- sudo write
     use 'lambdalisue/suda.vim'
+
+	use {
+		'dhruvasagar/vim-prosession',
+		requires = {
+			{'tpope/vim-obsession'},
+		}
+	}
 end)
 
 

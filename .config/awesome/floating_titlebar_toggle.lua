@@ -29,8 +29,7 @@ local function refreshTitlebar(c)
 	-- is current layout floating?
     local float = c.first_tag.layout == awful.layout.suit.floating 
 
-	--if float and not c.maximized and not c.requests_no_titlebar then
-	if float and not c.requests_no_titlebar then
+	if float and (not c.requests_no_titlebar) and (not c.really_no_titlebar) then
 		awful.titlebar.show(c)
 	else
 		awful.titlebar.hide(c)

@@ -199,7 +199,7 @@ end))
 
 local function set_wallpaper(s)
     --gears.wallpaper.set(beautiful.colors.)
-    gears.wallpaper.set("#263238")
+    gears.wallpaper.set(beautiful.screen_bg)
     --gears.wallpaper.set("#357941")
     --gears.wallpaper.set("#AA4747")
 	--gears.wallpaper.maximized("", s)
@@ -244,7 +244,8 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "Q", "W", "E", "A", "S", "D" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3" }, s, awful.layout.layouts[1])
+    --awful.tag({ "1", "2", "3", "Q", "W", "E", "A", "S", "D" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -333,32 +334,37 @@ awful.screen.connect_for_each_screen(function(s)
 	    },
 		widget_template = {
 			nil,
-			{
-				{
-					{
-						id = "clienticon",
-						widget = awful.widget.clienticon,
-						valign = 'center',
-					},
-					margins = 1,
-					id = "icon_margin",
-					widget = wibox.container.margin,
-				},
-				valign = 'center',
-				halign = 'center',
-				widget = wibox.container.place,
-			},
-			{
-				-- horizontal bottom line
-				wibox.widget.base.make_widget(),
-                forced_height = beautiful.tasklist_line_height,
-				--forced_height = 0,
-				id            = "background_role",
-				widget        = wibox.container.background,
-			},
-			-- forced_height = 50,
+            {
+                {
+                    {
+                        -- horizontal bottom line
+                        wibox.widget.base.make_widget(),
+                        id            = "background_role",
+                        widget        = wibox.container.background,
+                    },
+                    top = beautiful.panel_height - beautiful.tasklist_line_height,
+                    widget = wibox.container.margin,
+                },
+                {
+                    {
+                        {
+                            id = "clienticon",
+                            widget = awful.widget.clienticon,
+                            valign = 'center',
+                        },
+                        margins = 1,
+                        id = "icon_margin",
+                        widget = wibox.container.margin,
+                    },
+                    valign = 'center',
+                    halign = 'center',
+                    widget = wibox.container.place,
+                },
+                layout = wibox.layout.stack,
+                forced_height = 40,
+            },
+            nil,
             forced_width = beautiful.tasklist_width,
-            --width = beautiful.tasklist_width,
 			create_callback = function(self, client, _, _)
                 self:get_children_by_id("clienticon")[1].client = client
 
@@ -373,7 +379,9 @@ awful.screen.connect_for_each_screen(function(s)
         position = "bottom",
         ontop = false,
         screen = s,
-        height = beautiful.panel_height
+        height = beautiful.panel_height,
+        stretch = false,
+        width = s.geometry.width * 0.6,
     })
 
     -- togglable systray
@@ -390,7 +398,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
           layout = wibox.layout.fixed.horizontal,
 
-          whisker_launch,
+          --whisker_launch,
           s.mytaglist,
           vert_sep,
         },
@@ -738,13 +746,13 @@ addGlobalTagKey(1, 1 + 9, 1)
 addGlobalTagKey(2, 2 + 9, 2)
 addGlobalTagKey(3, 3 + 9, 3)
 
-addGlobalTagKey(4, 24, "Q")
-addGlobalTagKey(5, 25, "W")
-addGlobalTagKey(6, 26, "E")
+--addGlobalTagKey(4, 24, "Q")
+--addGlobalTagKey(5, 25, "W")
+--addGlobalTagKey(6, 26, "E")
 
-addGlobalTagKey(7, 38, "A")
-addGlobalTagKey(8, 39, "S")
-addGlobalTagKey(9, 40, "D")
+--addGlobalTagKey(7, 38, "A")
+--addGlobalTagKey(8, 39, "S")
+--addGlobalTagKey(9, 40, "D")
 
 -- # bindings needed for tags
 -- Ctrl + Shift + Super + #
@@ -795,12 +803,12 @@ awful.rules.rules = {
      }
     },
 
-        { rule = { class = "Xfdesktop" },
-      properties = {
-          sticky = true,
-          border_width = 0,
-          focusable = false
-      } },
+        --{ rule = { class = "Xfdesktop" },
+      --properties = {
+          --sticky = true,
+          --border_width = 0,
+          --focusable = false
+      --} },
 
     -- Floating clients.
     { rule_any = {
@@ -838,6 +846,64 @@ awful.rules.rules = {
       --}, properties = { titlebars_enabled = true }
       }, properties = { titlebars_enabled = false }
     },
+
+    {
+        rule_any = { type = { "desktop" } },
+      callback = function(c)
+      c.screen = awful.screen.getbycoord(0, 0)
+      end,
+      properties = {
+        sticky = true,
+        border_width = 0,
+        skip_taskbar = true,
+        titlebars_enabled = false,
+        requests_no_titlebar = true,
+        really_no_titlebar = true,
+        focusable = false,
+        dockable = false,
+        keys = {},
+            screen = nil,
+             size_hints_honor = false,
+        },
+    },
+
+    -- make xfdesktop behave
+    --{
+        --rule_any = { type = { "Desktop" } },
+        --callback = function(c)
+                ---- c.floating = true
+                --local geo = screen[1].geometry
+                --geo.x2 = geo.x + geo.width
+                --geo.y2 = geo.y + geo.height
+                --for s in screen do
+                    --local geo2 = s.geometry
+                    --geo.x = math.min(geo.x, geo2.x)
+                    --geo.y = math.min(geo.y, geo2.y)
+                    --geo.x2 = math.max(geo.x2, geo2.x + geo2.width)
+                    --geo.y2 = math.max(geo.y2, geo2.y + geo2.height)
+                --end
+                --c:geometry{
+                    --x = geo.x,
+                    --y = geo.y + 0,
+                    --width = geo.x2 - geo.x,
+                    --height = geo.y2 - geo.y - 0
+                --}
+            --end,
+        --properties = {
+            --maximized = true,
+            --sticky = true,
+            --floating = false,
+            --placement = nil,
+            ---- placement = awful.placement.top_left,
+            --border_width = 0,
+            ---- focus = awful.client.focus.filter,
+            --raise = false,
+            --keys = {},
+            --buttons = {},
+            --screen = nil,
+            ---- size_hints_honor = false,
+        --}
+    --},
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },

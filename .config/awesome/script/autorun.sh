@@ -14,7 +14,8 @@ function run_one {
 	fi
 }
 
-run pulseaudio --start 
+#run pulseaudio --start 
+run pipewire
 run_one picom
 
 run_one xbindkeys 
@@ -34,19 +35,20 @@ run_one runsvdir -P $HOME/servicex
 	#/usr/local/bin/stw -F 'carlito:size=16' -A 0.3 -p 20 -f '#F8CB00' -b black -B 10 -x 100% -X -100% -- ~/.local/bin/gtasks-pretty.sh \
 	#&
 
-#run_one safeeyes
+run_one safeeyes
 
 # startup sound
 run ~/.script/reproduce-if-service-is-available.sh /usr/local/share/sounds/system/ub-start-idea02.mp3 &
 
 # visual
 #~/.local/bin/grayon &
-#run nitrogen --restore &
+run nitrogen --restore &
+run spacefm --desktop
 
 # set custom resolution
 #~/.script/screen-cut.sh 1370 900 &
-~/.script/screen-cut-update.sh
+#~/.script/screen-cut-update.sh
 
 # mascot
-killall oneko
-run_one oneko -tofocus -bsd -bg pink
+#killall oneko
+#run_one oneko -tofocus -bsd -bg pink
