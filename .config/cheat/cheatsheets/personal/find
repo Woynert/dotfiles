@@ -84,3 +84,6 @@ find <path> -newer <target-file>
 
 # List only file names without path
 find . -type f -exec basename \{} ';'
+
+# print as tree
+find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"

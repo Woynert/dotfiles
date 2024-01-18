@@ -4,6 +4,7 @@ telescope.setup({
     extensions = {
         gitmoji = {
             action = function(entry)
+                -- TODO: Add all emojis
                 -- entry = {
                 --   display = "🐛 Fix a bug.",
                 --   index = 4,

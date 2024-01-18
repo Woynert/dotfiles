@@ -1,6 +1,7 @@
 --vim.opt.guicursor = "" # fat cursor
 
-vim.opt.nu = true
+vim.opt.nu = false
+vim.opt.laststatus = 0
 -- vim.opt.relativenumber = true
 
 vim.opt.tabstop     = 4
@@ -25,7 +26,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+--vim.opt.signcolumn = "yes" -- <- Problematic
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 200

@@ -14,7 +14,7 @@ function run_one {
 	fi
 }
 
-run_one pulseaudio --start 
+run pulseaudio --start 
 run_one picom
 
 run_one xbindkeys 
@@ -40,8 +40,16 @@ run_one safeeyes
 run_one xfce4-screensaver
 
 # startup sound
-#sleep 2 && run /bin/mpg123 /usr/local/share/sounds/system/Login2.mp3 &
+run ~/.script/reproduce-if-service-is-available.sh /usr/local/share/sounds/system/ub-start-idea02.mp3 &
 
 # visual
 #~/.local/bin/grayon &
-#run /bin/nitrogen --restore
+#run nitrogen --restore &
+
+# set custom resolution
+#~/.script/screen-cut.sh 1370 900 &
+~/.script/screen-cut-update.sh
+
+# mascot
+killall oneko
+run_one oneko -tofocus -bsd -bg pink

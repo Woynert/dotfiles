@@ -62,7 +62,7 @@ local groups = {
 }
 
 for i = 1, #groups do
-    vim.api.nvim_set_hl(0, groups[i], { fg = 'fg' })
+    vim.api.nvim_set_hl(0, groups[i], { fg = nil })
 end
 
 -- custom
@@ -78,5 +78,3 @@ vim.api.nvim_set_hl(0, 'Character', { fg = color_value })
 vim.api.nvim_set_hl(0, 'Number', { fg = color_value })
 vim.api.nvim_set_hl(0, 'Float', { fg = color_value })
 vim.api.nvim_set_hl(0, 'Constant', { fg = color_value })
-
-

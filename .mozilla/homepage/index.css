@@ -7,19 +7,32 @@
 	--purple: #b16286;
 	--aqua:   #689d6a;
 	--orange: #d65d0e;
+
+	/* light mode by default */
+	--theme_bg: #EEEEEE;
+	--theme_title_fg: var(--red);
+	--theme_item_fg: #282828;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root{
+		--theme_bg: #323234;
+		--theme_title_fg: var(--yellow);
+		--theme_item_fg: var(--text-color);
+	}
 }
 
 *{
 	font-family: sans-serif;
 	font-size: 1.05em;
 	box-sizing: border-box;
-	color: var(--text-color);
+	color: var(--theme_item_fg);
 }
 
 body, html{
 	padding: 0;
 	margin: 0;
-	background-color: #3C3836;
+	background-color: var(--theme_bg);
 }
 
 img{
@@ -59,6 +72,7 @@ a{
 }
 
 .tagTitle{
-	color: var(--yellow);
+	color: var(--theme_title_fg);
 	margin: 0 0 6px 0;
 }
+

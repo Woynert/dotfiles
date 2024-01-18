@@ -44,9 +44,6 @@ nix-env --query "*"
 # show generations
 nix-env --list-generations 	
 
-# cleans the Nix store of unused packages
-nix-collect-garbage 
-
 # =============================================
 # nix-shell isolated build/dev/run environments
 
@@ -87,3 +84,22 @@ nixos-option <option>
 - https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/first-package.html # building a package (recommended)
 - https://learnxinyminutes.com/docs/nix/
 - https://gist.github.com/lheckemann/402e61e8e53f136f239ecd8c17ab1deb
+
+# =======
+# Flakes
+
+# start devenv flake
+nix develop --impure
+
+# =====
+# Cleaning
+
+# cleans the Nix store of unused packages
+nix-collect-garbage 
+nix-collect-garbage -d
+
+nix-store --gc
+
+# space visualization tools
+https://nixos.wiki/wiki/Cleaning_the_nix_store
+

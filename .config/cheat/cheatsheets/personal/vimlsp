@@ -1,0 +1,4 @@
+
+## JDLTS: Java LSP
+
+### Fix: When it says ServiceReady and does not start it's because the gradle project cannot be builded.
