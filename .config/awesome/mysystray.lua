@@ -1,5 +1,6 @@
 local awful        = require("awful")
 local wibox        = require("wibox")
+local beautiful = require("beautiful")
 --local gears        = require("gears")
 
 local opened = true
@@ -7,14 +8,25 @@ local textbox = wibox.widget.textbox()
 local pomodoro = require("pomodoro")
 local systray_widget = wibox.widget ({
   wibox.widget.systray(),
-  pomodoro,
+  {
+    pomodoro,
+    top = 2,
+    bottom = 2,
+    left = beautiful.systray_icon_spacing / 2,
+    right = beautiful.systray_icon_spacing / 2,
+    widget = wibox.container.margin,
+  },
   layout = wibox.layout.fixed.horizontal
 })
 
 local tray = wibox.widget ({
-  systray_widget,
-  textbox,
-  layout = wibox.layout.fixed.horizontal
+  {
+    systray_widget,
+    textbox,
+    layout = wibox.layout.fixed.horizontal
+  },
+  widget = wibox.container.background,
+  bg = beautiful.bg_systray
 })
 
 -- state functions
