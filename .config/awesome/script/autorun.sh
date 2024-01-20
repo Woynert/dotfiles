@@ -14,7 +14,8 @@ function run_one {
 	fi
 }
 
-run pulseaudio --start 
+#run pulseaudio --start 
+run pipewire
 run_one picom
 
 run_one xbindkeys 
@@ -44,12 +45,13 @@ run ~/.script/reproduce-if-service-is-available.sh /usr/local/share/sounds/syste
 
 # visual
 #~/.local/bin/grayon &
-#run nitrogen --restore &
+run nitrogen --restore &
+run spacefm --desktop
 
 # set custom resolution
 #~/.script/screen-cut.sh 1370 900 &
-~/.script/screen-cut-update.sh
+#~/.script/screen-cut-update.sh
 
 # mascot
-killall oneko
-run_one oneko -tofocus -bsd -bg pink
+#killall oneko
+#run_one oneko -tofocus -bsd -bg pink
