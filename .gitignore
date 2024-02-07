@@ -205,6 +205,9 @@
 # alacritty
 !/.config/alacritty/
 !/.config/alacritty/alacritty.yml
+!/.config/alacritty/alacritty.toml
+!/.config/alacritty/theme-dark.toml
+!/.config/alacritty/theme-light.toml
 
 # lighttpd
 !/.config/lighttpd/
