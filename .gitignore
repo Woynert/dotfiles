@@ -221,3 +221,8 @@
 # xkb, setxkbmap, xkbcomp
 !/.xkb/
 !/.xkb/**
+
+# nixos
+!/.nixos/
+!/.nixos/**
+/.nixos/config/mounts.nix
