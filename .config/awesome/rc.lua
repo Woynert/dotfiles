@@ -60,7 +60,7 @@ beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- bling libray
 -- https://blingcorp.github.io/
-local bling = require("bling")
+--local bling = require("bling")
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "x-terminal-emulator"
@@ -199,21 +199,22 @@ end))
 
 local function set_wallpaper(s)
     --gears.wallpaper.set(beautiful.colors.)
-    gears.wallpaper.set(beautiful.screen_bg)
     --gears.wallpaper.set("#357941")
     --gears.wallpaper.set("#AA4747")
 	--gears.wallpaper.maximized("", s)
 
 	-- Wallpaper
-    --if beautiful.wallpaper then
-        --local wallpaper = beautiful.wallpaper
-        ---- If wallpaper is a function, call it with the screen
-        --if type(wallpaper) == "function" then
-            --wallpaper = wallpaper(s)
-        --end
-        ----gears.wallpaper.maximized(wallpaper, s, true)
-        --gears.wallpaper.centered(wallpaper, s, beautiful.screen_bg, 0.01)
-    --end
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        --gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.centered(wallpaper, s, beautiful.screen_bg, 0.01)
+    end
+
+    gears.wallpaper.set(beautiful.screen_bg)
 end
 
 --
@@ -382,6 +383,8 @@ awful.screen.connect_for_each_screen(function(s)
         height = beautiful.panel_height,
         stretch = false,
         width = s.geometry.width * 0.6,
+		border_width = beautiful.border_width,
+		border_color = beautiful.final_bg_minimize,
     })
 
     -- Add widgets to the wibox
@@ -594,26 +597,26 @@ globalkeys = gears.table.join(
 
   	-- toggle keynav (keyboard driven mouse)
     awful.key({ modkey }, "#47", function () awful.spawn("keynav start") end,
-              {description = "Open keynav", group = "woynert"}),
+              {description = "Open keynav", group = "woynert"})
 
     -- bling tabbed 
     -- https://blingcorp.github.io/bling/#/module/tabbed
 
-    awful.key({ modkey, "Shift"   }, "y", function () bling.module.tabbed.pick_by_direction("left") end,
-        {description = "add client on the left to tabbing group", groumodern = "client"}
-    ),
-    awful.key({ modkey,           }, "y", function () bling.module.tabbed.pick() end,
-        {description = "pick a client to add to tabbing group", group = "client"}
-    ),
-    awful.key({ modkey,           }, "o", function () bling.module.tabbed.pop() end,
-        {description = "removes client from tabbing group", group = "client"}
-    ),
-    awful.key({ modkey,           }, "u", function () bling.module.tabbed.iter(-1) end,
-        {description = "iterate tabbed clients (left)", group = "client"}
-    ),
-    awful.key({ modkey,           }, "i", function () bling.module.tabbed.iter(1) end,
-        {description = "iterate tabbed clients (right)", group = "client"}
-    )
+    --awful.key({ modkey, "Shift"   }, "y", function () bling.module.tabbed.pick_by_direction("left") end,
+        --{description = "add client on the left to tabbing group", groumodern = "client"}
+    --),
+    --awful.key({ modkey,           }, "y", function () bling.module.tabbed.pick() end,
+        --{description = "pick a client to add to tabbing group", group = "client"}
+    --),
+    --awful.key({ modkey,           }, "o", function () bling.module.tabbed.pop() end,
+        --{description = "removes client from tabbing group", group = "client"}
+    --),
+    --awful.key({ modkey,           }, "u", function () bling.module.tabbed.iter(-1) end,
+        --{description = "iterate tabbed clients (left)", group = "client"}
+    --),
+    --awful.key({ modkey,           }, "i", function () bling.module.tabbed.iter(1) end,
+        --{description = "iterate tabbed clients (right)", group = "client"}
+    --)
     --awful.key({ modkey,           }, "k",
         --function ()
             --awful.client.focus.byidx(-1)
@@ -913,8 +916,31 @@ client.connect_signal("manage", function (c)
     end
 end)
 
+function add_titlebar_borders(c) 
+	awful.titlebar(c, {
+		size            = 5,
+		enable_tooltip  = false,
+		position        = 'left',
+		bg              = c.border_color
+	}):setup {
+        {
+            {
+                bg     = c.border_color or '#FFFFFF',
+                widget = wibox.container.background
+            },
+            bottom = 2,
+            left   = 2,
+            right  = 2,
+            widget = wibox.container.margin
+        },
+        bg     = beautiful.border_outer or '#000000',
+        widget = wibox.container.background
+    }
+end
+
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
+
     -- buttons for the titlebar
     local buttons = gears.table.join(
         awful.button({ }, 1, function()
@@ -929,9 +955,10 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c, {
         size = beautiful.titlebar_height,
-		bg_normal = beautiful.titlebar_bg_normal,
-		bg_focus  = beautiful.titlebar_bg_focus,
-	}) : setup {
+        bg_normal = beautiful.titlebar_bg_normal,
+        bg_focus  = beautiful.titlebar_bg_focus,
+        position = 'top',
+    }) : setup {
         widget = wibox.container.margin,
         margins = beautiful.titlebar_padding,
         {
@@ -975,7 +1002,7 @@ client.connect_signal("request::titlebars", function(c)
                 },
                 {
                     widget = wibox.container.background,
-                    bg = beautiful.titlebar_close_button_bg,
+                    --bg = beautiful.titlebar_close_button_bg,
                     forced_width = beautiful.titlebar_close_button_width,
                     awful.titlebar.widget.closebutton (c),
                 },
@@ -1013,10 +1040,13 @@ require('floating_titlebar_toggle')
 require('restore_floating_clients')
 
 -- useless gap
-beautiful.gap_single_client = true
+--beautiful.gap_single_client = true
 
 -- welcome message     
 awful.spawn("notify-send 'Welcome back'")
+
+-- titlebar borders
+--require('win95_titlebards_module')
 
 
 --awful.mouse.resize.add_leave_callback(function(c)

@@ -53,24 +53,35 @@ colors.bw_10            = "#fbf1c7"
 local theme = {}
 
 local font_size = 14
-local titlebar_font_size = 12
+local titlebar_font_size = 13
 --local font_name = "Hack Nerd Font Mono"
-local font_name = "Comic Sans MS"
+--local font_name = "comicrelief"
+local font_name = "Comic Relief"
+--local font_name = "Comic Sans MS"
 --local font_name = "MxPlus IBM VGA 8x16"
 
 theme.name = "light"
 
-if theme.name == "light" then
+if theme.name == "light2" then
     theme.final_fg_normal = "#000000"
     theme.final_fg_highlight = "#000000"
-    theme.final_bg_normal = "#cccccc"
-    theme.final_bg_border = "#5A85B4"
+    theme.final_bg_border = "#7777ba"
+    theme.final_bg_normal = "#bbbbbb"
+    theme.final_bg_focus = "#B2A395"
     theme.final_bg_minimize = "#B2A395"
-else -- dark is default
+elseif theme.name == "light" then
+    theme.final_fg_normal = "#000000"
+    theme.final_fg_highlight = "#000000"
+    theme.final_bg_border = "#5A85B4"
+    theme.final_bg_normal = "#cccccc"
+    theme.final_bg_focus = "#B2A395"
+    theme.final_bg_minimize = "#B2A395"
+else -- dark
     theme.final_fg_normal = "#ffffff"
     theme.final_fg_highlight = colors.yellow_2
-    theme.final_bg_normal = "#222222"
     theme.final_bg_border = colors.blue_1
+    theme.final_bg_normal = "#222222"
+    theme.final_bg_focus = "#B2A395"
     theme.final_bg_minimize = "#444444"
 end
 
@@ -78,7 +89,7 @@ end
 theme.font          = font_name .. " " .. dpi(font_size)
 
 theme.bg_normal     = theme.final_bg_normal
-theme.bg_focus      = theme.final_bg_border
+theme.bg_focus      = theme.final_bg_focus
 theme.bg_urgent     = "#cc241d"
 theme.bg_minimize   = theme.final_bg_minimize
 theme.bg_systray    = theme.final_bg_normal
@@ -90,7 +101,7 @@ theme.fg_urgent     = theme.final_fg_normal
 theme.fg_minimize   = theme.final_fg_normal
 
 theme.useless_gap   = dpi(3)
-theme.border_width  = dpi(2)
+theme.border_width  = dpi(0)
 theme.border_focus  = theme.final_bg_border
 theme.border_normal = theme.final_bg_normal
 theme.border_marked = "#91231c"
@@ -106,8 +117,8 @@ theme.transparent   = "#00000000"
 --theme.plan_pale2 = "#453845"
 --theme.plan_highlight = colors.blue_1
 --theme.plan_highlight = "#AA4747"
---theme.screen_bg = colors.blue_2
-theme.screen_bg = "#000000"
+theme.screen_bg = colors.blue_1
+--theme.screen_bg = "#00a053"
 
 -- panel / wibar
 
@@ -118,8 +129,8 @@ theme.tray_margin = dpi(4)
 
 -- tasklist
 
-theme.tasklist_bg_normal = theme.plan_pale2
-theme.tasklist_bg_focus = theme.plan_highlight
+--theme.tasklist_bg_normal = theme.plan_pale2
+theme.tasklist_bg_focus = theme.final_bg_border
 theme.tasklist_bg_minimize = theme.bg_minimize
 theme.tasklist_width = dpi(60)
 theme.tasklist_line_height = dpi(15)
@@ -214,7 +225,7 @@ theme.titlebar_icon_spacing = dpi(6)
 theme.titlebar_padding = dpi(5)
 theme.titlebar_height = dpi(font_size) + theme.titlebar_padding * 2 + dpi(7)
 theme.titlebar_bg_normal = theme.bg_normal
-theme.titlebar_bg_focus  = theme.bg_normal
+theme.titlebar_bg_focus  = theme.bg_focus
 
 --theme.wallpaper = themes_path.."default/background.png"
 theme.wallpaper = theme_dir .. "images/min16x16.png"

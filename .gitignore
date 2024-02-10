@@ -20,8 +20,13 @@
 #     First be sure to empty your home directory, or at least files that will be
 #     replaced by git.
 #
-#     git init <git-repository-url> --bare "$HOME/.dot.git"
-#     git checkout master
+#     git clone <git-repository-url> --bare "$HOME/.dot.git"
+#     git --git-dir="$HOME/.dot.git" --work-tree="$HOME" checkout master
+#
+#     or:
+#
+#     git clone <git-repository-url> --bare ".dot.git"
+#     git --git-dir=".dot.git" --work-tree="." checkout master
 #
 # --- Usage:
 #

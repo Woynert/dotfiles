@@ -1,5 +1,5 @@
-import = [ "~/.config/alacritty/theme-light.toml" ]
-#import = [ "~/.config/alacritty/theme-dark.toml" ]
+#import = [ "~/.config/alacritty/theme-light.toml" ]
+import = [ "~/.config/alacritty/theme-dark.toml" ]
 
 [font]
 size = 10.0
@@ -8,7 +8,7 @@ size = 10.0
 style = "Medium"
 
 [font.normal]
-family = "IosevkaTermNerdFontMono"
+family = "mono"
 style = "Medium"
 
 [font.offset]

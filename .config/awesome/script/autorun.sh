@@ -15,7 +15,7 @@ function run_one {
 }
 
 #run pulseaudio --start 
-run pipewire
+#run pipewire
 run_one picom
 
 run_one xbindkeys 
@@ -45,7 +45,7 @@ run ~/.script/reproduce-if-service-is-available.sh /usr/local/share/sounds/syste
 
 # visual
 #~/.local/bin/grayon &
-run nitrogen --restore &
+#run nitrogen --restore &
 run spacefm --desktop
 
 # set custom resolution
