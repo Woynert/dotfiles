@@ -59,6 +59,7 @@ local groups = {
 'Type',
 'Typedef',
 'Underlined',
+'markdownCodeBlock',
 }
 
 for i = 1, #groups do

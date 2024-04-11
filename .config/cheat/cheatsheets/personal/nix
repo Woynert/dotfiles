@@ -96,7 +96,7 @@ nix develop --impure
 
 # cleans the Nix store of unused packages
 nix-collect-garbage 
-nix-collect-garbage -d
+nix-collect-garbage -d # Warning: deletes old generations
 
 nix-store --gc
 

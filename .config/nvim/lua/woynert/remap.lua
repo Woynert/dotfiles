@@ -9,6 +9,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("t", "<C-Space><ESC>", "<C-\\><C-n>")
 
 -- spanish mappings
 vim.keymap.set("n", "ñ", ":")

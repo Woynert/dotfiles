@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
-
-free -h | tail -n 2 | head -n 1 | awk '{print $3}'
+mem=$(free -h | awk 'NR == 2 {print $3}')
+swap=$(free -h | awk 'NR == 3 {print $3}')
+printf "$mem, $swap"

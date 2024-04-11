@@ -4,16 +4,20 @@ import = [ "~/.config/alacritty/theme-dark.toml" ]
 [font]
 size = 10.0
 
-[font.bold]
+[font.normal]
+family = "IosevkaTermNerdFontMono"
 style = "Medium"
 
-[font.normal]
-family = "mono"
+[font.bold]
 style = "Medium"
 
 [font.offset]
 x = 0
 y = -4
+
+[font.glyph_offset]
+x = 0
+y = -2
 
 [window]
 dynamic_padding = true

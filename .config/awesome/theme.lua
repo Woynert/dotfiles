@@ -1,5 +1,3 @@
-
-
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 -- xresources.set_dpi(102)
@@ -100,10 +98,10 @@ theme.fg_focus      = theme.final_fg_highlight
 theme.fg_urgent     = theme.final_fg_normal
 theme.fg_minimize   = theme.final_fg_normal
 
-theme.useless_gap   = dpi(3)
+theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(0)
-theme.border_focus  = theme.final_bg_border
-theme.border_normal = theme.final_bg_normal
+theme.border_focus  = "#555555"
+theme.border_normal = "#222324"
 theme.border_marked = "#91231c"
 theme.transparent   = "#00000000"
 

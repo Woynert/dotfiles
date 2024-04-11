@@ -1,92 +1,30 @@
-local lsp = require('lsp-zero').preset({
-  name = 'minimal',
-  set_lsp_keymaps = true,
-  manage_nvim_cmp = true,
-  suggest_lsp_servers = true,
-})
+local lsp_zero = require('lsp-zero')
+local lsp_config = require('lspconfig')
+lsp_config.dartls.setup{}
+lsp_config.clangd.setup{}
 
--- how to install and configure new LSPs
--- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/lsp.md#install-new-language-servers
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps({
+    buffer = bufnr,
+    preserve_mappings = false
+  })
+end)
 
--- LSPs must be in this list
--- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+-- From https://lsp-zero.netlify.app/v3.x/language-server-configuration.html#default-keybindings
+--[[
+    K: vim.lsp.buf.hover() Displays hover information about the symbol under the cursor in a floating window
+    gl: vim.diagnostic.open_float() Show diagnostics in a floating window
 
-lsp.ensure_installed({
-    'gopls',
-    'tsserver',
-    --'eslint',
-    --'lua_ls',
-    --'rust_analyzer',
-    --'pylyzer'
-})
-
---lsp.configure('dartls', {})
-
--- When you don't have mason.nvim installed
--- You'll need to list the servers installed in your system
-lsp.setup_servers({ 'dartls' })
-
--- mapings
-
-local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<C-y>'] = cmp.mapping.confirm({ select = true }),
-	['<C-Space>'] = cmp.mapping.complete(),
-})
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings,
-    preselect = 'none',
-    completion = {
-        --completeopt = 'menu,menuone,noinsert,noselect'
-        completeopt = 'menu,menuone,noselect'
-    },
-    experimental = {
-        ghost_text = true,
-    },
-})
-
--- (Optional) Configure lua language server for neovim
-
-lsp.nvim_workspace()
-lsp.setup()
-
--- Custom language servers
-
--- dart
-
-require('lspconfig').dartls.setup{}
-
--- python
-
---require'lspconfig'.pylyzer.setup{}
---require'lspconfig'.pylsp.setup{
-  --settings = {
-    --pylsp = {
-      --plugins = {
-        --pycodestyle = {
-          --enabled = false
-        --}
-      --}
-    --}
-  --}
---}
-
-vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  update_in_insert = true,
-  underline = false, -- true
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = 'minimal',
-    border = 'rounded',
-    source = 'always',
-    header = '',
-    prefix = '',
-  },
-})
+    gd: vim.lsp.buf.definition() Jumps to the definition of the symbol under the cursor
+    gD: vim.lsp.buf.declaration() Jumps to the declaration of the symbol under the cursor. Some servers don't implement this feature
+    gi: vim.lsp.buf.implementation() Lists all the implementations for the symbol under the cursor in the quickfix window
+    
+    go: vim.lsp.buf.type_definition() Jumps to the definition of the type of the symbol under the cursor
+    gr: vim.lsp.buf.references() Lists all the references to the symbol under the cursor in the quickfix window
+    gs: vim.lsp.buf.signature_help() Displays signature information about the symbol under the cursor in a floating window
+    <F2>: vim.lsp.buf.rename() Renames all references to the symbol under the cursor
+    <F3>: vim.lsp.buf.format() Format code in current buffer
+    <F4>: vim.lsp.buf.code_action() Selects a code action available at the current cursor position
+    [d: vim.diagnostic.goto_prev() Move to the previous diagnostic in the current buffer
+    ]d: vim.diagnostic.goto_next() Move to the next diagnostic
+--]]

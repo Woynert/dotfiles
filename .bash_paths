@@ -1,0 +1,2 @@
+export PATH="$PATH:/plan/volatile/app/path"
+export PATH="$PATH:~/.script"

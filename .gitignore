@@ -124,6 +124,7 @@
 
 !/.bash_aliases
 !/.bash_profile
+!/.bash_paths
 !/.bashrc
 !/.git-prompt.sh
 

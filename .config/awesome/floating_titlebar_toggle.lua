@@ -1,7 +1,5 @@
 -- show title bars only on floating mode
---
--- inspired from
--- https://github.com/mphe/dotfiles/blob/5d111e4a74e1b29a5b556b58bccd47a1adf0cc8a/configdir/awesome/rc.lua
+-- inspired from https://github.com/mphe/dotfiles/blob/5d111e4a74e1b29a5b556b58bccd47a1adf0cc8a/configdir/awesome/rc.lua
 
 local awful = require("awful")
 local debug = false

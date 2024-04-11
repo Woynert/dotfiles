@@ -7,8 +7,13 @@ docker-compose -f ./docker-compose.yml up
 # To start a container with an interactive shell:
 docker run -ti <image-name> /bin/bash
 
+# Same as above and mounting a directory
+docker run -ti -v /host:/container <image-name> /bin/bash
+docker run -ti -v ./downloads:/share 56f0e7f1e083 /bin/sh
+
 # To "shell" into a running container (docker-1.3+):
 docker exec -ti <container-name> bash
+
 
 # To inspect a running container:
 docker inspect <container-name> (or <container-id>)

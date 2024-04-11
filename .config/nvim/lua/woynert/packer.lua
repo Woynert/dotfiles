@@ -13,24 +13,25 @@ return require('packer').startup(function(use)
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v1.x',
+		branch = 'v3.x',
 		requires = {
 			-- LSP Support
-			{'neovim/nvim-lspconfig'},             -- Required
-			{'williamboman/mason.nvim'},           -- Optional
-			{'williamboman/mason-lspconfig.nvim'}, -- Optional
+			{'neovim/nvim-lspconfig'}, -- Required
 
 			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},         -- Required
-			{'hrsh7th/cmp-nvim-lsp'},     -- Required
-			{'hrsh7th/cmp-buffer'},       -- Optional
-			{'hrsh7th/cmp-path'},         -- Optional
-			{'saadparwaiz1/cmp_luasnip'}, -- Optional
-			{'hrsh7th/cmp-nvim-lua'},     -- Optional
+			{'hrsh7th/nvim-cmp'},     -- Required
+			{'hrsh7th/cmp-nvim-lsp'}, -- Required
+			{'hrsh7th/cmp-buffer'},   -- Optional
+			{'hrsh7th/cmp-path'},     -- Optional
 
 			-- Snippets
 			{'L3MON4D3/LuaSnip'},             -- Required
+            {'saadparwaiz1/cmp_luasnip'},     -- Used by LuaSnip and nvim-cmp
 			{'rafamadriz/friendly-snippets'}, -- Optional
+
+            -- Pkg manager
+			{'williamboman/mason.nvim'},           -- Optional
+			{'williamboman/mason-lspconfig.nvim'}, -- Optional
 		}
 	}
 
@@ -53,8 +54,10 @@ return require('packer').startup(function(use)
 
     -- UI aid
 
+    use 'liuchengxu/vim-which-key'
+
     use { 'nvim-neo-tree/neo-tree.nvim',
-        branch = "v2.x",
+        branch = "v3.x",
         requires = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons", -- not required, but recommended
@@ -75,6 +78,24 @@ return require('packer').startup(function(use)
             require('mini.tabline').setup()
         end,
         requires = { 'nvim-tree/nvim-web-devicons' }
+    }
+
+    use { 'woynert/mini.map',
+        config = function()
+            local map = require('mini.map')
+            map.setup({
+                integrations = {
+                    map.gen_integration.builtin_search(),
+                    map.gen_integration.gitsigns(),
+                    map.gen_integration.diagnostic(), -- code errors, warnings
+                },
+                symbols = {
+                    encode = map.gen_encode_symbols.dot('4x2'),
+                }
+            })
+            vim.keymap.set("n", "<leader>m", function() MiniMap.toggle() end)
+        end,
+        requires = { "lewis6991/gitsigns.nvim" }
     }
 
     -- TODO: A plugin to list recent files
@@ -172,7 +193,11 @@ return require('packer').startup(function(use)
 		'dhruvasagar/vim-prosession',
 		requires = {
 			{'tpope/vim-obsession'},
-		}
+		},
+        config = function ()
+            require('telescope').load_extension('prosession')
+            vim.keymap.set('n', '<Leader>z', '<cmd>Telescope prosession<CR>')
+        end
 	}
 end)
 

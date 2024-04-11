@@ -150,3 +150,6 @@ go build -race -o=/tmp/foo . # not for production
 
 # Init a module
 go mod init example/hello
+
+# Get gopath location (find binaries)
+go env GOPATH
