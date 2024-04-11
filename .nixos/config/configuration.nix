@@ -5,11 +5,12 @@
   imports =
     [
       ./modules/kblayouts
-      ./modules/nixos-fhs-compat
-      ./modules/discord-screenaudio
+      ./modules/discord-screenaudio.nix
+      ./modules/nixos-fhs-compat.nix 
+      ./modules/aboutlife.nix
+      #./modules/auto-shutdown
     ]
-    ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix
-  ;
+    ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix;
 
   # system / hardware
   # ===========================================================================
@@ -23,15 +24,6 @@
     package = pkgs.nixFlakes;
     extraOptions = ''experimental-features = nix-command flakes'';
   };
-
-  # fhs
-
-  environment.fhs.enable = true;
-  environment.lsb.enable = true;
-
-  environment.fhs.linkLibs = true;
-  environment.lsb.enableDesktop = true;
-  environment.lsb.support32Bit = true;
 
   # bootloader
 
@@ -126,6 +118,11 @@
 
   # services
 
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  services.safeeyes.enable = true;
+  services.locate.enable = true; # updatedb
   services.openssh.enable = true;
   programs.ssh.askPassword = "";
 
@@ -152,7 +149,8 @@
   programs.neovim.vimAlias = true;
   programs.neovim.defaultEditor = true;
   programs.thunar.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+  programs.thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
+  services.tumbler.enable = true;
   programs.npm.enable = true;
   programs.steam.enable = true;
 
@@ -175,6 +173,7 @@
     tree
     wget
     htop
+    btop
     unzip
     cheat
     zoxide
@@ -193,7 +192,7 @@
     go
     cargo
     gnumake
-    ffmpeg
+    ffmpeg-full
     docker-compose
 
     # ui tool
@@ -209,6 +208,7 @@
     mpv
     gnome.file-roller # archiver
     gnome.simple-scan
+    vokoscreen # screen recorder
 
     # system util
 
@@ -218,6 +218,9 @@
     steamPackages.steam-fhsenv-without-steam.run
     vanilla-dmz
     xfce.xfce4-settings
+    xbindkeys
+    pulseaudio # pactl command for changing volume
+    pkgsi686Linux.gperftools # tf2 workaround
 
     # app
 
@@ -225,8 +228,10 @@
     firefox
     chromium
     obsidian
-    # ferdium
-    # blender
-    # unstable.discord-screenaudio
+    megasync
+    deadbeef
+    ferdium
+    obs-studio
+    audacity
   ];
 }

@@ -33,6 +33,13 @@
 
   ```sh
   sudo \rm -rf /bin /lib /lib64 /sbin /usr
+
+  sudo bash -c ' \
+    rm -rf /bin /lib /lib64 /sbin /usr && \
+    mkdir -p /usr/bin /bin && \
+    ln -s $(which env) /usr/bin/env && \
+    ln -s $(which sh) /bin/sh \
+  '
   ```
 
 - Setup HP printer. See [NixOS Manual on Printing](https://nixos.wiki/wiki/Printing):
