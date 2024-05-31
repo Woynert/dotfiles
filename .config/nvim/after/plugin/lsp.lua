@@ -8,7 +8,13 @@ lsp_zero.on_attach(function(client, bufnr)
     buffer = bufnr,
     preserve_mappings = false
   })
+
+  if vim.version().minor >= 9 then
+    client.server_capabilities.semanticTokensProvider = vim.NIL
+  end
 end)
+
+vim.highlight.priorities.semantic_tokens = 95
 
 -- From https://lsp-zero.netlify.app/v3.x/language-server-configuration.html#default-keybindings
 --[[

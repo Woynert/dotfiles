@@ -73,6 +73,10 @@ return require('packer').startup(function(use)
       end
     }
 
+    --use {
+        --'airblade/vim-gitgutter'
+    --}
+
     use { 'echasnovski/mini.tabline',
         config = function ()
             require('mini.tabline').setup()
@@ -115,7 +119,9 @@ return require('packer').startup(function(use)
 
     --use { 'lifepillar/vim-gruvbox8',
         --setup = function()
-          --vim.cmd([[colorscheme gruvbox8]])
+            ----let g:gruvbox_plugin_hi_groups = 1
+          --vim.g.gruvbox_plugin_hi_groups = 1
+          ----vim.cmd([[colorscheme gruvbox8]])
         --end
     --}
 
@@ -126,9 +132,19 @@ return require('packer').startup(function(use)
         --end
     --}
 
-    use { 'NLKNguyen/papercolor-theme',
+    --use { 'NLKNguyen/papercolor-theme',
+        --setup = function()
+          --vim.cmd([[colorscheme PaperColor]])
+        --end
+    --}
+
+    use { 'NLKNguyen/papercolor-blue',
+        requires = { "NLKNguyen/papercolor-theme" }
+    }
+
+    use { 'echasnovski/mini.base16',
         setup = function()
-          vim.cmd([[colorscheme PaperColor]])
+          --require('mini.base16').setup()
         end
     }
 
@@ -200,8 +216,3 @@ return require('packer').startup(function(use)
         end
 	}
 end)
-
-
-
-
-

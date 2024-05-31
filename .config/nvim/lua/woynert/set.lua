@@ -82,4 +82,3 @@ autocmd FileType * exe "normal zR"
 au WinEnter * set nofen " really disable folding
 au WinLeave * set nofen
 ]], false)
-

@@ -16,3 +16,9 @@ function WoyColorTest ()
     print(vim.fn.synID(row, col, 1))
     print(vim.fn.synID(row, col, 0))
 end
+
+function WoyColorTest2 ()
+    local s = vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1)
+    print(vim.fn.synIDattr(s, 'name') .. ' -> ' .. vim.fn.synIDattr(vim.fn.synIDtrans(s), 'name'))
+end
+
