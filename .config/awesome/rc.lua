@@ -442,25 +442,7 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
-    -- Custom 
-
-    -- Rofi
-	awful.key({ modkey }, "p", function() awful.spawn("rofi -show drun") end,
-			  {description = "launch rofi launcher", group = "woynert"}),
-			  
-	-- toggle keyboard layout (Laptop key =)
-    awful.key({ modkey }, "#21", function () awful.spawn("/home/woynert/.config/awesome/script/toggleKbLayout") end,
-              {description = "Switch keyboard distribution", group = "woynert"}),
-
-	-- set keyboard layout dvorak (Laptop key =)
-    awful.key({ modkey, "Control" }, "#21", function () awful.spawn("/home/woynert/.config/awesome/script/toggleKbLayoutDvorak") end,
-              {description = "Switch keyboard to us(Dvorak)", group = "woynert"}),
-
-  	-- toggle keynav (keyboard driven mouse)
-    awful.key({ modkey }, "#47", function () awful.spawn("/home/woynert/.config/awesome/script/openkeynav.sh") end,
-              {description = "Open keynav", group = "woynert"})
+              {description = "run prompt", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
