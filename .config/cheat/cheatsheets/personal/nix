@@ -95,10 +95,13 @@ nix develop --impure
 # Cleaning
 
 # cleans the Nix store of unused packages
-nix-collect-garbage 
-nix-collect-garbage -d # Warning: deletes old generations
 
-nix-store --gc
+nix-store --gc # almost same as:
+nix-collect-garbage
+nix-collect-garbage -d # Warning: deletes old generations
+sudo nix-collect-garbage -d # collect additional garbage
+sudo nixos-rebuild boot # get rid of old boot loader entries
+
 
 # space visualization tools
 https://nixos.wiki/wiki/Cleaning_the_nix_store
