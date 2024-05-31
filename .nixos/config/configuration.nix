@@ -8,6 +8,7 @@
       ./modules/discord-screenaudio.nix
       ./modules/nixos-fhs-compat.nix 
       ./modules/aboutlife.nix
+      ./modules/xmousepasteblock
       #./modules/auto-shutdown
     ]
     ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix;
@@ -71,10 +72,6 @@
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.awesome.enable = true;
   services.xserver.libinput.enable = true;
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
 
   # sound with pipewire
 
@@ -121,7 +118,7 @@
   services.flatpak.enable = true;
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  services.safeeyes.enable = true;
+  #services.safeeyes.enable = true;
   services.locate.enable = true; # updatedb
   services.openssh.enable = true;
   programs.ssh.askPassword = "";
@@ -152,7 +149,7 @@
   programs.thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
   services.tumbler.enable = true;
   programs.npm.enable = true;
-  programs.steam.enable = true;
+  programs.steam.enable = true; # for when things get better
 
 
   # packages installed in system profile
@@ -167,6 +164,7 @@
     xclip
     fzf
 
+    tmux
     file
     xorg.xkill
     killall
@@ -189,6 +187,7 @@
     python3
     gcc11
     git
+    git-credential-oauth
     go
     cargo
     gnumake

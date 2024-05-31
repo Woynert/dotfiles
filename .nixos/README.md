@@ -1,12 +1,19 @@
 ### How-to
 
-- Link the config:
+- (optional) Use stable channel:
 
+  ```sh
+  sudo nix-channel --remove <channel>
+  sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos
+  sudo nix-channel --update
+  ```
+
+- Link the config
   ```sh
   sudo ln -s ~/.nixos/config /etc/nixos/config
   ```
 
-- Then put this as your `configuration.nix`:
+- Then put this as your `/etc/nixos/configuration.nix`:
 
   ```nix
   {
@@ -17,6 +24,8 @@
       ];
   }
   ```
+
+- Build `sudo nixos-rebuild test`
 
 ### Extra
 
@@ -32,17 +41,17 @@
 - Hard reset FHS:
 
   ```sh
-  sudo \rm -rf /bin /lib /lib64 /sbin /usr
-
   sudo bash -c ' \
     rm -rf /bin /lib /lib64 /sbin /usr && \
     mkdir -p /usr/bin /bin && \
     ln -s $(which env) /usr/bin/env && \
     ln -s $(which sh) /bin/sh \
   '
+
+  sudo \rm -rf /bin /lib /lib64 /sbin /usr # (not recommended, use the one above)
   ```
 
-- Setup HP printer. See [NixOS Manual on Printing](https://nixos.wiki/wiki/Printing):
+- Setup HP printer, see [NixOS Manual on Printing](https://nixos.wiki/wiki/Printing):
 
   ```sh
   NIXPKGS_ALLOW_UNFREE=1 nix-shell -p hplipWithPlugin --run 'sudo -E hp-setup'
