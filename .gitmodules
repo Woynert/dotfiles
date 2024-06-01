@@ -1,7 +1,0 @@
-[submodule ".config/awesome/bling"]
-	path = .config/awesome/bling
-	url = https://github.com/Woynert/bling
-	branch = devwoy
-[submodule ".nixos/config/modules/nixos-fhs-compat"]
-	path = .nixos/config/modules/nixos-fhs-compat
-	url = https://github.com/Woynert/nixos-fhs-compat/
