@@ -1,4 +1,7 @@
-#system
+# system
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
 alias ols='\ls --group-directories-first --color=auto -X'
 alias ls='ls --group-directories-first --color=auto -1'
 alias nano='nano -a -j -x -T 4 -$ -U -i'
@@ -19,6 +22,7 @@ alias lf1='lf -command "set nopreview; set ratios 1"'
 alias lf2='lf -command "set ratios 1:3"'
 alias ips="ip ad 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
 alias vims="steam-run vim"
+alias xkill9="kill -9 \$(xprop | grep PID | awk '{print \$3}')"
 
 # package manager
 alias xinstall='xbps-install'
@@ -63,3 +67,58 @@ vimfzf() {
 	vim $file
 }
 
+# =============== tmux ================
+
+# Create or attach
+
+tmux-mirror () {
+    SESSION="$*"
+    if [ -z "$SESSION" ]; then
+        if [ -n "$(tmux ls)" ]; then
+            SESSION=$(tmux list-sessions -F '#{session_group} (#{session_group_attached} clients)' \
+                | uniq | fzf --height 10  --prompt "Choose session group (^C to cancel): " \
+                | sed 's/ \S* \S*$//'
+            )
+        fi
+    fi
+    if [ -n "$SESSION" ]; then
+        if [ -z "$TMUX" ];then
+            tmux a -t "$SESSION" || tmux new -t "$SESSION"
+        else 
+            tmux switch-client -t "$SESSION"
+        fi
+    fi
+}
+
+# Join to an existing session group
+# TODO: Show #{session_attached_list}
+
+tmux-join () {
+    if [ -n "$(tmux ls)" ]; then
+        SESSION=$(tmux list-sessions -F '#{session_group} (#{session_group_attached} clients)' \
+            | uniq | fzf --height 10  --prompt "Choose session group (^C to cancel): " \
+            | sed 's/ \S* \S*$//'
+        )
+    fi
+    if [ -n "$SESSION" ]; then
+        if [ -z "$TMUX" ];then
+            # To create OR attach to the session group
+            tmux new-session -t "$SESSION"
+        else 
+            NEW_S=$(tmux new-session -d -P -t "$SESSION")
+            tmux switch-client -t "$NEW_S"
+        fi
+    fi
+}
+
+# https://github.com/tmux/tmux/issues/2346
+
+tmux-kill-group () {
+	local GROUP="$*"
+	tmux list-sessions -F '#{session_group} #{session_name}' \
+		| grep "^$GROUP " | sed "s/$GROUP //" \
+		| while read -r SESSION; do
+			echo "Killing $SESSION"
+			tmux kill-session -t "$SESSION"
+		done
+}

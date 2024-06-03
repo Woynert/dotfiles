@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+echo "Started $(date)"
+start_time=$(date +%s)
+while true; do
+    sec=$(( $(date +%s) - start_time ))
+    time=`printf "%02d:%02d:%02d" $((sec / 3600)) $(( (sec % 3600) / 60 )) $((sec % 60))`
+    echo -ne "\rElapsed $time "
+    sleep 1
+done

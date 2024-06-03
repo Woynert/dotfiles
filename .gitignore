@@ -122,10 +122,9 @@
 !/.xinitawesome
 !/.nanorc
 
-!/.bash_aliases
-!/.bash_profile
-!/.bash_paths
 !/.bashrc
+!/.bash_profile
+!/.bash_aliases
 !/.git-prompt.sh
 
 !/.xbindkeysrc
@@ -141,12 +140,6 @@
 !/.mozilla/
 !/.mozilla/homepage/
 !/.mozilla/homepage/**
-
-!/.local/
-#!/.local/bin/
-#!/.local/bin/*
-#!/.local/bin/hidden/
-#!/.local/bin/hidden/*
 
 !/.script/
 !/.script/**
@@ -219,6 +212,10 @@
 !/.config/lighttpd/
 !/.config/lighttpd/**
 
+# tmux
+!/.config/tmux/
+!/.config/tmux/tmux.conf
+
 # xkb, setxkbmap, xkbcomp
 !/.xkb/
 !/.xkb/**
@@ -227,3 +224,4 @@
 !/.nixos/
 !/.nixos/**
 /.nixos/config/mounts.nix
+/.nixos/**/result

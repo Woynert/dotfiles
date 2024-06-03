@@ -7,7 +7,8 @@
       languages = [ "eng" ];
       symbolsFile = ./woynert;
     };
-    layout = lib.mkForce "woynert";
+    # restart display manager for it to take effect
+    displayManager.sessionCommands = "setxkbmap woynert";
   };
 }
 
