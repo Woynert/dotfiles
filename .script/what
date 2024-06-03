@@ -43,7 +43,7 @@ grep -oP '<pattern>'
 # print tree with find
 find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"
 # dotfiles fugitive
-GIT_DIR=$HOME/.dot.git GIT_WORK_TREE=$HOME vim
+GIT_DIR=\$HOME/.dot.git GIT_WORK_TREE=\$HOME vim
 EOF
 
 # https://unix.stackexchange.com/questions/259659/high-memory-usage-but-no-process-is-using-it

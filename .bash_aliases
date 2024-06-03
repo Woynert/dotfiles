@@ -1,4 +1,7 @@
 # system
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
 alias ols='\ls --group-directories-first --color=auto -X'
 alias ls='ls --group-directories-first --color=auto -1'
 alias nano='nano -a -j -x -T 4 -$ -U -i'
@@ -19,6 +22,7 @@ alias lf1='lf -command "set nopreview; set ratios 1"'
 alias lf2='lf -command "set ratios 1:3"'
 alias ips="ip ad 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
 alias vims="steam-run vim"
+alias xkill9="kill -9 \$(xprop | grep PID | awk '{print \$3}')"
 
 # package manager
 alias xinstall='xbps-install'

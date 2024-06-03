@@ -122,10 +122,9 @@
 !/.xinitawesome
 !/.nanorc
 
-!/.bash_aliases
-!/.bash_profile
-!/.bash_paths
 !/.bashrc
+!/.bash_profile
+!/.bash_aliases
 !/.git-prompt.sh
 
 !/.xbindkeysrc
