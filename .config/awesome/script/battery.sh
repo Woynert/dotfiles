@@ -40,5 +40,4 @@ if [[ "$acpi_output" == *"until"* ]]; then
 	level=↑$level
 fi
 
-level=98
 echo " ${level}%"
