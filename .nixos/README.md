@@ -1,10 +1,11 @@
 ### How-to
 
-- (optional) Use stable channel:
+- (optional) Pin the stable channel `23.11.4030.9f2ee8c91ac4`
 
   ```sh
-  sudo nix-channel --remove <channel>
-  sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos
+  sudo nix-channel --list
+  sudo nix-channel --remove <your-channel>
+  sudo nix-channel --add https://releases.nixos.org/nixos/23.11/nixos-23.11.4030.9f2ee8c91ac4/nixexprs.tar.xz nixos
   sudo nix-channel --update
   ```
 
@@ -25,7 +26,7 @@
   }
   ```
 
-- Build `sudo nixos-rebuild test`
+- Apply and try `sudo nixos-rebuild test`
 
 ### Extra
 

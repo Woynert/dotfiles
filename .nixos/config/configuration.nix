@@ -215,7 +215,7 @@
     libnotify
     lxde.lxsession # I think this is for lxpolkit
     steamPackages.steam-fhsenv-without-steam.run
-    vanilla-dmz
+    vanilla-dmz # cursor theme I like
     xfce.xfce4-settings
     xbindkeys
     pulseaudio # pactl command for changing volume
