@@ -71,7 +71,7 @@ vimfzf() {
 
 # Create or attach
 
-tmux-mirror () {
+tmuxmirror () {
     SESSION="$*"
     if [ -z "$SESSION" ]; then
         if [ -n "$(tmux ls)" ]; then
@@ -85,6 +85,7 @@ tmux-mirror () {
         if [ -z "$TMUX" ];then
             tmux a -t "$SESSION" || tmux new -t "$SESSION"
         else 
+            NEW_S=$(tmux new-session -d -P -t "$SESSION")
             tmux switch-client -t "$SESSION"
         fi
     fi
@@ -93,7 +94,7 @@ tmux-mirror () {
 # Join to an existing session group
 # TODO: Show #{session_attached_list}
 
-tmux-join () {
+tjoin () {
     if [ -n "$(tmux ls)" ]; then
         SESSION=$(tmux list-sessions -F '#{session_group} (#{session_group_attached} clients)' \
             | uniq | fzf --height 10  --prompt "Choose session group (^C to cancel): " \
