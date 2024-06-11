@@ -5,10 +5,10 @@ let
   # If the same sha256 is left nix won't update the tarball
   # TODO: come up with something better
 
-  rev = "46cd33a5beacd33cfdcdeb581c17c3d76d1959b7"; # or "master"
+  rev = "bddce9d630646c1f1a9fa3837ab74f7b7a02c944"; # or "master"
   aboutlife = fetchTarball {
     url = "https://github.com/woynert/aboutlife/archive/${rev}.tar.gz";
-    sha256 = "0azfhyzmrlkxhqhacid34k1x1zdjbgv8jqc8rxa15l7a3vdvdz2q";
+    sha256 = "0cmq5afhw67w6p6vdfw12k8rxc82k4bv7br8wfr95zf13g6jb3kx";
   };
 
 in
