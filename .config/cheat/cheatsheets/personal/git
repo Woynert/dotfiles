@@ -264,3 +264,6 @@ git stash show -p > patch
 
 # fix git push stuck: You are sending a large file
 git config --local http.postBuffer 524288000
+
+# modify unpushed commit messages
+git rebase --interactive $parent_of_flawed_commit
