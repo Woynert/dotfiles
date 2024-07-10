@@ -40,6 +40,7 @@
     efiSysMountPoint = "/boot";
   };
   boot.supportedFilesystems = [ "ntfs" ];
+  boot.kernel.sysctl."vm.swappiness" = 1;
 
   # networking
 
@@ -124,7 +125,10 @@
   programs.ssh.askPassword = "";
 
   virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
+  virtualisation.podman.defaultNetwork.settings.dns_enabled = true;
   virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   hardware.acpilight.enable = true; # allow users in the video group to use xbacklight
 
@@ -193,6 +197,7 @@
     gnumake
     ffmpeg-full
     docker-compose
+    podman-compose
 
     # ui tool
 
@@ -220,6 +225,7 @@
     xbindkeys
     pulseaudio # pactl command for changing volume
     pkgsi686Linux.gperftools # tf2 workaround
+    qemu
 
     # app
 
@@ -232,5 +238,6 @@
     ferdium
     obs-studio
     audacity
+    libreoffice-fresh
   ];
 }
