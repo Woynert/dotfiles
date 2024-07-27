@@ -213,7 +213,7 @@
     gnome.file-roller # archiver
     gnome.simple-scan
     vokoscreen # screen recorder
-    gcolor2
+    gpick
 
     # system util
 
