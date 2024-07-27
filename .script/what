@@ -30,10 +30,22 @@ vim -c 'syntax off' -c 'tabdo set filetype=review' -c 'tabdo Gvdiffsplit '\${1:-
 vim -p \$(git diff \$REVIEW_BASE --name-only) -c "tabdo Gvdiffsplit \$REVIEW_BASE" -c "tabdo Gitsigns change_base \$REVIEW_BASE"
 #
 # diff between last commit
-REVIEW_BASE=\$(git rev-parse HEAD); vim -p \$(git diff \$REVIEW_BASE... --name-only) -c "tabdo Gvdiffsplit \$REVIEW_BASE" -c "tabdo Gitsigns change_base \$REVIEW_BASE" -c "tabdo set filetype=review"
+REVIEW_BASE=\$(git rev-parse HEAD); \\
+vim -p \$(git diff \$REVIEW_BASE --name-only) \\ 
+-c "tabdo Gvdiffsplit \$REVIEW_BASE" -c "tabdo Gitsigns change_base \$REVIEW_BASE" -c "tabdo set filetype=review"
 #
 # diff between last commit including untracked files
-REVIEW_BASE=\$(git rev-parse HEAD); vim -p \$(git diff \$REVIEW_BASE... --name-only; git ls-files --others --exclude-standard) -c "tabdo Gvdiffsplit \$REVIEW_BASE" -c "tabdo Gitsigns change_base \$REVIEW_BASE" -c "tabdo set filetype=review"
+REVIEW_BASE=\$(git rev-parse HEAD); \\
+vim -p \$(git diff \$REVIEW_BASE --name-only; git ls-files --others --exclude-standard) \\
+-c "tabdo Gvdiffsplit \$REVIEW_BASE" -c "tabdo Gitsigns change_base \$REVIEW_BASE" -c "tabdo set filetype=review"
+#
+# diff dot files
+export GIT_DIR=\$HOME/.dot.git; export GIT_WORK_TREE=\$HOME; export REVIEW_BASE=\$(git rev-parse HEAD); \\
+vim -p \$(git diff \$REVIEW_BASE --name-only) \\
+-c "tabdo Gvdiffsplit \$REVIEW_BASE" -c "tabdo Gitsigns change_base \$REVIEW_BASE" -c "tabdo set filetype=review"
+#
+# dotfiles fugitive
+GIT_DIR=\$HOME/.dot.git GIT_WORK_TREE=\$HOME vim
 # do something for every file
 for f in */log/run; do sudo ln -svf /usr/bin/vlogger "\$f"; done
 # use perl regex
@@ -42,8 +54,6 @@ grep -oP '<pattern>'
 /root/.local/share/Trash
 # print tree with find
 find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"
-# dotfiles fugitive
-GIT_DIR=\$HOME/.dot.git GIT_WORK_TREE=\$HOME vim
 EOF
 
 # https://unix.stackexchange.com/questions/259659/high-memory-usage-but-no-process-is-using-it

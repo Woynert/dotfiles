@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+NEWHOME=/tmp/reidersteam
+mkdir -p $NEWHOME
+cd $NEWHOME
+export USER=reider
+export HOME=$NEWHOME
+exec bash

@@ -7,7 +7,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
 
-    -- core
+    --- core ---
 
 	use 'wbthomason/packer.nvim'
 
@@ -52,7 +52,7 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- UI aid
+    --- UI tools ---
 
     use 'liuchengxu/vim-which-key'
 
@@ -73,13 +73,14 @@ return require('packer').startup(function(use)
       end
     }
 
-    --use {
-        --'airblade/vim-gitgutter'
-    --}
-
     use { 'echasnovski/mini.tabline',
         config = function ()
-            require('mini.tabline').setup()
+            require('mini.tabline').setup({
+                format = function(buf_id, label)
+                    local suffix = vim.bo[buf_id].modified and '+ ' or ''
+                    return MiniTabline.default_format(buf_id, label) .. suffix
+                end
+            })
         end,
         requires = { 'nvim-tree/nvim-web-devicons' }
     }
@@ -102,49 +103,14 @@ return require('packer').startup(function(use)
         requires = { "lewis6991/gitsigns.nvim" }
     }
 
-    -- TODO: A plugin to list recent files
-    --use { 'echasnovski/mini.starter',
-        --config = function()
-            --local starter = require('mini.starter')
-            --starter.setup({
-                --items = {
-                    --starter.sections.recent_files(10, true),
-                    --starter.sections.recent_files(20, false),
-                --},
-            --})
-        --end
-    --}
+    --- visual ---
 
-    -- visual
+    use 'NLKNguyen/papercolor-theme'
+    use 'sainnhe/edge'
 
-    --use { 'lifepillar/vim-gruvbox8',
-        --setup = function()
-            ----let g:gruvbox_plugin_hi_groups = 1
-          --vim.g.gruvbox_plugin_hi_groups = 1
-          ----vim.cmd([[colorscheme gruvbox8]])
-        --end
-    --}
-
-    --use { 'luochen1990/rainbow',
-        --config = function()
-            --vim.g.rainbow_active = true
-            --vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
-        --end
-    --}
-
-    --use { 'NLKNguyen/papercolor-theme',
-        --setup = function()
-          --vim.cmd([[colorscheme PaperColor]])
-        --end
-    --}
-
-    use { 'NLKNguyen/papercolor-blue',
-        requires = { "NLKNguyen/papercolor-theme" }
-    }
-
-    use { 'echasnovski/mini.base16',
-        setup = function()
-          --require('mini.base16').setup()
+    use { 'HiPhish/rainbow-delimiters.nvim',
+        config = function()
+            require('rainbow-delimiters.setup').setup()
         end
     }
 
@@ -153,11 +119,9 @@ return require('packer').startup(function(use)
     use { 'echasnovski/mini.cursorword',
         as = "mini.cursorword",
         config = function ()
-            require('mini.cursorword').setup(
-                {
-                  delay = 100,
-                }
-            )
+            require('mini.cursorword').setup({
+                delay = 200,
+            })
         end
     }
 
@@ -168,7 +132,29 @@ return require('packer').startup(function(use)
       end
     }
 
-    -- tools
+    -- markdown headlines
+    use {
+        'woynert/headlines.nvim',
+        branch = "refactor/wip",
+        after = "nvim-treesitter",
+        config = function()
+            require("headlines").setup ()
+        end
+    }
+
+    -- markdown codeblocks
+    use {
+        'yaocccc/nvim-hl-mdcodeblock.lua',
+        after = 'nvim-treesitter',
+        config = function ()
+            require('hl-mdcodeblock').setup({
+                -- option
+                minumum_len = 30,
+            })
+        end
+    }
+
+    -- misc tools
 
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.4',

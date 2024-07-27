@@ -10,8 +10,6 @@ font:
   normal:
     family: IosevkaTermNerdFontMono
     style: Medium
-  bold:
-    style: Medium
   size: 11.0
   offset:
     x: 0

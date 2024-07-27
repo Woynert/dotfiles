@@ -79,13 +79,21 @@ local function main()
 	print(blend(fg, bg, alpha))
 end
 
+local function dec_to_hex (dec)
+	return string.format("#%06x", dec)
+end
+
 local function blend_dec (dec_fg, dec_bg, alpha)
 	return blend (
-		string.format("#%06x", dec_fg),
-		string.format("#%06x", dec_bg),
+		dec_to_hex(dec_fg),
+		dec_to_hex(dec_bg),
 		alpha)
 end
 
-ColorBlender = { blend_hex = blend, blend_dec = blend_dec }
+ColorBlender = {
+	blend_hex = blend,
+	blend_dec = blend_dec,
+	dec_to_hex = dec_to_hex,
+}
 
 --main()
