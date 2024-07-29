@@ -1,7 +1,12 @@
+-- Setup language servers
+-- For formatters see `conform.lua`
+
 local lsp_zero = require('lsp-zero')
 local lsp_config = require('lspconfig')
-lsp_config.dartls.setup{}
-lsp_config.clangd.setup{}
+
+lsp_config.dartls.setup{} -- dart
+lsp_config.clangd.setup{} -- c/c++
+lsp_config.pyright.setup{} -- python
 
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({
@@ -16,6 +21,7 @@ end)
 
 vim.highlight.priorities.semantic_tokens = 95
 
+-- KEYBINDS
 -- From https://lsp-zero.netlify.app/v3.x/language-server-configuration.html#default-keybindings
 --[[
     K: vim.lsp.buf.hover() Displays hover information about the symbol under the cursor in a floating window

@@ -5,13 +5,22 @@ woy_status_line = {}
 function woy_status_line.diagnostic()
   local num_errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
   local num_warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-  local msg = ''
-  if num_warnings > 0 then
-    msg = '%#DiagnosticVirtualTextWarn#' .. ' ⚠ ' .. num_warnings .. ' '
-  end
+  local num_hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+  local msg = ' '
   if num_errors > 0 then
-    msg = msg .. '%#DiagnosticVirtualTextError#' .. ' ⚠ ' .. num_errors .. ' '
+    msg = msg .. '%#DiagnosticError#' .. ' ⚠ (' .. num_errors .. ')'
   end
+  if num_warnings > 0 then
+    msg = msg .. '%#DiagnosticWarn#' .. ' ⚠ (' .. num_warnings .. ')'
+  end
+  if num_hints > 0 then
+    msg = msg .. '%#DiagnosticHint#' .. ' H(' .. num_hints .. ')'
+  end
+  -- No reported issues
+  if (num_errors + num_warnings + num_hints) == 0 then
+    msg = msg .. '%#DiagnosticInfo#' .. ' ✔(0)'
+  end
+  msg = msg .. ' '
   return msg
 end
 
@@ -19,7 +28,7 @@ function woy_status_line.lsp_active()
     local buf = vim.api.nvim_get_current_buf()
     local clients = vim.lsp.get_active_clients({ bufnr = buf })
     if not vim.tbl_isempty(clients) then
-        return ' Lsp '
+        return ' Lsp'
     end
     return ''
 end

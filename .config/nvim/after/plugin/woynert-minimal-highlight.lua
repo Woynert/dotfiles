@@ -88,7 +88,7 @@ vim.api.nvim_set_hl(0, 'Constant', { fg = color_value })
 
 end
 
-WoyMinHighlight()
+--WoyMinHighlight()
 --vim.api.nvim_set_hl(0, 'normal', { fg = "#BABABA", bg = nil })
 
 --local diffAdd = vim.api.nvim_get_hl_by_name("DiffAdd", true)

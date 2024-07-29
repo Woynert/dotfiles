@@ -35,6 +35,10 @@ return require('packer').startup(function(use)
 		}
 	}
 
+    -- formatting
+
+    use { "stevearc/conform.nvim", }
+
     use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
     use 'nvim-treesitter/playground'
