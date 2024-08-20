@@ -5,7 +5,7 @@
   imports =
     [
       ./modules/kblayouts
-      ./modules/discord-screenaudio.nix
+      #./modules/discord-screenaudio.nix
       ./modules/nixos-fhs-compat.nix 
       ./modules/aboutlife.nix
       ./modules/xmousepasteblock
@@ -186,6 +186,7 @@
     acpi
     acpilight # xbacklight
     gummy
+    lazygit
 
     # dev
 
@@ -241,5 +242,7 @@
     obs-studio
     audacity
     libreoffice-fresh
+    discord
+    drawio
   ];
 }
