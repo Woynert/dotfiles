@@ -10,6 +10,7 @@
       ./modules/aboutlife.nix
       ./modules/xmousepasteblock
       #./modules/auto-shutdown
+      ./modules/neovim-fork.nix
     ]
     ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix;
 
