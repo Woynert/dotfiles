@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
 
     -- formatting
 
-    use { "stevearc/conform.nvim", }
+    use { "stevearc/conform.nvim", branch = "nvim-0.9",}
 
     use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 

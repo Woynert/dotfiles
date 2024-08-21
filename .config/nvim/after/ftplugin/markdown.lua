@@ -31,8 +31,8 @@ if vim.fn.exists('&winvirtualwidth') == 1 then
   vim.opt.winvirtualwidth = 100
 
   -- Workaround to clean screen artifacts
-  vim.api.nvim_create_autocmd({"VimResized"}, {
-    callback = function() vim.cmd("mode") end,
-    callback = vim.fn.mode(),
-  })
+  --vim.api.nvim_create_autocmd({"VimResized"}, {
+    --callback = function() vim.cmd("mode") end,
+    --callback = vim.fn.mode(),
+  --})
 end
