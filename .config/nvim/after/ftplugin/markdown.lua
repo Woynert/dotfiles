@@ -1,6 +1,15 @@
 -- Written in Vimscript so I can copy it to regular Vim
 
 vim.api.nvim_exec([[
+" paragraph navigation
+" j -> gj
+" k -> gk
+
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
 " wrap words
 :set wrap
 :set linebreak
@@ -14,14 +23,8 @@ vim.api.nvim_exec([[
 " hide tabline
 " :set showtabline=0
 
-" paragraph navigation
-" j -> gj
-" k -> gk
-
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+" spelling languages
+:set spelllang=es,en
 
 ]], false)
 
