@@ -2,7 +2,7 @@
 
 {
   # NOTE: Using overlays on a nix-shell is different
-  # see https://nixos.wiki/wiki/Overlays
+  # see https://nixos.wiki/wiki/Overlays#Applying_overlays_manually
 
   nixpkgs.overlays = [(final: prev: {
 
@@ -23,4 +23,3 @@
 
   })];
 }
-

@@ -11,6 +11,7 @@
       ./modules/xmousepasteblock
       #./modules/auto-shutdown
       ./modules/neovim-fork.nix
+      ./modules/general-overlays.nix
     ]
     ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix;
 
