@@ -20,6 +20,9 @@ local fix_scheme = function ()
       vim.api.nvim_set_hl(0, 'MDCodeBlock', {
           background = ColorBlender.blend_hex( DarkBackground, "#0000FF", 0.90)
         })
+      vim.api.nvim_set_hl(0, 'html_block', {
+          background = ColorBlender.blend_hex( DarkBackground, "#0000FF", 0.90)
+        })
     elseif vim.o.background == "light" then
       vim.api.nvim_set_hl(0, 'MDCodeBlock', {
           background = ColorBlender.blend_hex( "#FFFFFF", "#FFFF00", 0.9)

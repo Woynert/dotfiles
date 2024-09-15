@@ -28,7 +28,7 @@ vim.opt.ignorecase = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 3
 --vim.opt.signcolumn = "yes" -- <- Problematic
 vim.opt.isfname:append("@-@")
 

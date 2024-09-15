@@ -89,7 +89,8 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons' }
     }
 
-    use { 'woynert/mini.map',
+    --use { 'woynert/mini.map',
+    use { 'echasnovski/mini.map',
         config = function()
             local map = require('mini.map')
             map.setup({
@@ -191,10 +192,12 @@ return require('packer').startup(function(use)
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
         config = function ()
-            --Do not autoclose after switching buffers
+            -- Do not autoclose after switching buffers
             vim.g.mkdp_auto_close = 0
-            --Reuse current open tab when switching buffers
+            -- Reuse current open tab when switching buffers
             vim.g.mkdp_combine_preview = 1
+            -- Use chromium
+            vim.g.mkdp_browser = 'chromium'
         end
     }
 
@@ -211,4 +214,29 @@ return require('packer').startup(function(use)
             vim.keymap.set('n', '<Leader>z', '<cmd>Telescope prosession<CR>')
         end
 	}
+
+    -- outline
+	use({
+		"stevearc/aerial.nvim",
+		config = function()
+			require("aerial").setup({
+				-- global floating
+				attach_mode = "global",
+				layout = {
+					default_direction = "float",
+					placement = "edge",
+				},
+				float = {
+					relative = "editor",
+				},
+
+				-- remap p to o, navigate to without closing window
+				keymaps = {
+					["o"] = "actions.scroll",
+				},
+			})
+			vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
+		end,
+	})
 end)
+
