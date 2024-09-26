@@ -12,8 +12,8 @@ in
     "${fhs}"
   ];
 
-  environment.fhs.enable = true;
-  environment.lsb.enable = true;
+  #environment.fhs.enable = true;
+  #environment.lsb.enable = true;
   environment.fhs.linkLibs = true;
   environment.fhs.setSchemaPaths = true;
   environment.lsb.enableDesktop = true;

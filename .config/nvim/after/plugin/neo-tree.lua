@@ -152,7 +152,18 @@ require("neo-tree").setup({
     },
 })
 
-vim.keymap.set("n", "<leader>r", ":Neotree toggle focus left<CR>") -- sidebar / toggle
-vim.keymap.set("n", "<leader>t", ":Neotree toggle focus right<CR>") -- sidebar / toggle
-vim.keymap.set("n", "<leader>f", ":Neotree toggle focus float<CR>") -- float
+function toggle_nvimtree()
+	if vim.fn.bufname():match 'neo-tree' then
+		vim.cmd.wincmd 'p'
+	end
+end
+
+-- Which-Key
+--e  = { "<cmd>:lua toggle_nvimtree()<CR>", "Explorer Focus Toggle without closing" },
+--r  = { "<cmd>:lua require('nvim-tree.api').tree.toggle(false, true)<CR>", "Explorer Peek" },
+
+vim.keymap.set("n", "<leader>tr", ":Neotree toggle left<CR>")
+vim.keymap.set("n", "<leader>tt", ":Neotree toggle right<CR>")
+vim.keymap.set("n", "<leader>tf", ":Neotree toggle float<CR>")
+vim.keymap.set("n", "<leader>f", ":Neotree toggle focus<CR>")
 vim.keymap.set("n", "<leader>pv", ":Neotree reveal<CR>") -- see file in tree

@@ -178,6 +178,7 @@
     wget
     htop
     btop
+    zip
     unzip
     cheat
     zoxide
@@ -217,6 +218,7 @@
     gnome.simple-scan
     vokoscreen # screen recorder
     gpick
+    feh
 
     # system util
 
