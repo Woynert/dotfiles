@@ -87,3 +87,8 @@ find . -type f -exec basename \{} ';'
 
 # print as tree
 find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"
+
+# ===================== Added by me ==========================
+
+# find files modified 30 days ago ending in .cpp
+find . -name "*.cpp" -mtime -30

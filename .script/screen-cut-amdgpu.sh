@@ -17,7 +17,7 @@ SCREEN_H=1080
 
 screen_cut()
 {
-    echo "$1x$2"
+    echo "$1x$2:$3"
 
     # center-center
     #diffH=$(((1920 - $1) / 2))
@@ -27,8 +27,18 @@ screen_cut()
     diffH=$(((SCREEN_W - $1) / 2))
     diffV=$(((SCREEN_H - $2)))
 
+    # center-center
+    if [ "$3" == "center" ]; then
+        diffV=$(((SCREEN_H - $2) / 2))
+    fi
+
+    # center-up
+    if [ "$3" == "up" ]; then
+        diffV=0
+    fi
+
     xrandr --output HDMI-A-0 --mode 1920x1080 --panning 1920x1080
-    sleep 1
+    sleep 0.5
     xrandr --output HDMI-A-0 --mode 1920x1080 --fb "$1x$2" --transform 1,0,-$diffH,0,1,-$diffV,0,0,1
 }
 
@@ -40,20 +50,24 @@ ffmpeg -y -f lavfi -i color=black:size=16x16 -vframes 1 "$IMAGE"
 # fullscreen color one
 feh -F -B '#000001' "$IMAGE" &
 FEH_PID1=$!
-sleep 0.3
+sleep 0.1
 
 # fullscreen color two
 feh -F -B '#000000' "$IMAGE" &
 FEH_PID2=$!
-sleep 0.3
+sleep 0.1
 
 # change resolution
 if [ "$1" == "reset" ]; then
-    screen_cut $SCREEN_W $SCREEN_H
+    screen_cut $SCREEN_W $SCREEN_H $2
+elif [ "$1" == "zero" ]; then
+    screen_cut 1280 720 $2
 elif [ "$1" == "one" ]; then
-    screen_cut 1366 768
+    screen_cut 1366 768 $2
+elif [ "$1" == "two" ]; then
+    screen_cut 1440 900 $2
 else
-    screen_cut $1 $2
+    screen_cut $1 $2 $3
 fi
 
 # kill feh

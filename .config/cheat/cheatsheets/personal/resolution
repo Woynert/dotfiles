@@ -1,0 +1,21 @@
+# Get device identifier
+
+$ xrandr
+HDMI-A-0 connected 1600x900+0+0 (normal left inverted right x axis y axis) 477mm x 268mm
+
+# Generate modeline 
+
+$ nix-shell -p xorg.libxcvt
+$ cvt 1366 768 60
+Modeline "1368x768_60.00"   85.25  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
+Modeline "1368x768_75.00"  109.50  1368 1448 1592 1816  768 771 781 805 -hsync +vsync
+
+# Add
+
+$ xrandr --newmode "1368x768_60.00"   85.25  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
+$ xrandr --newmode "1368x768_75.00"  109.50  1368 1448 1592 1816  768 771 781 805 -hsync +vsync
+$ xrandr --addmode HDMI-A-0 "1368x768_60.00"
+
+# Switch, you can also use the xfce4-settings-manager interface
+
+$ xrandr --output HDMI-A-0 --mode "1368x768_60.00"

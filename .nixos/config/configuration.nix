@@ -54,6 +54,12 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # enable dns caching
+
+  services.dnscache.enable = true;
+  users.users.dnscache.group = "dnscache";
+  users.groups.dnscache = {};
+
   time.timeZone = "America/Bogota";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -189,6 +195,7 @@
     acpilight # xbacklight
     gummy
     lazygit
+    ydiff
 
     # dev
 
@@ -200,6 +207,7 @@
     cargo
     gnumake
     ffmpeg-full
+    imagemagick
     docker-compose
     podman-compose
 
@@ -222,10 +230,11 @@
 
     # system util
 
+    steamPackages.steam-fhsenv-without-steam.run
+    appimage-run
     mpg123
     libnotify
     lxde.lxsession # I think this is for lxpolkit
-    steamPackages.steam-fhsenv-without-steam.run
     vanilla-dmz # cursor theme I like
     xfce.xfce4-settings
     xbindkeys

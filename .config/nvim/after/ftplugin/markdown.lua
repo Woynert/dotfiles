@@ -26,6 +26,9 @@ nnoremap gk k
 " spelling languages
 :set spelllang=es,en
 
+" maximum distance from cursor to screen border
+:set scrolloff=0
+
 ]], false)
 
 -- (from my Neovim fork) 

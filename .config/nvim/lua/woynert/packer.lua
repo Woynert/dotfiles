@@ -39,7 +39,11 @@ return require('packer').startup(function(use)
 
     use { "stevearc/conform.nvim", branch = "nvim-0.9",}
 
-    use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        tag = 'v0.9.3', -- neovim 0.9.2 or later
+        run = ':TSUpdate'
+    }
 
     use 'nvim-treesitter/playground'
 
@@ -119,7 +123,14 @@ return require('packer').startup(function(use)
         end
     }
 
-    use 'psliwka/vim-smoothie'
+    use { 'psliwka/vim-smoothie',
+        config = function ()
+            --vim.g.smoothie_update_interval = 10
+            --vim.g.smoothie_speed_constant_factor = 60
+            vim.g.smoothie_speed_linear_factor = 60
+            vim.g.smoothie_speed_exponentiation_factor = 0.5
+        end
+    }
 
     use { 'echasnovski/mini.cursorword',
         as = "mini.cursorword",
