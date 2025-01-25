@@ -109,7 +109,7 @@ cmd zip ${{
 
 # previewer
 set preview
-set previewer pistol
+#set previewer pistol
 #set previewer bat
 
 # new directory

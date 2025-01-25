@@ -92,3 +92,7 @@ find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"
 
 # find files modified 30 days ago ending in .cpp
 find . -name "*.cpp" -mtime -30
+
+# multiple name patterns
+find . -name "*.c" -o -name "*.h"
+find . -type f -name "*.htm*" -o -name "*.js*" -o -name "*.txt"

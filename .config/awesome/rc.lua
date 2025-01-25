@@ -96,7 +96,7 @@ dockablesys = require("mysystray")
 pomodoro = require("pomodoro")
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("%b %d, %H:%M")
+mytextclock = wibox.widget.textclock("%b %d, %I:%M %P")
 local month_calendar = awful.widget.calendar_popup.month({start_sunday=true})
 month_calendar:attach( mytextclock, "br", {on_hover=true})
 
@@ -167,7 +167,11 @@ local vert_sep = wibox.widget {
 
 awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
-    awful.tag({ "1", "2", "3" }, s, awful.layout.layouts[1])
+
+    -- Define tags
+    -- awful.tag({ "1", "2", "3" }, s, awful.layout.layouts[1])
+    -- awful.tag({ "1", "2", "3", "Q", "W" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "Q", "W", "E"}, s, awful.layout.layouts[1])
 
 
 	-- tags
@@ -549,9 +553,9 @@ addGlobalTagKey(1, 1 + 9, 1)
 addGlobalTagKey(2, 2 + 9, 2)
 addGlobalTagKey(3, 3 + 9, 3)
 
---addGlobalTagKey(4, 24, "Q")
---addGlobalTagKey(5, 25, "W")
---addGlobalTagKey(6, 26, "E")
+addGlobalTagKey(4, 24, "Q")
+addGlobalTagKey(5, 25, "W")
+addGlobalTagKey(6, 26, "E")
 
 -- # bindings needed for tags
 -- Ctrl + Shift + Super + #

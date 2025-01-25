@@ -1,32 +1,28 @@
 
-# Dependencies
+# Neovim Config
 
-## Patched font
+## Dependencies
+
+### Patched font
 
 https://www.nerdfonts.com/font-downloads
 https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
 
-## Funciton specific
+### Binaries
 
-- tree-sitter. Auto download language color format
-    `nix-env -iv tree-sitter`
-
+- tree-sitter. Advanced syntax highlighting
 - xclip. Clipboard support
-    `xbps-install xclip`
 
-# Setup
+## How-to
 
-## Install packer
+### Update
 
-```bash
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```vim
+:Lazy
 ```
 
-## Install plugins
+### Format
 
 ```bash
-vim ~/.config/nvim/lua/woynert/packer.lua
-:so
-:PackerSync
+stylua --glob '**/*.lua' .
 ```
