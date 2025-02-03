@@ -1,31 +1,44 @@
 return {
     'stevearc/conform.nvim',
-    branch = 'nvim-0.9',
-
-    setup = function()
-        -- Setup code formatters
-
-        require('conform').setup {
-            formatters_by_ft = {
-                lua = { 'stylua', stop_after_first = true },
-                python = { 'ruff_format', 'black', stop_after_first = true },
-                javascript = { 'prettierd', 'prettier', stop_after_first = true },
-                rust = { 'rustfmt', lsp_format = 'fallback', stop_after_first = true },
-            },
-        }
-
-        vim.api.nvim_create_user_command('Format', function(args)
-            local range = nil
-            if args.count ~= -1 then
-                local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-                range = {
-                    start = { args.line1, 0 },
-                    ['end'] = { args.line2, end_line:len() },
-                }
-            end
-            require('conform').format { async = true, lsp_format = 'fallback', range = range }
-        end, { range = true })
-
-        vim.keymap.set('n', '<leader><F3>', ':Format<CR>')
-    end,
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+        {
+            -- Customize or remove this keymap to your liking
+            '<F3>',
+            function()
+                require('conform').format { async = true }
+            end,
+            mode = '',
+            desc = 'Format buffer',
+        },
+    },
+    -- This will provide type hinting with LuaLS
+    ---@module "conform"
+    ---@type conform.setupOpts
+    opts = {
+        -- Define your formatters
+        formatters_by_ft = {
+            lua = { 'stylua' },
+            python = { 'ruff_format', 'isort', 'black' },
+            javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        },
+        -- Set default options
+        default_format_opts = {
+            lsp_format = 'fallback',
+            stop_after_first = true,
+        },
+        -- Set up format-on-save
+        --format_on_save = { timeout_ms = 500 },
+        ---- Customize formatters
+        --formatters = {
+        --shfmt = {
+        --prepend_args = { "-i", "2" },
+        --},
+        --},
+    },
+    --init = function()
+    ---- If you want the formatexpr, here is the place to set it
+    --vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    --end,
 }

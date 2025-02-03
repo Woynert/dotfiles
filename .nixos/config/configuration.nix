@@ -211,6 +211,7 @@
     imagemagick
     docker-compose
     podman-compose
+    stylua
 
     # ui tool
 
