@@ -1,3 +1,3 @@
-require 'core.set'
-require 'core.remap'
+require 'config.set'
+require 'config.remap'
 require 'config.lazy'

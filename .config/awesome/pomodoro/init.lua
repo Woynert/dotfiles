@@ -35,7 +35,7 @@ local pomodoro = wibox.widget({
 
 -- setup timers
 local pomodoro_timer         = gears.timer({ timeout = timer_secs })
-local pomodoro_tooltip_timer = gears.timer({ timeout = 1 })
+local pomodoro_tooltip_timer = gears.timer({ timeout = 2 })
 local pomodoro_nbsec         = 0
 
 local function pomodoro_start()

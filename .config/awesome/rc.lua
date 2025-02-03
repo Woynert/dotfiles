@@ -285,7 +285,7 @@ awful.screen.connect_for_each_screen(function(s)
 		widget = wibox.container.place,
 		valign = "center",
 		{
-			widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 5),
+			widget = awful.widget.watch('/home/woynert/.config/awesome/script/memory.sh', 2),
 		}
 	}
 

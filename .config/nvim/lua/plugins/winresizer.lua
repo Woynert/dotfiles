@@ -1,6 +1,6 @@
 return {
     'simeji/winresizer',
-    config = function()
+    init = function()
         vim.g.winresizer_start_key = '<C-w>e'
     end,
 }

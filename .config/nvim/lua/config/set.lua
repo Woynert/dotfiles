@@ -1,6 +1,6 @@
 --vim.opt.guicursor = "" # fat cursor
 
-vim.opt.laststatus = 0
+vim.opt.laststatus = 2
 
 vim.opt.number = false
 vim.opt.relativenumber = true

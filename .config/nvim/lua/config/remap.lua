@@ -8,6 +8,7 @@ vim.keymap.set('i', '<C-c>', '<Esc>')
 vim.keymap.set('n', '<C-c>', '<Esc>')
 
 vim.keymap.set('n', 'Q', '<nop>')
+vim.keymap.set('n', '<C-w>o', '<nop>') -- close all other windows
 vim.keymap.set('t', '<C-Space><ESC>', '<C-\\><C-n>')
 
 -- spanish mappings
@@ -55,3 +56,10 @@ nnoremap <Right> :tabn<CR>
 vim.api.nvim_create_user_command('Bd', function()
     vim.cmd 'bp|bd #'
 end, {})
+
+-- Moving between windows (from Ben Frain's talk at NeovimConf 2022)
+for i = 1, 9 do
+  local lhs = "<leader>" .. i
+  local rhs = i .. "<c-w>w"
+  vim.keymap.set("n", lhs, rhs, { desc = "Move to window " .. i })
+end

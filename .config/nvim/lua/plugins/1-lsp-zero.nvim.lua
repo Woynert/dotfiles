@@ -32,6 +32,7 @@ return {
         lsp_config.dartls.setup {} -- dart
         lsp_config.clangd.setup {} -- c/c++
         lsp_config.pyright.setup {} -- python
+        lsp_config.gdscript.setup {} -- godot
 
         lsp_zero.on_attach(function(client, bufnr)
             lsp_zero.default_keymaps {

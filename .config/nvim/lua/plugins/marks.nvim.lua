@@ -20,6 +20,6 @@ return {
 
         -- shortcuts
 
-        vim.keymap.set('n', '<leader>b', telescope.extensions.marks_nvim.marks_list_all)
+        vim.keymap.set('n', '<leader>v', telescope.extensions.marks_nvim.marks_list_all)
     end,
 }

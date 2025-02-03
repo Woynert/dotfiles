@@ -35,6 +35,11 @@ end
 
 function woy_status_line.root()
     local parts = {
+        -- window number
+        '%#WarningMsg#',
+        ' %{winnr()} ',
+        '%* ',
+
         -- file path, modified, read only
         [[%<%f %m%r%=]],
 
@@ -68,7 +73,7 @@ vim.opt.statusline = '%!v:lua.woy_status_line.root()'
 -- Toggle status line
 vim.keymap.set('n', '<leader>n', function()
     if vim.o.laststatus == 0 then
-        vim.opt.laststatus = 3
+        vim.opt.laststatus = 2
     else
         vim.opt.laststatus = 0
     end

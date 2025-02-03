@@ -2,7 +2,7 @@
 
 {
   services.xserver = {
-    extraLayouts.woynert =  {
+    xkb.extraLayouts.woynert =  {
       description = "Woynert custom US + Latam";
       languages = [ "eng" ];
       symbolsFile = ./woynert;

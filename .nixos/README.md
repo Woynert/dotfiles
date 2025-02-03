@@ -1,11 +1,12 @@
 ### How-to
 
-- (optional) Pin the stable channel `23.11.4030.9f2ee8c91ac4`
+- (optional) Pin the stable channel
+- https://releases.nixos.org/?prefix=nixos
 
   ```sh
   sudo nix-channel --list
   sudo nix-channel --remove <your-channel>
-  sudo nix-channel --add https://releases.nixos.org/nixos/23.11/nixos-23.11.4030.9f2ee8c91ac4/nixexprs.tar.xz nixos
+  sudo nix-channel --add https://releases.nixos.org/nixos/24.11/nixos-24.11.713895.666e1b3f09c2/nixexprs.tar.xz nixos
   sudo nix-channel --update
   ```
 

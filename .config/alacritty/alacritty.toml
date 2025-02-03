@@ -1,27 +1,53 @@
-#import = [ "~/.config/alacritty/theme-light.toml" ]
-import = [ "~/.config/alacritty/theme-dark.toml" ]
+[scrolling]
+history = 90000
 
-[font]
-size = 10.0
+[window.padding]
+x = 4
+y = 0
+
+[window]
+dynamic_padding = true
+
+
 
 [font.normal]
 family = "IosevkaTermNerdFontMono"
 style = "Medium"
 
-[font.bold]
-style = "Medium"
+[font]
+size = 11.0
 
 [font.offset]
 x = 0
-y = -4
+y = -1
 
 [font.glyph_offset]
-x = 0
 y = -2
 
-[window]
-dynamic_padding = true
 
-[window.padding]
-x = 4
-y = 0
+
+# theme = "Darkside"
+
+[colors.primary]
+background = "#222324"
+foreground = "#BABABA"
+
+[colors.bright]
+black = "#666666"
+blue = "#387CD3"
+cyan = "#3D97E2"
+green = "#77B869"
+magenta = "#957BBE"
+red = "#E05A4F"
+white = "#BABABA"
+yellow = "#EFD64B"
+
+[colors.normal]
+black = "#000000"
+blue = "#1C98E8"
+cyan = "#1C98E8"
+green = "#68C256"
+magenta = "#8E69C9"
+red = "#E8341C"
+white = "#BABABA"
+yellow = "#F2D42C"

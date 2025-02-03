@@ -6,6 +6,7 @@
     [
       ./modules/kblayouts
       #./modules/discord-screenaudio.nix
+      ./modules/sunlight.nix
       ./modules/nixos-fhs-compat.nix 
       ./modules/aboutlife.nix
       ./modules/xmousepasteblock
@@ -23,8 +24,8 @@
 
   system.stateVersion = "23.11"; # did you read the comment?
   nixpkgs.config.allowUnfree = true;
+
   nix = {
-    package = pkgs.nixFlakes;
     extraOptions = ''experimental-features = nix-command flakes'';
   };
 
@@ -80,11 +81,10 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.awesome.enable = true;
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # sound with pipewire
 
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -113,9 +113,10 @@
     comic-relief
   ];
 
-  qt.enable = true; # make qt programs look like gtk
-  qt.platformTheme = "gtk2";
-  qt.style = "gtk2";
+  # keep this off so that there aren't any QT plugins to annoy me
+  #qt.enable = true; # make qt programs look like gtk
+  #qt.platformTheme = "gtk2";
+  #qt.style = "gtk2";
 
   nixpkgs.config.permittedInsecurePackages = [
     # only for obsidian
@@ -171,7 +172,6 @@
     # cli tool
 
     neovim
-    vimPlugins.packer-nvim
     ripgrep # nvim telescope
     xclip
     fzf
@@ -195,7 +195,8 @@
     acpilight # xbacklight
     gummy
     lazygit
-    ydiff
+    #ydiff
+    difftastic # difft
 
     # dev
 
@@ -222,15 +223,15 @@
     flameshot
     gparted
     mpv
-    gnome.file-roller # archiver
-    gnome.simple-scan
+    file-roller # archiver
+    simple-scan
     vokoscreen # screen recorder
     gpick
     feh
 
     # system util
 
-    steamPackages.steam-fhsenv-without-steam.run
+    steam-fhsenv-without-steam.run
     appimage-run
     mpg123
     libnotify
@@ -247,10 +248,10 @@
     alacritty
     firefox
     chromium
-    obsidian
+    #obsidian
     megasync
     deadbeef
-    ferdium
+    #ferdium
     obs-studio
     audacity
     libreoffice-fresh
