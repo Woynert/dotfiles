@@ -2,6 +2,7 @@
 
 let
 
+  # find stable channels here! https://status.nixos.org/
   # unstable revision required only for discord-screenaudio
   unstable = import
     (builtins.fetchTarball {

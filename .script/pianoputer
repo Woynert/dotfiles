@@ -5,10 +5,10 @@ source /plan/2-dev/pyenv/piano2/bin/activate
 export MIDI_KEY_OFFSET=36
 export MIDI_VELOCITY=100
 
-if [ $1 == "two" ]; then
+if [ "$1" == "two" ]; then
     shift
     steam-run pianoputer -k keyboards/qwerty_piano_2.txt $@
-elif [ $1 == "whole" ]; then
+elif [ "$1" == "whole" ]; then
     shift
     steam-run pianoputer -k keyboards/qwerty_whole.txt $@
 else

@@ -8,6 +8,8 @@ return {
             layout = {
                 default_direction = 'float',
                 placement = 'edge',
+                min_width = 100,
+                --resize_to_content = true, -- doesn't work
             },
             float = {
                 relative = 'editor',

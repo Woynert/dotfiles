@@ -159,6 +159,9 @@
 !/.config/awesome/
 !/.config/awesome/**
 
+!/.config/awesome-2/
+!/.config/awesome-2/**
+
 !/.config/tint2/
 !/.config/tint2/**
 /.config/tint2/tint2rc.backup.*
@@ -225,3 +228,7 @@
 !/.nixos/**
 /.nixos/config/mounts.nix
 /.nixos/**/result
+
+# clang
+!/.config/clangd
+!/.config/clangd/config.yaml

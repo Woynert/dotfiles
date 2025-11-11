@@ -20,6 +20,7 @@ xbacklight -set 60
 man xkeyboard-config
 systemctl list-unit-files --type=service --state=enabled
 systemctl --type=service --state=running 
+journalctl -u service # view logs
 cat /etc/[A-Za-z]*[_-][rv]e[lr]* # distro info
 ps aux | awk '{sum+=\$6} END {print sum / 1024}'
 ps aux | egrep "Z|defunct"
@@ -54,6 +55,10 @@ grep -oP '<pattern>'
 /root/.local/share/Trash
 # print tree with find
 find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"
+# print all env vars including shell vars
+compgen -v | while read line; do echo \$line=\${!line};done
+vim -c "Gitsigns change_base \$REVIEW_BASE"
+# camera disable: sudo rmmod -f uvcvideo # enable: sudo modprobe uvcvideo
 EOF
 
 # https://unix.stackexchange.com/questions/259659/high-memory-usage-but-no-process-is-using-it

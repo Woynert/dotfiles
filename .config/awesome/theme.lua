@@ -115,8 +115,12 @@ theme.transparent   = "#00000000"
 --theme.plan_pale2 = "#453845"
 --theme.plan_highlight = colors.blue_1
 --theme.plan_highlight = "#AA4747"
-theme.screen_bg = colors.blue_1
+--theme.screen_bg = colors.blue_1
+--theme.screen_bg = "#0000ff"
+--theme.screen_bg = "#80a080"
+--theme.screen_bg = "#ff00ff"
 --theme.screen_bg = "#00a053"
+theme.screen_bg = "#000000"
 
 -- panel / wibar
 
@@ -221,7 +225,8 @@ theme.titlebar_button_width = dpi(25)
 
 theme.titlebar_icon_spacing = dpi(6)
 theme.titlebar_padding = dpi(5)
-theme.titlebar_height = dpi(font_size) + theme.titlebar_padding * 2 + dpi(7)
+--theme.titlebar_height = dpi(font_size) + theme.titlebar_padding * 2 + dpi(7)
+theme.titlebar_height = 0
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus  = theme.bg_focus
 

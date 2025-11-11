@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+setxkbmap 'us(dvorak)'
+
+notify-send "$(setxkbmap -query | grep layout | awk '{print "layout",toupper($2)}')"

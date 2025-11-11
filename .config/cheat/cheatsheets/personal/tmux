@@ -1,6 +1,10 @@
 # To start tmux:
 tmux
 
+# Move Window from index to index (Moving windows forward)
+move-window -b -t <index>
+move-window -b -t 1
+
 # To detach from tmux:
 Ctrl-b d
 

@@ -13,6 +13,13 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
+--vim.o.listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣'
+--:set listchars=eol:$,tab:>-,trail:·,extends:>,precedes:<
+--vim.o.listchars = 'eol:$,tab:>-,trail:·,extends:>,precedes:<'
+--:set listchars=tab:→ ,trail:·,extends:>,precedes:<
+vim.o.listchars = 'tab:▏ ,trail:·,extends:>,precedes:<'
+vim.o.list = true;
+
 vim.opt.wrap = true
 
 -- don't allow vim to do any backups.
@@ -36,7 +43,7 @@ vim.opt.isfname:append '@-@'
 
 vim.opt.updatetime = 200
 
-vim.opt.colorcolumn = '100'
+vim.opt.colorcolumn = '80'
 
 vim.g.mapleader = ' '
 
@@ -44,7 +51,6 @@ vim.g.mapleader = ' '
 vim.opt.formatoptions:remove 'r'
 vim.opt.formatoptions:remove 'o'
 vim.opt.formatoptions:remove 'c'
-
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 autocmd('BufEnter', {
     pattern = '',
@@ -81,9 +87,31 @@ function! s:greview(...)
   setlocal foldmethod=syntax foldtext=fugitive#Foldtext()
 endfunction
 
-autocmd FileType * exe "normal zR"
-au WinEnter * set nofen " really disable folding
-au WinLeave * set nofen
+" no folding
+" autocmd FileType * exe "normal zR"
+" au WinEnter * set nofen " really disable folding
+" au WinLeave * set nofen
+" au BufEnter * set nofen
+" au BufWinEnter * set nofen
+" au WinScrolled * set nofen
+" autocmd BufEnter,WinEnter,WinScrolled,BufWinEnter * echo "Window changed buffer!"
+" set nofoldenable
 ]],
+
     false
 )
+
+-- toggle quickfix
+-- https://stackoverflow.com/a/63162084
+-- https://github.com/kevinhwang91/nvim-bqf/issues/99
+vim.api.nvim_exec([[
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        botright copen
+    else
+        cclose
+    endif
+endfunction
+
+nnoremap <leader>x :call ToggleQuickFix()<cr>
+]], false)

@@ -59,7 +59,7 @@ end, {})
 
 -- Moving between windows (from Ben Frain's talk at NeovimConf 2022)
 for i = 1, 9 do
-  local lhs = "<leader>" .. i
-  local rhs = i .. "<c-w>w"
-  vim.keymap.set("n", lhs, rhs, { desc = "Move to window " .. i })
+  local keymap = "<leader>" .. i
+  local cmd = i .. "<c-w>w"
+  vim.keymap.set("n", keymap, cmd, { desc = "Move to window " .. i })
 end

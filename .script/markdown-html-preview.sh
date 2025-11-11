@@ -21,22 +21,33 @@ insert_fixes ()
     # tweak body class: give it margins
     sed -i '0,/<body/s//<body style="max-width: 700px; margin-left: auto; margin-right: auto; padding: 45px;" /' $OUTFILE
 
-    # insert a self reloading script
+    # insert extra style
     sed -i '/<\/body>/i\
-    <input id="check_reload" type="checkbox" value="true" style="position: fixed;top: 0;right: 0;">\
-    <script>\
-        function reload_loop () {\
-            if (!document.getElementById("check_reload").checked) {\
-                window.location.reload.bind(window.location)();\
-                return;\
-            }\
-            setTimeout(reload_loop, 4000);\
-        }\
-        setTimeout(reload_loop, 4000);\
-    </script>\
     <style>\
         svg { width: 100%; height: 100%; }\
     </style>' $OUTFILE
+
+    # insert a self reloading script
+    #sed -i '/<\/body>/i\
+    #<input id="check_reload" type="checkbox" value="true" style="position: fixed;top: 0; right: 0; width: 75px; height: 75px;">\
+    #<script>\
+        #function reload_loop () {\
+            #if (!document.getElementById("check_reload").checked) {\
+                #window.location.reload.bind(window.location)();\
+                #return;\
+            #}\
+            #setTimeout(reload_loop, 4000);\
+        #}\
+        #setTimeout(reload_loop, 4000);\
+    #</script>' $OUTFILE
+
+    # insert a reload button
+    sed -i '/<\/body>/i\
+    <button id="button_reload" style="position: fixed;top: 50%;left: 0;width: 50px;height: 100px;font-size: 2em;">↺</button>\
+    <script>\
+        let btn = document.getElementById("button_reload")\
+            btn.addEventListener("click", () => { window.location.reload.bind(window.location)(); })\
+    </script>' $OUTFILE
 
 }
 
@@ -47,7 +58,7 @@ build ()
 
     # generate html
 
-    pandoc -c ./github-markdown.css -f markdown -t html -o $OUTFILE $FILE --resource-path=$(dirname $(realpath $FILE)) --embed-resources --standalone
+    pandoc -c ~/.script/github-markdown.css -f markdown -t html -o $OUTFILE $FILE --resource-path=$(dirname $(realpath $FILE)) --embed-resources --standalone
 
     # apply fixes
 
@@ -75,5 +86,5 @@ while true; do
         build
     fi
 
-    sleep 3
+    sleep 1
 done

@@ -25,7 +25,8 @@ return {
                 'json',
                 'yaml',
                 'python',
-                'gdscript'
+                'gdscript',
+                'latex'
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)

@@ -3,11 +3,10 @@ function run {
 	$@&
 }
 # only one instance
-function run_one {
-	if ! pgrep -f $1 ;
-	then
-		$@&
-	fi
+function run_one() {
+    if ! pgrep -x "$(basename "$1")" >/dev/null; then
+        "$@" &
+    fi
 }
 
 # util
@@ -16,10 +15,11 @@ run_one xfsettingsd -D --replace
 run_one lxpolkit 
 
 # app
-run_one volctl 
-run_one flameshot 
+#run_one volctl 
+#run_one flameshot 
 run_one safeeyes
 
 # visual
+#run_one xfdesktop
 run_one xfce4-screensaver
-run_one xfdesktop
+run_one ~/.script/ui/stw-statusbar.sh

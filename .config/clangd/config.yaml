@@ -1,0 +1,22 @@
+CompileFlags:
+  Add:
+  - -xc
+  - -Wall
+  - -Wextra
+  - -Wpedantic
+
+  - -Wnull-dereference
+  - -Wunreachable-code
+  - -Wformat=2        
+  - -Wstack-usage=8192 # (Example) Prevents stack overflows
+
+  # The following should be included in -Wextra, but including them anyway
+  - -Wshadow
+  - -Wconversion
+  - -Wno-language-extension-token
+  - -Werror=incompatible-pointer-types
+
+  #- -Wmissing-prototypes
+  #- -Werror
+  #- -Wno-unused-const-variable
+  #- -Wno-sign-conversion

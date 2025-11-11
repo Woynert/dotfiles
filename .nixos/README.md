@@ -58,3 +58,5 @@
   ```sh
   NIXPKGS_ALLOW_UNFREE=1 nix-shell -p hplipWithPlugin --run 'sudo -E hp-setup'
   ```
+
+- To run wild binaries without elf-patching you might wanna create `/lib64/ld-linux-x86-64.so.2`, until this is implemented at the `fhs` module level.

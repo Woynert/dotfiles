@@ -5,23 +5,41 @@ local beautiful = require("beautiful")
 
 local opened = true
 local textbox = wibox.widget.textbox()
-local pomodoro = require("pomodoro")
+--local pomodoro = require("pomodoro")
 local systray_widget = wibox.widget ({
   wibox.widget.systray(),
-  {
-    pomodoro,
-    top = 2,
-    bottom = 2,
-    left = beautiful.systray_icon_spacing / 2,
-    right = beautiful.systray_icon_spacing / 2,
-    widget = wibox.container.margin,
-  },
+  --{
+    ----pomodoro,
+    --top = 2,
+    --bottom = 2,
+    --left = beautiful.systray_icon_spacing / 2,
+    --right = beautiful.systray_icon_spacing / 2,
+    --widget = wibox.container.margin,
+  --},
   layout = wibox.layout.fixed.horizontal
 })
 
 local tray = wibox.widget ({
   {
-    systray_widget,
+          {
+            --dockablesys,
+            systray_widget,
+            widget = wibox.container.margin,
+            left = 10,
+            right = 10,
+            up = 10,
+            down = 10,
+          },
+
+          --{
+            --dockablesys,
+    --textbox,
+            --widget = wibox.container.margin,
+            --left = 10,
+            --right = 10,
+            --up = 10,
+            --down = 10,
+          --},
     textbox,
     layout = wibox.layout.fixed.horizontal
   },

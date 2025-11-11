@@ -12,7 +12,8 @@
       ./modules/xmousepasteblock
       #./modules/auto-shutdown
       ./modules/neovim-fork.nix
-      ./modules/general-overlays.nix
+      #./modules/general-overlays.nix
+      #./modules/squid.nix
     ]
     ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix;
 
@@ -44,6 +45,12 @@
   };
   boot.supportedFilesystems = [ "ntfs" ];
   boot.kernel.sysctl."vm.swappiness" = 1;
+  #boot.binfmt.emulatedSystems = [ ];
+
+  # loopback camera, etc.
+
+  boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
 
   # networking
 
@@ -78,7 +85,9 @@
   # X11
 
   services.xserver.enable = true;
+  #services.xserver.autorun = true;
   services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.displayManager.startx.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.awesome.enable = true;
   services.libinput.enable = true;
@@ -94,6 +103,10 @@
     pulse.enable = true;
     jack.enable = true; # to use JACK apps
   };
+  security.sudo.extraConfig = ''
+    woynert ALL = (root) NOPASSWD: /usr/bin/env iptables *
+    woynert ALL = (root) NOPASSWD: /usr/bin/env ip6tables *
+  '';
 
   # user. Don't forget to set a password with ‘passwd’.
 
@@ -111,6 +124,9 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "IosevkaTerm" ]; })
     comic-relief
+    times-newer-roman
+    vistafonts
+    corefonts
   ];
 
   # keep this off so that there aren't any QT plugins to annoy me
@@ -167,6 +183,7 @@
 
   # packages installed in system profile
 
+  environment.stub-ld.enable = false; # disable message
   environment.systemPackages = with pkgs; [
 
     # cli tool
@@ -189,14 +206,17 @@
     cheat
     zoxide
     lf
-    pistol # only for lf
-    bat # for pistol
+    #pistol # only for lf
+    #bat # for pistol
     acpi
     acpilight # xbacklight
     gummy
     lazygit
     #ydiff
     difftastic # difft
+    tig
+    pax-utils # ldd-tree
+    pandoc # markdown to html
 
     # dev
 
@@ -209,6 +229,7 @@
     gnumake
     ffmpeg-full
     imagemagick
+    ghostscript # for imagemagick
     docker-compose
     podman-compose
     stylua
@@ -229,6 +250,11 @@
     vokoscreen # screen recorder
     gpick
     feh
+    pdfarranger
+    safeeyes
+    peek
+    stw
+    wmctrl # for querying wm windows
 
     # system util
 
@@ -243,6 +269,12 @@
     pulseaudio # pactl command for changing volume
     pkgsi686Linux.gperftools # tf2 workaround
     qemu
+    v4l-utils # camera utils
+
+    hyphenDicts.en_US
+    aspellDicts.en
+    hunspellDicts.es_ES
+    aspellDicts.es
 
     # app
 
@@ -255,8 +287,10 @@
     #ferdium
     obs-studio
     audacity
-    libreoffice-fresh
-    discord
+    libreoffice-fresh # spell-check doesn't work
+    onlyoffice-desktopeditors
+    #discord
     drawio
+    blender
   ];
 }

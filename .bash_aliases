@@ -7,8 +7,8 @@ alias ls='ls --group-directories-first --color=auto -1'
 alias nano='nano -a -j -x -T 4 -$ -U -i'
 alias c='clear &&'
 alias cls='clear && ls'
-alias rm='trash'
-alias rmls='trash-list | sort'
+#alias rm='trash'
+#alias rmls='trash-list | sort'
 alias lxcls='lxc list -c ns4'
 alias vsv='sudo vsv'
 alias vsvu='\vsv -d ~/service'
@@ -23,6 +23,8 @@ alias lf2='lf -command "set ratios 1:3"'
 alias ips="ip ad 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
 alias vims="steam-run vim"
 alias xkill9="kill -9 \$(xprop | grep PID | awk '{print \$3}')"
+alias wenv='compgen -v | while read line; do echo $line=${!line};done' # all env/shell vars
+alias gf2tty="gf2 -ex \"tty \$(tty)\""
 
 # package manager
 alias xinstall='xbps-install'

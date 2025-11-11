@@ -5,6 +5,7 @@ return {
             vim.g.edge_colors_override = { bg0 = { "#292929", "234" } }
         end
     },
+    'nyoom-engineering/oxocarbon.nvim',
 
     -- 02/02/2025
     --'srcery-colors/srcery-vim', 

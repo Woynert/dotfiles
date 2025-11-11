@@ -1,4 +1,6 @@
 --vim.cmd([[colorscheme woytheme1]])
 --vim.cmd([[colorscheme PaperColor]])
 --vim.cmd [[colorscheme srcery]]
-vim.cmd [[colorscheme edge]]
+--vim.cmd [[colorscheme edge]]
+--vim.cmd [[colorscheme oxocarbon]]
+vim.cmd [[colorscheme blue]]

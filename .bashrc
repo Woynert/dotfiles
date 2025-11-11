@@ -10,7 +10,7 @@ case $- in
 esac
 
 # tmux session
-[ -z "$TMUX" ] && command -v tmux > /dev/null 2>&1 && exec tmux new-session -t global
+[ -z "$TMUX" ] && command -v tmux > /dev/null 2>&1 && tmux new-session -t global
 
 # append to the history file, don't overwrite it
 shopt -s histappend

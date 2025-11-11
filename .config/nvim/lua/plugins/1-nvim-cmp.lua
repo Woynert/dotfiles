@@ -133,6 +133,8 @@ return {
       lsp_config.clangd.setup {} -- c/c++
       lsp_config.pyright.setup {} -- python
       lsp_config.gdscript.setup {} -- godot
+      lsp_config.csharp_ls.setup {} -- C#
+      --lsp_config.omnisharp.setup {} -- C#
 
 
       -- snippets

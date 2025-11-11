@@ -14,9 +14,10 @@ buffers_highlight_modified = "DiagnosticWarning"
 buffers_highlight_linenr = "LineNr"
 
 return {
-        "https://github.com/Woynert/sidebar.nvim",
-        --dir = "/plan/2-dev/fork/sidebar.nvim",
+        --"https://github.com/Woynert/sidebar.nvim",
+        dir = "/plan/2-dev/fork/sidebar.nvim",
 		--cmd = { "SidebarNvimToggle", "SidebarNvimClose" },
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
             tabline = require ('plugins.foo.mini-tabline')
             tabline.config.show_icons = false
@@ -98,10 +99,21 @@ return {
 
                     table.sort(tabs, function(a, b) return a.label:lower() < b.label:lower() end)
 
+                    -- filter
+					--for i, buf in ipairs(tabs) do
+                        --buf.label = trim12(buf.label)
+                        --if buf.label:find("^term://") ~= nil or buf.label == "" then
+                            --goto continue
+                        --end
+
 					for i, buf in ipairs(tabs) do
-						if buf.label:find("^term://") ~= nil or buf.label == "" then
-							goto continue
-						end
+                        buf.label = trim12(buf.label)
+                        if buf.label == "" then
+                          buf.label = "*"
+                        end
+						--if buf.label:find("^term://") ~= nil or buf.label == "" then
+							--goto continue
+						--end
 
                         local is_selected = buf.buf_id == vim.api.nvim_get_current_buf()
                         local is_modified = false
@@ -114,7 +126,7 @@ return {
                             end
                         end
 
-                        table.insert(hl, { buffers_highlight_linenr, i -1 + y_offset, 0, 2 })
+                        table.insert(hl, { buffers_highlight_linenr, i -1 + y_offset, 0, 3 })
 
                         local full_buffer_string = string.format("%" .. tostring(bufid_column_width) .. "d", buf.buf_id) .. " " .. trim12(buf.label)
 
@@ -173,12 +185,12 @@ return {
 
 				sections = {
                     --"buffers",
+                    "git",
                     buffers,
                     --base_info,
                     --terms,
                     --harpoon_marks
                     --"datetime",
-                    --"git",
                     --"diagnostics",
                     --"containers",
                     --"files",

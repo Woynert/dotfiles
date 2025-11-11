@@ -53,6 +53,24 @@ local fix_scheme = function()
         --hl = vim.api.nvim_get_hl_by_name(hl_name, true)
         --vim.api.nvim_set_hl(0, '@punctuation.bracket', { bg = hl.background, fg = hl.foreground })
     end
+
+    if scheme_name == "blue" then
+        -- from /nix/store/crdw1z6gkrv1n0ymn9hsjfgrag7f6mrk-neovim-0.10.2-woyfork/share/nvim/runtime/colors/blue.vim
+        --hi Comment guifg=#00ff00 gui=NONE
+        --hi Comment guifg=#00aaaa gui=NONE
+        vim.cmd [[
+            hi Comment guifg=#00dd40 gui=NONE
+        ]]
+
+        -- don't comment code blocks between #ifdef and #endif
+        -- highlight clear @lsp.type.comment.cpp
+        vim.api.nvim_set_hl(0, '@lsp.type.comment.cpp', {})
+
+        -- listchars characters (tabs, spaces, trailing, eol, etc)
+        vim.api.nvim_set_hl(0, "NonText", { fg = "#764A76" })
+        --vim.api.nvim_set_hl(0, "NonText", { fg = "#685800", bg = "NONE" })
+    end
+
 end
 
 -- Custom autocommand

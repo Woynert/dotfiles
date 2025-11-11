@@ -19,27 +19,32 @@ screen_cut()
 {
     echo "$1x$2:$3"
 
-    # center-center
+    # h center, v center
     #diffH=$(((1920 - $1) / 2))
     #diffV=$(((1080 - $2) / 2))
 
-    # center-bottom
+    # h center, v bottom
     diffH=$(((SCREEN_W - $1) / 2))
     diffV=$(((SCREEN_H - $2)))
 
-    # center-center
+    # h center, v center
     if [ "$3" == "center" ]; then
         diffV=$(((SCREEN_H - $2) / 2))
     fi
 
-    # center-up
+    # h center, v up
     if [ "$3" == "up" ]; then
         diffV=0
     fi
 
-    xrandr --output HDMI-A-0 --mode 1920x1080 --panning 1920x1080
+    # h center, v up4
+    if [ "$3" == "up4" ]; then
+        diffV=$(((SCREEN_H - $2) / 4))
+    fi
+
+    xrandr --output HDMI-A-0 --mode 1920x1080 --panning 1920x1080 --rate 75
     sleep 0.5
-    xrandr --output HDMI-A-0 --mode 1920x1080 --fb "$1x$2" --transform 1,0,-$diffH,0,1,-$diffV,0,0,1
+    xrandr --output HDMI-A-0 --mode 1920x1080 --fb "$1x$2" --transform 1,0,-$diffH,0,1,-$diffV,0,0,1 --rate 75
 }
 
 IMAGE=/tmp/amd_black.png

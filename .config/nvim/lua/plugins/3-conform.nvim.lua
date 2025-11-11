@@ -27,6 +27,9 @@ return {
         default_format_opts = {
             lsp_format = 'fallback',
             stop_after_first = true,
+            --notify_on_error = false,
+            --notify_no_formatters = false,
+            --quiet = true,
         },
         -- Set up format-on-save
         --format_on_save = { timeout_ms = 500 },

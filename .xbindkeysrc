@@ -7,6 +7,10 @@
     m:0x50 + c:33
     Mod2+Mod4 + p
 
+"rofi -show window"
+    m:0x50 + c:32
+    Mod2+Mod4 + o
+
 # toggle keyboard layout (PC=¿ Laptop==)
 "$HOME/.config/awesome/script/toggleKbLayout"
     m:0x50 + c:21
@@ -61,3 +65,27 @@
 "deadbeef --stop"
     m:0x10 + c:174
     Mod2 + XF86AudioStop
+
+# ===== gummy screen temp ===== 
+
+"gummy start; gummy --brightness -10"
+    m:0x50 + c:16
+    Mod2+Mod4 + 7
+
+"gummy start; gummy --brightness +10"
+    m:0x50 + c:17
+    Mod2+Mod4 + 8
+
+"gummy start; gummy -t -500"
+    m:0x50 + c:18
+    Mod2+Mod4 + 9
+
+"gummy start; gummy -t +500"
+    m:0x50 + c:19
+    Mod2+Mod4 + 0
+
+# ===== gummy screen temp ===== 
+
+"ffplay -nodisp -autoexit ~/.script/audiotalk/success-jingle.ogg"
+    m:0x50 + c:34
+    Mod2+Mod4 + bracketleft

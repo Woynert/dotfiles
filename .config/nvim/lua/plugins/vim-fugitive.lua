@@ -17,6 +17,14 @@ return {
             vim.api.nvim_command ':Gedit :'
         end, {})
 
+
+        -- remap o to gO (open files in vertical split)
+        -- https://github.com/tpope/vim-fugitive/issues/1425#issuecomment-995056630
+        vim.cmd [[
+            autocmd User FugitiveObject,FugitiveIndex nmap <buffer> o gO
+        ]]
+
+
         ---- open in float window
         --https://www.reddit.com/r/neovim/comments/1ag5mk3/fugitive_change_window_to_popup/
     end,

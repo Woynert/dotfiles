@@ -52,8 +52,8 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.floating,
-	awful.layout.suit.tile,
-    awful.layout.suit.max,
+	--awful.layout.suit.tile,
+    --awful.layout.suit.max,
 }
 -- }}}
 
@@ -92,11 +92,8 @@ end
 -- custom system tray
 dockablesys = require("mysystray")
 
--- pomodoro widget
-pomodoro = require("pomodoro")
-
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("%b %d, %I:%M %P")
+mytextclock = wibox.widget.textclock("%I:%M:%P %d-%b-%y")
 local month_calendar = awful.widget.calendar_popup.month({start_sunday=true})
 month_calendar:attach( mytextclock, "br", {on_hover=true})
 
@@ -268,17 +265,17 @@ awful.screen.connect_for_each_screen(function(s)
 	}
 
     -- Create the wibox
-    s.mywibox = awful.wibar({
-        bg = beautiful.panel_bg,
-        position = "bottom",
-        ontop = false,
-        screen = s,
-        height = beautiful.panel_height,
-        stretch = false,
-        width = s.geometry.width * 0.6,
-		border_width = 0,
-		border_color = beautiful.final_bg_minimize,
-    })
+    --s.mywibox = awful.wibar({
+        --bg = beautiful.panel_bg,
+        --position = "left",
+        --ontop = false,
+        --screen = s,
+        --height = beautiful.panel_height,
+        --stretch = false,
+        --width = s.geometry.width * 0.6,
+		--border_width = 0,
+		--border_color = beautiful.final_bg_minimize,
+    --})
 
     s.mypromptbox = awful.widget.prompt()
 	s.memory = wibox.container {
@@ -290,65 +287,101 @@ awful.screen.connect_for_each_screen(function(s)
 	}
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
-      layout = wibox.layout.stack,
-      {
-        layout = wibox.layout.align.horizontal,
-        -- Left widgets
-        {
-          layout = wibox.layout.fixed.horizontal,
-          s.mytaglist,
-		  vert_sep,
-		  s.memory,
-          vert_sep,
-        },
-        -- Middle widget
-        {
-          layout = wibox.layout.align.horizontal,
-          inner_fill_strategy = "inner_spacing",
-          wibox.widget.textbox(" "),
-          {
-            widget = wibox.container.place,
-            valign = 'bottom',
-            halign = 'center',
-            s.mytasklist,
-          },
-        },
-        -- Right widgets
-        {
-          layout = wibox.layout.fixed.horizontal,
-          vert_sep,
-          vert_sep,
-          {
-            widget = wibox.container.margin,
-            margins = beautiful.tray_margin
-          },
-          {
-            --pomodoro,
-            dockablesys,
-            widget = wibox.container.margin,
-            left = beautiful.tray_margin/2,
-            right = beautiful.tray_margin,
-            up = beautiful.tray_margin,
-            down = beautiful.tray_margin
-          },
-          -- battery widget (optional)
-          {
-            widget = awful.widget.watch('/home/woynert/.config/awesome/script/battery.sh', 10),
-          },
-		  vert_sep,
-          mytextclock,
-          vert_sep,
-        },
-      },
-      {
-        layout = wibox.layout.fixed.horizontal,
-        vert_sep,
-        s.mypromptbox,
-        vert_sep,
-      },
-    }
+    --s.mywibox:setup {
+      --layout = wibox.layout.stack,
+      --{
+        --layout = wibox.layout.align.horizontal,
+        ---- Left widgets
+        --{
+          --layout = wibox.layout.fixed.horizontal,
+          ----s.mytaglist,
+		  --vert_sep,
+		  --s.memory,
+          --vert_sep,
+        --},
+        ---- Middle widget
+        --{
+          --layout = wibox.layout.align.horizontal,
+          --inner_fill_strategy = "inner_spacing",
+          --wibox.widget.textbox(" "),
+          --{
+            --widget = wibox.container.place,
+            --valign = 'bottom',
+            --halign = 'center',
+            --s.mytasklist,
+          --},
+        --},
+        ---- Right widgets
+        --{
+          --layout = wibox.layout.fixed.horizontal,
+          --vert_sep,
+          --vert_sep,
+          --{
+            --widget = wibox.container.margin,
+            --margins = beautiful.tray_margin
+          --},
+          --{
+            --dockablesys,
+            --widget = wibox.container.margin,
+            --left = beautiful.tray_margin/2,
+            --right = beautiful.tray_margin,
+            --up = beautiful.tray_margin,
+            --down = beautiful.tray_margin
+          --},
+          ---- battery widget (optional)
+          --{
+            --widget = awful.widget.watch('/home/woynert/.config/awesome/script/battery.sh', 10),
+          --},
+		  --vert_sep,
+          --mytextclock,
+          --vert_sep,
+        --},
+      --},
+      --{
+        --layout = wibox.layout.fixed.horizontal,
+        --vert_sep,
+        --s.mypromptbox,
+        --vert_sep,
+      --},
+    --}
 
+
+    --s.mywibox = awful.wibar { position = "left" }
+    --s.mywibox:setup {
+        --layout = wibox.layout.align.vertical,
+        --{
+            ---- Rotate the widgets with the container
+            --{
+                --mytaglist,
+                --direction = 'west',
+                --widget = wibox.container.rotate
+            --},
+            --layout = wibox.layout.fixed.vertical,
+        --},
+        --mytasklist,
+        --{
+            --layout = wibox.layout.fixed.vertical,
+            --{
+                ---- Rotate the widgets with the container
+                --{
+                    --mykeyboardlayout,
+                      --{
+                        --dockablesys,
+                        --widget = wibox.container.margin,
+                        --left = beautiful.tray_margin/2,
+                        --right = beautiful.tray_margin,
+                        --up = beautiful.tray_margin,
+                        --down = beautiful.tray_margin
+                      --},
+					--s.memory,
+                    --mytextclock,
+                    --layout = wibox.layout.fixed.horizontal
+                --},
+                --direction = 'west',
+                --widget = wibox.container.rotate
+            --}
+        --},
+    --}
 
 end)
 -- }}}
@@ -462,8 +495,8 @@ clientkeys = gears.table.join(
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
-              {description = "move to screen", group = "client"}),
+    --awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
+              --{description = "move to screen", group = "client"}),
     --awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               --{description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "n",
@@ -683,78 +716,78 @@ client.connect_signal("manage", function (c)
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
+--client.connect_signal("request::titlebars", function(c)
 
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
+    ---- buttons for the titlebar
+    --local buttons = gears.table.join(
+        --awful.button({ }, 1, function()
+            --c:emit_signal("request::activate", "titlebar", {raise = true})
+            --awful.mouse.client.move(c)
+        --end),
+        --awful.button({ }, 3, function()
+            --c:emit_signal("request::activate", "titlebar", {raise = true})
+            --awful.mouse.client.resize(c)
+        --end)
+    --)
 
-    awful.titlebar(c, {
-        size = beautiful.titlebar_height,
-        bg_normal = beautiful.titlebar_bg_normal,
-        bg_focus  = beautiful.titlebar_bg_focus,
-        position = 'top',
-    }) : setup {
-        widget = wibox.container.margin,
-        margins = beautiful.titlebar_padding,
-        {
-            { -- Left
-                awful.titlebar.widget.iconwidget(c),
-                wibox.widget {
-                    widget = wibox.widget.separator,
-                    orientation = "vertical",
-                    forced_width = beautiful.titlebar_icon_spacing,
-                    color = "#00000000",
-                },
-                buttons = buttons,
-                layout  = wibox.layout.fixed.horizontal
-            },
-            { -- Middle
-                { -- Title
-                    align  = "left",
-                    widget = awful.titlebar.widget.titlewidget(c),
-                    font = beautiful.titlebar_font,
-                },
-                buttons = buttons,
-                layout  = wibox.layout.flex.horizontal
-            },
-            { -- Right
-                --awful.titlebar.widget.floatingbutton (c),
-                --awful.titlebar.widget.stickybutton   (c),
-                {
-                    widget = wibox.container.background,
-                    forced_width = beautiful.titlebar_button_width,
-                    awful.titlebar.widget.ontopbutton(c),
-                },
-                {
-                    widget = wibox.container.background,
-                    forced_width = beautiful.titlebar_button_width,
-                    awful.titlebar.widget.minimizebutton(c),
-                },
-                {
-                    widget = wibox.container.background,
-                    forced_width = beautiful.titlebar_button_width,
-                    awful.titlebar.widget.maximizedbutton(c),
-                },
-                {
-                    widget = wibox.container.background,
-                    forced_width = beautiful.titlebar_close_button_width,
-                    awful.titlebar.widget.closebutton (c),
-                },
-                layout  = wibox.layout.fixed.horizontal(),
-            },
-            layout = wibox.layout.align.horizontal
-        }
-    }
-end)
+    ----awful.titlebar(c, {
+        ----size = beautiful.titlebar_height,
+        ----bg_normal = beautiful.titlebar_bg_normal,
+        ----bg_focus  = beautiful.titlebar_bg_focus,
+        ----position = 'top',
+    ----}) : setup {
+        ----widget = wibox.container.margin,
+        ----margins = beautiful.titlebar_padding,
+        ----{
+            ----{ -- Left
+                ----awful.titlebar.widget.iconwidget(c),
+                ----wibox.widget {
+                    ----widget = wibox.widget.separator,
+                    ----orientation = "vertical",
+                    ----forced_width = beautiful.titlebar_icon_spacing,
+                    ----color = "#00000000",
+                ----},
+                ----buttons = buttons,
+                ----layout  = wibox.layout.fixed.horizontal
+            ----},
+            ----{ -- Middle
+                ----{ -- Title
+                    ----align  = "left",
+                    ----widget = awful.titlebar.widget.titlewidget(c),
+                    ----font = beautiful.titlebar_font,
+                ----},
+                ----buttons = buttons,
+                ----layout  = wibox.layout.flex.horizontal
+            ----},
+            ----{ -- Right
+                ------awful.titlebar.widget.floatingbutton (c),
+                ----awful.titlebar.widget.stickybutton   (c),
+                ----{
+                    ----widget = wibox.container.background,
+                    ----forced_width = beautiful.titlebar_button_width,
+                    ----awful.titlebar.widget.ontopbutton(c),
+                ----},
+                ----{
+                    ----widget = wibox.container.background,
+                    ----forced_width = beautiful.titlebar_button_width,
+                    ----awful.titlebar.widget.minimizebutton(c),
+                ----},
+                ----{
+                    ----widget = wibox.container.background,
+                    ----forced_width = beautiful.titlebar_button_width,
+                    ----awful.titlebar.widget.maximizedbutton(c),
+                ----},
+                ----{
+                    ----widget = wibox.container.background,
+                    ----forced_width = beautiful.titlebar_close_button_width,
+                    ----awful.titlebar.widget.closebutton (c),
+                ----},
+                ----layout  = wibox.layout.fixed.horizontal(),
+            ----},
+            ----layout = wibox.layout.align.horizontal
+        ----}
+    ----}
+--end)
 
 -- client fallback icon
 
@@ -773,18 +806,33 @@ end)
 -- {{{{ Custom modules
 
 -- 1. toggle titlebars when not floating
-require('floating_titlebar_toggle')
+--require('floating_titlebar_toggle')
 
 -- 2. remember floating window positions
-require('restore_floating_clients')
+--require('restore_floating_clients')
 
 -- custom borders for tile layout
-require('tiled_border_indicator')
+--require('tiled_border_indicator')
 
 -- welcome message     
 awful.spawn("notify-send 'Welcome back'")
 
 -- Startup programs
 awful.spawn.with_shell("~/.config/awesome/script/autorun.sh")
+
+-- https://github.com/awesomeWM/awesome/issues/1344
+tag.connect_signal("request::screen", function(t)
+    for s in screen do
+        if s ~= t.screen then
+            local t2 = awful.tag.find_by_name(s, t.name)
+            if t2 then
+                t:swap(t2)
+            else
+                t.screen = s
+            end
+            return
+        end
+    end
+end)
 
 -- }}}
