@@ -20,17 +20,17 @@ let
 in
 {
   #imports = ["${unstable}/nixos/modules/services/networking/sunshine.nix"];
-  ##services.sunshine.enable = true;
-  #services.sunshine = {
-    #enable = true;
-    #autoStart = true;
-    #capSysAdmin = true;
-    #openFirewall = true;
-  #};
+  #services.sunshine.enable = true;
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
-  environment.systemPackages = [
-    unstable_imported.krita
-  ];
+  #environment.systemPackages = [
+    #unstable_imported.krita
+  #];
 
 }
 

@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-notify-send "$(setxkbmap -query | grep layout | awk '{print "layout",toupper($2)}')"

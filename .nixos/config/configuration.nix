@@ -5,13 +5,14 @@
   imports =
     [
       ./modules/kblayouts
-      #./modules/discord-screenaudio.nix
-      ./modules/sunlight.nix
       ./modules/nixos-fhs-compat.nix 
-      ./modules/aboutlife.nix
       ./modules/xmousepasteblock
-      #./modules/auto-shutdown
       ./modules/neovim-fork.nix
+
+      #./modules/sunlight.nix
+      #./modules/discord-screenaudio.nix
+      #./modules/aboutlife.nix
+      #./modules/auto-shutdown
       #./modules/general-overlays.nix
       #./modules/squid.nix
     ]
@@ -64,9 +65,12 @@
 
   # enable dns caching
 
-  services.dnscache.enable = true;
-  users.users.dnscache.group = "dnscache";
-  users.groups.dnscache = {};
+  # Don't enable any service on Port 53 or Hotspot DHCP won't work
+  #services.dnsmasq.enable = true; # NetworkManager WiFi Hotspot DHCP
+  # TODO: Already includes dsn resolver service at 53 port...
+  #services.dnscache.enable = true;
+  #users.users.dnscache.group = "dnscache";
+  #users.groups.dnscache = {};
 
   time.timeZone = "America/Bogota";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -217,6 +221,7 @@
     tig
     pax-utils # ldd-tree
     pandoc # markdown to html
+    dnsmasq # NetworkManager WiFi Hotspot DHCP
 
     # dev
 
@@ -285,12 +290,26 @@
     megasync
     deadbeef
     #ferdium
-    obs-studio
+    #obs-studio
     audacity
     libreoffice-fresh # spell-check doesn't work
     onlyoffice-desktopeditors
-    #discord
+    discord
     drawio
     blender
+    krita
+
+    # OBS STUDIO
+    (pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        #wlrobs
+        obs-backgroundremoval
+        #obs-pipewire-audio-capture
+        #obs-vaapi #optional AMD hardware acceleration
+        #obs-gstreamer
+        #obs-vkcapture
+        droidcam-obs
+      ];
+    })
   ];
 }

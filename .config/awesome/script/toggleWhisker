@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if pgrep -f whiskermenu_standalone; then
-	killall whiskermenu_standalone
-else
-	/usr/bin/env whiskermenu_standalone
-fi

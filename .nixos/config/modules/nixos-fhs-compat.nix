@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
 
 let
-  rev = "57ca0a2229afe6f104d925f7eeea4147a7c18b04"; # or "master"
+  rev = "8c3178619d0d7a3c35370f4579d4494ec7680a7f"; # or "master"
   fhs = fetchTarball {
     url = "https://github.com/woynert/nixos-fhs-compat/archive/${rev}.tar.gz";
-    sha256 = "0ji6q470v43jw9r339mgaini9f3qi4nrp6qihvn7can685nfpmfw";
+    sha256 = "0cbdpxdjvw83zw2v406bgn145f53wg4djd5mgbay8x1i1xmf0sp1";
   };
 
 in
 {
   imports = [
-    #"${fhs}"
-    "/plan/2-dev/fork/nixos-fhs-compat/default.nix"
+    "${fhs}"
+    #"/plan/2-dev/fork/nixos-fhs-compat/default.nix"
   ];
 
   environment.fhs.enable = true;
@@ -20,6 +20,7 @@ in
   environment.fhs.linkLibs = false;
   environment.fhs.linkExes = false;
   environment.fhs.setSchemaPaths = true;
+  environment.fhs.link_elf_interpreter = true;
 
   #environment.fhs.linkLibs = true;
   #environment.fhs.linkLibs = true;
