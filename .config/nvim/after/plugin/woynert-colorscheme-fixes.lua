@@ -1,58 +1,60 @@
+-- TODO: Merge with ./setcolorscheme.lua and ../../lua/plugins/themes.lua
+
 local fix_scheme = function()
     local scheme_name = vim.g.colors_name or 'unknown'
     --print("Colorscheme changed to: " .. (scheme_name))
 
-    if scheme_name == 'edge' then
-        local hl_name = ''
-        local hl_prev = nil
-        local hl = nil
-        local DarkBackground = '#1C1C1C'
+    --if scheme_name == 'edge' then
+        --local hl_name = ''
+        --local hl_prev = nil
+        --local hl = nil
+        --local DarkBackground = '#1C1C1C'
 
-        -- background
+        ---- background
 
-        if vim.o.background == 'dark' then
-            vim.api.nvim_set_hl(0, 'normal', { bg = DarkBackground })
-        end
+        --if vim.o.background == 'dark' then
+            --vim.api.nvim_set_hl(0, 'normal', { bg = DarkBackground })
+        --end
 
-        -- markdown code block
+        ---- markdown code block
 
-        if vim.o.background == 'dark' then
-            vim.api.nvim_set_hl(0, 'MDCodeBlock', {
-                background = ColorBlender.blend_hex(DarkBackground, '#0000FF', 0.90),
-            })
-            vim.api.nvim_set_hl(0, 'html_block', {
-                background = ColorBlender.blend_hex(DarkBackground, '#0000FF', 0.90),
-            })
-        elseif vim.o.background == 'light' then
-            vim.api.nvim_set_hl(0, 'MDCodeBlock', {
-                background = ColorBlender.blend_hex('#FFFFFF', '#FFFF00', 0.9),
-            })
-        end
+        --if vim.o.background == 'dark' then
+            --vim.api.nvim_set_hl(0, 'MDCodeBlock', {
+                --background = ColorBlender.blend_hex(DarkBackground, '#0000FF', 0.90),
+            --})
+            --vim.api.nvim_set_hl(0, 'html_block', {
+                --background = ColorBlender.blend_hex(DarkBackground, '#0000FF', 0.90),
+            --})
+        --elseif vim.o.background == 'light' then
+            --vim.api.nvim_set_hl(0, 'MDCodeBlock', {
+                --background = ColorBlender.blend_hex('#FFFFFF', '#FFFF00', 0.9),
+            --})
+        --end
 
-        -- mini tabline
+        ---- mini tabline
 
-        hl_name = 'MiniTablineCurrent'
-        hl = vim.api.nvim_get_hl_by_name(hl_name, true)
-        vim.api.nvim_set_hl(0, hl_name, { bg = hl.foreground, fg = hl.background })
-
-        hl_name = 'MiniTablineHidden'
-        hl_prev = hl
-        hl = vim.api.nvim_get_hl_by_name(hl_name, true)
-        vim.api.nvim_set_hl(0, hl_name, { bg = hl.background, fg = hl_prev.foreground })
-
-        hl_name = 'MiniTablineModifiedCurrent'
-        hl = vim.api.nvim_get_hl_by_name(hl_name, true)
-        vim.api.nvim_set_hl(0, hl_name, { bg = hl.foreground, fg = hl.background })
-
-        hl_name = 'MiniTablineModifiedHidden'
-        vim.api.nvim_set_hl(0, hl_name, { bg = hl.background, fg = hl.foreground })
-
-        -- commas and parentesis
-
-        --hl_name = '@punctuation.delimiter'
+        --hl_name = 'MiniTablineCurrent'
         --hl = vim.api.nvim_get_hl_by_name(hl_name, true)
-        --vim.api.nvim_set_hl(0, '@punctuation.bracket', { bg = hl.background, fg = hl.foreground })
-    end
+        --vim.api.nvim_set_hl(0, hl_name, { bg = hl.foreground, fg = hl.background })
+
+        --hl_name = 'MiniTablineHidden'
+        --hl_prev = hl
+        --hl = vim.api.nvim_get_hl_by_name(hl_name, true)
+        --vim.api.nvim_set_hl(0, hl_name, { bg = hl.background, fg = hl_prev.foreground })
+
+        --hl_name = 'MiniTablineModifiedCurrent'
+        --hl = vim.api.nvim_get_hl_by_name(hl_name, true)
+        --vim.api.nvim_set_hl(0, hl_name, { bg = hl.foreground, fg = hl.background })
+
+        --hl_name = 'MiniTablineModifiedHidden'
+        --vim.api.nvim_set_hl(0, hl_name, { bg = hl.background, fg = hl.foreground })
+
+        ---- commas and parentesis
+
+        ----hl_name = '@punctuation.delimiter'
+        ----hl = vim.api.nvim_get_hl_by_name(hl_name, true)
+        ----vim.api.nvim_set_hl(0, '@punctuation.bracket', { bg = hl.background, fg = hl.foreground })
+    --end
 
     if scheme_name == "blue" then
         -- from /nix/store/crdw1z6gkrv1n0ymn9hsjfgrag7f6mrk-neovim-0.10.2-woyfork/share/nvim/runtime/colors/blue.vim
@@ -70,6 +72,10 @@ local fix_scheme = function()
         vim.api.nvim_set_hl(0, "NonText", { fg = "#764A76" })
         --vim.api.nvim_set_hl(0, "NonText", { fg = "#685800", bg = "NONE" })
     end
+
+    --if scheme_name == 'wildcharm' then
+        --vim.api.nvim_set_hl(0, 'normal', { bg = '#FFAF87' })
+    --end
 
 end
 

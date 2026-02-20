@@ -26,7 +26,7 @@ end
 
 function woy_status_line.lsp_active()
     local buf = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_active_clients { bufnr = buf }
+    local clients = vim.lsp.get_clients { bufnr = buf }
     if not vim.tbl_isempty(clients) then
         return ' Lsp'
     end

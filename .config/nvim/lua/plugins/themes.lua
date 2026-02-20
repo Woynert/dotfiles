@@ -1,10 +1,12 @@
+-- TODO: Merge with ../../after/plugin/setcolorscheme.lua and ../../after/plugin/woynert-colorscheme-fixes.lua
+
 return {
     'NLKNguyen/papercolor-theme',
-    { 'sainnhe/edge',
-        init = function()
-            vim.g.edge_colors_override = { bg0 = { "#292929", "234" } }
-        end
-    },
+    --{ 'sainnhe/edge'
+        ----init = function()
+            ----vim.g.edge_colors_override = { bg0 = { "#292929", "234" } }
+        ----end
+    --},
     'nyoom-engineering/oxocarbon.nvim',
 
     -- 02/02/2025

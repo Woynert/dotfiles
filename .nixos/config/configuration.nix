@@ -5,9 +5,11 @@
   imports =
     [
       ./modules/kblayouts
-      ./modules/nixos-fhs-compat.nix 
+      ./modules/nixos-fhs-compat.nix
       ./modules/xmousepasteblock
-      ./modules/neovim-fork.nix
+      ./modules/boomer
+      #./modules/graphite
+      #./modules/neovim-fork.nix
 
       #./modules/sunlight.nix
       #./modules/discord-screenaudio.nix
@@ -98,7 +100,9 @@
 
   # sound with pipewire
 
-  hardware.pulseaudio.enable = false;
+  #services.pulseaudio.enable = false;
+  services.pulseaudio.enable = lib.mkForce false;
+  hardware.pulseaudio.enable = lib.mkForce false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -126,11 +130,15 @@
   # misc
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "IosevkaTerm" ]; })
+    nerd-fonts.iosevka-term
+    nerd-fonts.gohufont
+    #(nerdfonts.override { fonts = [ "IosevkaTerm" ]; })
     comic-relief
     times-newer-roman
-    vistafonts
+    vista-fonts
     corefonts
+    unscii
+    cozette
   ];
 
   # keep this off so that there aren't any QT plugins to annoy me
@@ -226,7 +234,7 @@
     # dev
 
     python3
-    gcc11
+    #gcc11
     git
     git-credential-oauth
     go
@@ -263,11 +271,11 @@
 
     # system util
 
-    steam-fhsenv-without-steam.run
+    steam-run-free
     appimage-run
     mpg123
     libnotify
-    lxde.lxsession # I think this is for lxpolkit
+    lxsession # (lxde.lxsession) I think this is for lxpolkit
     vanilla-dmz # cursor theme I like
     xfce.xfce4-settings
     xbindkeys
@@ -286,18 +294,20 @@
     alacritty
     firefox
     chromium
-    #obsidian
     megasync
-    deadbeef
-    #ferdium
-    #obs-studio
+    audacious # as good as deadbeef, use audtool to control
+    #deadbeef # requires building llvm clang universe + swift
     audacity
     libreoffice-fresh # spell-check doesn't work
     onlyoffice-desktopeditors
     discord
-    drawio
     blender
     krita
+    
+    #drawio
+    #obsidian
+    #ferdium
+    #obs-studio
 
     # OBS STUDIO
     (pkgs.wrapOBS {
@@ -308,8 +318,24 @@
         #obs-vaapi #optional AMD hardware acceleration
         #obs-gstreamer
         #obs-vkcapture
-        droidcam-obs
+        #droidcam-obs
+        (
+          (pkgs.obs-studio-plugins.droidcam-obs.override {
+            ffmpeg_7 = pkgs.ffmpeg;
+          }).overrideAttrs
+          (prev: {
+            version = "2.4.2-unstable-2025-10-14";
+
+            src = pkgs.fetchFromGitHub {
+              owner = "dev47apps";
+              repo = "droidcam-obs-plugin";
+              rev = "161cb95b8dc5fe77185e52a9783dc45c6d137165";
+              sha256 = "sha256-3GClykaJjjmasEnSVGU5jnz+xoznaSYTxBz7jkhj0m4=";
+            };
+          })
+        )
       ];
     })
+
   ];
 }

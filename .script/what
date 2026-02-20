@@ -3,6 +3,7 @@
 cat << EOF
 du -hsc \`\ls -A\`
 du -hsc * | sort -h
+nix-shell -p ncdu --command 'ncdu ~/'
 grep -rin word
 find -name "*word*" -print
 ip link set eth0 down

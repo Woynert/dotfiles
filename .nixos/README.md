@@ -6,7 +6,7 @@
   ```sh
   sudo nix-channel --list
   sudo nix-channel --remove <your-channel>
-  sudo nix-channel --add https://releases.nixos.org/nixos/24.11/nixos-24.11.713895.666e1b3f09c2/nixexprs.tar.xz nixos
+  sudo nix-channel --add https://releases.nixos.org/nixos/25.11/nixos-25.11.5581.23d72dabcb3b/nixexprs.tar.xz nixos
   sudo nix-channel --update
   ```
 

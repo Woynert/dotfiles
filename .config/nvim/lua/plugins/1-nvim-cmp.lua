@@ -88,21 +88,34 @@ return {
       })
 
       -- Set up lspconfig.
-      --local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-      --require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+      --vim.lsp.config('<YOUR_LSP_SERVER>', {
         --capabilities = capabilities
-      --}
+      --})
+      --vim.lsp.enable('<YOUR_LSP_SERVER>')
 
-      -- Add cmp_nvim_lsp capabilities settings to lspconfig
-      -- This should be executed before you configure any language server
-      local lspconfig_defaults = require('lspconfig').util.default_config
-      lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-          'force',
-          lspconfig_defaults.capabilities,
-          require('cmp_nvim_lsp').default_capabilities()
-      )
 
+      ------------------------------------------------
+      -- LSP servers
+      --local lsp_config = require 'lspconfig'
+      --lsp_config.dartls.setup {} -- dart
+      --lsp_config.clangd.setup {} -- c/c++
+      --lsp_config.pyright.setup {} -- python
+      --lsp_config.gdscript.setup {} -- godot
+      --lsp_config.csharp_ls.setup {} -- C#
+
+      vim.lsp.enable('clangd')
+      vim.lsp.enable('gdscript')
+
+
+      ------------------------------------------------
+      --- LuaSnip
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+
+      ------------------------------------------------
+      --- My Mappings
       -- This is where you enable features that only work
       -- if there is a language server active in the file
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -126,19 +139,6 @@ return {
           end,
       })
 
-
-      -- LSP servers
-      local lsp_config = require 'lspconfig'
-      lsp_config.dartls.setup {} -- dart
-      lsp_config.clangd.setup {} -- c/c++
-      lsp_config.pyright.setup {} -- python
-      lsp_config.gdscript.setup {} -- godot
-      lsp_config.csharp_ls.setup {} -- C#
-      --lsp_config.omnisharp.setup {} -- C#
-
-
-      -- snippets
-      require("luasnip.loaders.from_vscode").lazy_load()
     end
 }
 

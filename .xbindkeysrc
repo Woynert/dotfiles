@@ -50,19 +50,23 @@
 
 # ===== deadbeef =====
 
-"deadbeef --prev"
+#"deadbeef --prev"
+"audtool playlist-reverse"
     m:0x10 + c:173
     Mod2 + XF86AudioPrev
 
-"deadbeef --next"
+#"deadbeef --next"
+"audtool playlist-advance"
     m:0x10 + c:171
     Mod2 + XF86AudioNext
 
-"deadbeef --toggle-pause"
+#"deadbeef --toggle-pause"
+"audtool playback-playpause"
     m:0x10 + c:172
     Mod2 + XF86AudioPlay
 
-"deadbeef --stop"
+#"deadbeef --stop"
+"audtool playback-stop"
     m:0x10 + c:174
     Mod2 + XF86AudioStop
 

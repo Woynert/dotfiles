@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 let
-  rev = "8c3178619d0d7a3c35370f4579d4494ec7680a7f"; # or "master"
+  rev = "f7401e10ffe6dd3288f81fc8285389f9f66b04ed"; # or "master"
   fhs = fetchTarball {
     url = "https://github.com/woynert/nixos-fhs-compat/archive/${rev}.tar.gz";
-    sha256 = "0cbdpxdjvw83zw2v406bgn145f53wg4djd5mgbay8x1i1xmf0sp1";
+    sha256 = "1phg52nj4yyr7b8vzgxxbqhig9hh855ipna58l5snw2p78r385zc";
   };
 
 in
