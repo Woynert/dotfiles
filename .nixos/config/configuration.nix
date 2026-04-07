@@ -102,7 +102,7 @@
 
   #services.pulseaudio.enable = false;
   services.pulseaudio.enable = lib.mkForce false;
-  hardware.pulseaudio.enable = lib.mkForce false;
+  #hardware.pulseaudio.enable = lib.mkForce false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -268,6 +268,7 @@
     peek
     stw
     wmctrl # for querying wm windows
+    zathura
 
     # system util
 

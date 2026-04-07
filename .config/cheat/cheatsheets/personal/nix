@@ -106,3 +106,28 @@ sudo nixos-rebuild boot # get rid of old boot loader entries
 # space visualization tools
 https://nixos.wiki/wiki/Cleaning_the_nix_store
 
+# override flake revision to system
+nix flake update --override-input nixpkgs "github:nixos/nixpkgs/$(nixos-version --revision)"
+
+# flake like revision pinning
+let
+  system = "x86_64-linux";
+  mkPinnedNixpkgs = { rev, sha256 }:
+    import (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
+      inherit sha256;
+    }) { inherit system; };
+
+  input_nixpkgs_local = import <nixpkgs> { inherit system; };
+  input_nixpkgs_pandoc_3_1 = mkPinnedNixpkgs {
+    rev = "ebe4301cbd8f81c4f8d3244b3632338bbeb6d49c";
+    sha256 = "0yzl8ir5lras2b628dhk60167jm2dvl5ryyb89v3v6n385sm64p5";
+  };
+in input_nixpkgs_local.mkShell {
+	buildInputs = [
+		input_nixpkgs_pandoc_3_1.pandoc
+		input_nixpkgs_local.cowsay
+	];
+}
+
+

@@ -22,7 +22,7 @@ run_one lxpolkit
 # app
 run_one volctl 
 run_one flameshot 
-run safeeyes
+# run safeeyes
 
 # visual
 #run_one xfdesktop

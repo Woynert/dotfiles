@@ -77,6 +77,11 @@ local fix_scheme = function()
         --vim.api.nvim_set_hl(0, 'normal', { bg = '#FFAF87' })
     --end
 
+    -- GLOBAL FIXES
+    -- don't comment code blocks between #ifdef and #endif
+    -- highlight clear @lsp.type.comment.cpp
+    vim.api.nvim_set_hl(0, '@lsp.type.comment.cpp', {})
+
 end
 
 -- Custom autocommand

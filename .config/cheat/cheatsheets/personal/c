@@ -1,0 +1,18 @@
+// External module / Big library
+[high][module]_[symbol]
+woyTextedit_get_buffer
+
+// Internal module / Small library
+[module]_[symbol]
+textedit_get_buffer
+
+// Actual Libraries
+[high]_[symbol]
+woy_get_buffer
+
+// Choose type names based on what feels better
+strview_t
+strbuf_t
+Strview
+Strbuf
+
