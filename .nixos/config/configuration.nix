@@ -33,7 +33,14 @@
     extraOptions = ''experimental-features = nix-command flakes'';
   };
 
+
   # bootloader
+
+  # If using legacy boot!
+  #boot.loader.grub.enable = true;
+  #boot.loader.grub.useOSProber = true;
+  #boot.loader.grub.efiSupport = false;
+  #boot.loader.grub.device = "/dev/sdX";
 
   boot.loader.grub = lib.mkForce {
     enable = true;
