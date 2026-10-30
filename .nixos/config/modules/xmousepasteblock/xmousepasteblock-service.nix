@@ -3,10 +3,6 @@ with lib;
 {
   options.services.xmousepasteblock = {
     enable = mkEnableOption "Enable xmousepasteblock service";
-    greeter = mkOption {
-      type = types.bool;
-      default = false;
-    };
   };
 
   config = mkIf config.services.xmousepasteblock.enable {

@@ -94,14 +94,21 @@ nix develop --impure
 # =====
 # Cleaning
 
-# cleans the Nix store of unused packages
-
+# OLD, DON'T USE.
 nix-store --gc # almost same as:
 nix-collect-garbage
-nix-collect-garbage -d # Warning: deletes old generations
-sudo nix-collect-garbage -d # collect additional garbage
-sudo nixos-rebuild boot # get rid of old boot loader entries
+nix-collect-garbage -d         # Warning: deletes old generations
+sudo nix-collect-garbage -d    # Collect additional garbage
 
+# NEW
+sudo nixos-rebuild boot        # Get rid of old boot loader entries.
+sudo nix-sweep analyze         # Space usage for: nix store, gc-roots, journal.
+sudo nix-sweep tidyup-gc-roots # Clear gc-roots.
+sudo nix-sweep gc              # Then clear nix store.
+sudo journalctl --vacuum-size=500M # Optionally clear journal (Keeps 500MB).
+
+# Find stable channels here! https://status.nixos.org/
+# Example nixpkgs-26.05pre998534.d233902339c0
 
 # space visualization tools
 https://nixos.wiki/wiki/Cleaning_the_nix_store
@@ -130,4 +137,31 @@ in input_nixpkgs_local.mkShell {
 	];
 }
 
+# Run package.nix extracted from NixOS/nixpkgs
+{ pkgs ? import <nixpkgs> {} }:
+let
+  myPackage = pkgs.callPackage ./package.nix {};
+in
+pkgs.mkShell {
+  buildInputs = [
+    myPackage
+  ];
+}
+
+# Install package.nix inside configuration.nix
+- modules
+  - boomer
+  │ │ default.nix
+  │ │ lock.json
+  │ └ package.nix
+  configuration.nix
+  ...
+
+{ pkgs, lib, ... }:
+{
+    imports =
+        [
+          ./modules/boomer
+        ];
+}
 

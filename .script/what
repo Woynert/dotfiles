@@ -3,8 +3,10 @@
 cat << EOF
 du -hsc \`\ls -A\`
 du -hsc * | sort -h
-nix-shell -p ncdu --command 'ncdu ~/'
+nix-shell -p ncdu --command 'ncdu ./'
 grep -rin word
+grep -oP '<pattern>' # use perl regex
+grep -Eo '.{0,15}mediafire.{0,100}' file.txt # find chunk in long lines
 find -name "*word*" -print
 ip link set eth0 down
 git clone --depth 1 <URL>       # lightest clone
@@ -26,6 +28,9 @@ cat /etc/[A-Za-z]*[_-][rv]e[lr]* # distro info
 ps aux | awk '{sum+=\$6} END {print sum / 1024}'
 ps aux | egrep "Z|defunct"
 while :; do echo 'Hit CTRL+C'; sleep 1; done #infinite loop
+# do something for every file
+for f in */log/run; do sudo ln -svf /usr/bin/vlogger "\$f"; done
+for f in /path/images/*; do if file "$f" | grep -qi "png"; then echo "$f"; fi; done
 # vim diff between two branches
 vim -c 'syntax off' -c 'tabdo set filetype=review' -c 'tabdo Gvdiffsplit '\${1:-development} \$(git diff --name-only --diff-filter=AM ${1:-development}) -c 'windo set wrap' -p
 # better vim diff between two branches
@@ -48,10 +53,6 @@ vim -p \$(git diff \$REVIEW_BASE --name-only) \\
 #
 # dotfiles fugitive
 GIT_DIR=\$HOME/.dot.git GIT_WORK_TREE=\$HOME vim
-# do something for every file
-for f in */log/run; do sudo ln -svf /usr/bin/vlogger "\$f"; done
-# use perl regex
-grep -oP '<pattern>'
 # trash locations
 /root/.local/share/Trash
 # print tree with find
@@ -60,7 +61,13 @@ find . | sed -e "s/[^-][^\/]*\//   │/g" -e "s/│\([^ ]\)/├── \1/"
 compgen -v | while read line; do echo \$line=\${!line};done
 vim -c "Gitsigns change_base \$REVIEW_BASE"
 # camera disable: sudo rmmod -f uvcvideo # enable: sudo modprobe uvcvideo
+LD_LIBRARY_PATH=/etc/lsb/lib/
+# save clipboard image
+xclip -selection clipboard -t image/png -o > \`date +"%Y-%m-%d_%H-%M-%S"\`.png
+vidir # Rename files in $EDITOR
+if [ $? -eq 0 ]; then echo "success"; else echo "error"; fi
 EOF
+
 
 # https://unix.stackexchange.com/questions/259659/high-memory-usage-but-no-process-is-using-it
 # ps aux | awk '{sum+=$6} END {print sum / 1024}

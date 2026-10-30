@@ -4,19 +4,22 @@
 {
   imports =
     [
+      #./modules/graphite
+      #./modules/neovim-fork.nix
+      #./modules/discord-screenaudio.nix
+      #./modules/general-overlays.nix
+      #./modules/squid.nix
+      #./modules/sunlight.nix
+
       ./modules/kblayouts
       ./modules/nixos-fhs-compat.nix
       ./modules/xmousepasteblock
       ./modules/boomer
-      #./modules/graphite
-      #./modules/neovim-fork.nix
+      ./modules/unstable-pkgs.nix
 
-      #./modules/sunlight.nix
-      #./modules/discord-screenaudio.nix
-      #./modules/aboutlife.nix
-      #./modules/auto-shutdown
-      #./modules/general-overlays.nix
-      #./modules/squid.nix
+      ./modules/aboutlife.nix # Desktop only
+      #./modules/auto-shutdown # Desktop only
+      ./modules/git-log.nix
     ]
     ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix;
 
@@ -26,15 +29,14 @@
   # before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 
-  system.stateVersion = "23.11"; # did you read the comment?
+  system.stateVersion = "25.11"; # did you read the comment?
   nixpkgs.config.allowUnfree = true;
 
-  nix = {
-    extraOptions = ''experimental-features = nix-command flakes'';
-  };
+  #nix = {
+    #extraOptions = ''experimental-features = nix-command flakes'';
+  #};
 
-
-  # bootloader
+  # Bootloader
 
   # If using legacy boot!
   #boot.loader.grub.enable = true;
@@ -57,12 +59,15 @@
   boot.kernel.sysctl."vm.swappiness" = 1;
   #boot.binfmt.emulatedSystems = [ ];
 
-  # loopback camera, etc.
+  # Loopback camera, etc.
 
-  boot.kernelModules = [ "v4l2loopback" ];
   boot.extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
+  boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModprobeConfig = ''
+      options v4l2loopback exclusive_caps=1
+  '';
 
-  # networking
+  # Networking
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -72,7 +77,7 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # enable dns caching
+  # Enable dns caching
 
   # Don't enable any service on Port 53 or Hotspot DHCP won't work
   #services.dnsmasq.enable = true; # NetworkManager WiFi Hotspot DHCP
@@ -80,6 +85,7 @@
   #services.dnscache.enable = true;
   #users.users.dnscache.group = "dnscache";
   #users.groups.dnscache = {};
+  #services.resolved.enable = true; # Fixes steam slow speed. But... Makes other things act weird.
 
   time.timeZone = "America/Bogota";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -105,25 +111,24 @@
   services.xserver.windowManager.awesome.enable = true;
   services.libinput.enable = true;
 
-  # sound with pipewire
+  # Sound with pipewire
 
-  #services.pulseaudio.enable = false;
-  services.pulseaudio.enable = lib.mkForce false;
-  #hardware.pulseaudio.enable = lib.mkForce false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true; # to use JACK apps
+    #jack.enable = true; # to use JACK apps
   };
+
   security.sudo.extraConfig = ''
     woynert ALL = (root) NOPASSWD: /usr/bin/env iptables *
     woynert ALL = (root) NOPASSWD: /usr/bin/env ip6tables *
   '';
 
-  # user. Don't forget to set a password with ‘passwd’.
+  # User. Don't forget to set a password with ‘passwd’.
 
   users.users.woynert = {
     isNormalUser = true;
@@ -146,9 +151,10 @@
     corefonts
     unscii
     cozette
+    dejavu_fonts
   ];
 
-  # keep this off so that there aren't any QT plugins to annoy me
+  # Keep this off so that there aren't any QT plugins to annoy me.
   #qt.enable = true; # make qt programs look like gtk
   #qt.platformTheme = "gtk2";
   #qt.style = "gtk2";
@@ -177,10 +183,10 @@
   hardware.acpilight.enable = true; # allow users in the video group to use xbacklight
 
   # see https://nixos.wiki/wiki/Printing
-  services.printing.enable = true; # CUPS printing
-  services.printing.drivers = [ pkgs.hplip ];
-  hardware.sane.enable = true; # scanner
-  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+  #services.printing.enable = true; # CUPS printing
+  #services.printing.drivers = [ pkgs.hplip ];
+  #hardware.sane.enable = true; # scanner
+  #hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
 
   services.syncthing = {
     enable = true;
@@ -194,27 +200,34 @@
   programs.neovim.vimAlias = true;
   programs.neovim.defaultEditor = true;
   programs.thunar.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
+  programs.thunar.plugins = with pkgs; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
   services.tumbler.enable = true;
   programs.npm.enable = true;
   programs.steam.enable = true; # for when things get better
 
+  documentation = {
+    dev.enable = true;
+    man.cache.enable = true;
+    nixos.includeAllModules = true;
+    nixos.options.warningsAreErrors = false;
+  };
+  environment.stub-ld.enable = false;
 
   # packages installed in system profile
 
-  environment.stub-ld.enable = false; # disable message
   environment.systemPackages = with pkgs; [
 
     # cli tool
 
     neovim
     ripgrep # nvim telescope
+    tree-sitter # nvim tree-sitter
     xclip
     fzf
 
     tmux
     file
-    xorg.xkill
+    xkill
     killall
     tree
     wget
@@ -237,15 +250,20 @@
     pax-utils # ldd-tree
     pandoc # markdown to html
     dnsmasq # NetworkManager WiFi Hotspot DHCP
+    moreutils # For: vidir (Rename files in $EDITOR)
+    cryptsetup # encrypted partitions
+    restic # backups
+    gamemode # steam gamemoderun
+
 
     # dev
 
     python3
-    #gcc11
+    gcc
     git
     git-credential-oauth
     go
-    cargo
+    #cargo
     gnumake
     ffmpeg-full
     imagemagick
@@ -253,10 +271,11 @@
     docker-compose
     podman-compose
     stylua
+    man-pages
+    man-pages-posix
 
     # ui tool
 
-    xfce.xfce4-whiskermenu-plugin
     keynav
     rofi
     pavucontrol
@@ -267,15 +286,18 @@
     mpv
     file-roller # archiver
     simple-scan
-    vokoscreen # screen recorder
     gpick
     feh
     pdfarranger
     safeeyes
-    peek
+    #peek
     stw
     wmctrl # for querying wm windows
     zathura
+    qutebrowser
+    simplescreenrecorder # better than peek (because it actually works and it's not a gimmicky python hack)
+    #vokoscreen # screen recorder (Don't use, it's too buggy.)
+    alarm-clock-applet
 
     # system util
 
@@ -285,9 +307,9 @@
     libnotify
     lxsession # (lxde.lxsession) I think this is for lxpolkit
     vanilla-dmz # cursor theme I like
-    xfce.xfce4-settings
+    xfce4-settings
     xbindkeys
-    pulseaudio # pactl command for changing volume
+    pulseaudio # pactl command for changing volume.
     pkgsi686Linux.gperftools # tf2 workaround
     qemu
     v4l-utils # camera utils
@@ -302,15 +324,17 @@
     alacritty
     firefox
     chromium
-    megasync
+    #megasync
     audacious # as good as deadbeef, use audtool to control
     #deadbeef # requires building llvm clang universe + swift
     audacity
     libreoffice-fresh # spell-check doesn't work
     onlyoffice-desktopeditors
-    discord
+    #discord
+    vesktop # Better lighter discord.
     blender
     krita
+    #vivaldi
     
     #drawio
     #obsidian
@@ -326,22 +350,24 @@
         #obs-vaapi #optional AMD hardware acceleration
         #obs-gstreamer
         #obs-vkcapture
-        #droidcam-obs
-        (
-          (pkgs.obs-studio-plugins.droidcam-obs.override {
-            ffmpeg_7 = pkgs.ffmpeg;
-          }).overrideAttrs
-          (prev: {
-            version = "2.4.2-unstable-2025-10-14";
+        droidcam-obs
 
-            src = pkgs.fetchFromGitHub {
-              owner = "dev47apps";
-              repo = "droidcam-obs-plugin";
-              rev = "161cb95b8dc5fe77185e52a9783dc45c6d137165";
-              sha256 = "sha256-3GClykaJjjmasEnSVGU5jnz+xoznaSYTxBz7jkhj0m4=";
-            };
-          })
-        )
+        #(
+          #(pkgs.obs-studio-plugins.droidcam-obs.override {
+            #ffmpeg = pkgs.ffmpeg;
+          #}).overrideAttrs
+          #(prev: {
+            #version = "2.4.2-unstable-2025-10-14";
+
+            #src = pkgs.fetchFromGitHub {
+              #owner = "dev47apps";
+              #repo = "droidcam-obs-plugin";
+              #rev = "161cb95b8dc5fe77185e52a9783dc45c6d137165";
+              #sha256 = "sha256-3GClykaJjjmasEnSVGU5jnz+xoznaSYTxBz7jkhj0m4=";
+            #};
+          #})
+        #)
+
       ];
     })
 

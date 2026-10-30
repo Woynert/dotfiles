@@ -21,10 +21,11 @@ alias swapreset='sudo swapoff -a && sudo swapon -a'
 alias lf1='lf -command "set nopreview; set ratios 1"'
 alias lf2='lf -command "set ratios 1:3"'
 alias ips="ip ad 2> /dev/null | grep inet | awk '{print \$1, \$2}'"
-alias vims="steam-run vim"
+#alias vims="steam-run vim"
 alias xkill9="kill -9 \$(xprop | grep PID | awk '{print \$3}')"
 alias wenv='compgen -v | while read line; do echo $line=${!line};done' # all env/shell vars
 alias gf2tty="gf2 -ex \"tty \$(tty)\""
+alias fechas="cat /plan/1-wiki/syncthing/2-fechas.md"
 
 # package manager
 alias xinstall='xbps-install'
@@ -124,4 +125,15 @@ tmux-kill-group () {
 			echo "Killing $SESSION"
 			tmux kill-session -t "$SESSION"
 		done
+}
+
+# https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+lfcd () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
+}
+
+lf2cd () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -command "set ratios 1:3" -print-last-dir "$@")"
 }

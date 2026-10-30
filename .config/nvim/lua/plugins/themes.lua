@@ -7,7 +7,10 @@ return {
             ----vim.g.edge_colors_override = { bg0 = { "#292929", "234" } }
         ----end
     --},
-    'nyoom-engineering/oxocarbon.nvim',
+    --'nyoom-engineering/oxocarbon.nvim',
+    'g-kirti/hardhat.nvim',
+    'https://github.com/Rigellute/shades-of-purple.vim',
+    'https://github.com/Rigellute/shades-of-purple.vim',
 
     -- 02/02/2025
     --'srcery-colors/srcery-vim', 
@@ -19,4 +22,10 @@ return {
         ---- style = 'darker' -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
         ---- ... other options
     --} end },
+
+    'nvim-mini/mini.hues'
+    --config = function() {
+        --lua require('mini.hues').setup { background = '#29193d', foreground = '#ba85fa', accent = 'purple' }
+    --} end
 }
+

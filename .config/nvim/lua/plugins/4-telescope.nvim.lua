@@ -67,7 +67,9 @@ end
 
 return {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
+    --dir = '/home/woynert/.config/nvim/lua/localplugins/telescope.nvim/',
+    --tag = 'v0.2.2',
+    --tag = '0.1.8', -- Old
     dependencies = {
 
         'nvim-lua/plenary.nvim',
@@ -86,12 +88,24 @@ return {
     config = function ()
 
         local telescope = require("telescope")
+        local actions = require('telescope.actions')
+        --
+--results_scrolling_left
+--results_scrolling_right
+--actions.results_scrolling_up
 
         telescope.setup {
             extensions = {
                 command_palette = telescope_command_palette_config()
             },
             defaults = {
+                mappings = {
+                    n = {
+                        --["<C-u>"] = function() end,
+                        --["<C-u>"] = actions.results_scrolling_up,
+                        --["<C-d>"] = actions.results_scrolling_down,
+                    }
+                },
                 vimgrep_arguments = {
                     "rg",
                     "--color=never",
@@ -101,14 +115,24 @@ return {
                     "--column",
                     "--smart-case",
                     "-P",
+                    "-u",
+                    -- TODO: Make a binding to toggle this option.
+                    -- TODO: Show the state of this option on the status bar.
                 },
+                --border = false,
             },
         }
 
         -- builtin
 
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+
+        vim.keymap.set('n', '<leader>pf',
+            function()
+                require('telescope.builtin').find_files({ no_ignore = true, hidden = true })
+            end,
+            { desc = 'Find all files (including gitignored & hidden)' })
+
         --vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
         vim.keymap.set('n', '<leader>pp', builtin.git_files, {})
         vim.keymap.set('n', '<leader>ps', function()

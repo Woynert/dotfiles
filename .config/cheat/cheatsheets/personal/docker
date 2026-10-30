@@ -1,3 +1,8 @@
+# Quick ubuntu workspace
+
+docker run -it --rm ubuntu:18.04 bash
+docker run -it --rm -v $(pwd):/build ubuntu:18.04 bash
+
 # To start the docker daemon:
 docker -d
 

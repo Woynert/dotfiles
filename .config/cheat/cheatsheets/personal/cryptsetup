@@ -1,0 +1,11 @@
+# To open an encrypted partition /dev/sdb1 (reachable at /dev/mapper/backup):
+cryptsetup open --type luks /dev/sdbX backup
+
+# To open an encrypted partition /dev/sdb1 using a keyfile (reachable at /dev/mapper/backup):
+cryptsetup open --type luks --key-file backup.key /dev/sdbX backup
+
+# To close luks container at /dev/mapper/backup:
+cryptsetup close backup
+
+# Backup LUKS header (to recover in case of corruption)
+cryptsetup luksHeaderBackup /dev/sdaX --header-backup-file luks-header.img

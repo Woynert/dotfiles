@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 let
-  rev = "f7401e10ffe6dd3288f81fc8285389f9f66b04ed"; # or "master"
+  rev = "eb859b2bbb3a4d6f806022ade7787124e40e22ff"; # or "master"
   fhs = fetchTarball {
     url = "https://github.com/woynert/nixos-fhs-compat/archive/${rev}.tar.gz";
-    sha256 = "1phg52nj4yyr7b8vzgxxbqhig9hh855ipna58l5snw2p78r385zc";
+    sha256 = "0pqn5kccyr9vmc1lia9v76r70pzwqzk4qhm4yg2py6s87fm4qf3l";
   };
 
 in
@@ -14,13 +14,17 @@ in
     #"/plan/2-dev/fork/nixos-fhs-compat/default.nix"
   ];
 
-  environment.fhs.enable = true;
   environment.lsb.enable = true;
+  environment.lsb.set_schema_paths = true;
+  environment.lsb.link_elf_interpreter = true;
 
-  environment.fhs.linkLibs = false;
-  environment.fhs.linkExes = false;
-  environment.fhs.setSchemaPaths = true;
-  environment.fhs.link_elf_interpreter = true;
+  #environment.fhs.enable = true;
+  #environment.lsb.enable = true;
+
+  #environment.fhs.linkLibs = false;
+  #environment.fhs.linkExes = false;
+  #environment.fhs.setSchemaPaths = true;
+  #environment.fhs.link_elf_interpreter = true;
 
   #environment.fhs.linkLibs = true;
   #environment.fhs.linkLibs = true;

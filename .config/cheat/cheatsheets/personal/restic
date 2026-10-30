@@ -1,0 +1,7 @@
+# Find files
+
+restic -r ./repo find "2021*"
+
+# Restore a single file
+
+restic -r ./repo restore latest --target /tmp/. --include /plan/3-cloud/ZMULTIMEDIA/zscreenshots/2026/2026-01-08_14-31.png

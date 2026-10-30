@@ -185,7 +185,7 @@ return {
 
 				sections = {
                     --"buffers",
-                    "git",
+                    --"git",
                     buffers,
                     --base_info,
                     --terms,

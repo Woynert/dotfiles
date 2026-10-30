@@ -2,7 +2,7 @@
 
 # target time
 
-destHour=20
+destHour=21
 destMin=0
 destDate=0
 
@@ -17,6 +17,6 @@ tick() {
 # daemon loop
 
 while [[ 1 ]]; do
-	sleep 10
+	sleep 60
 	tick
 done

@@ -10,14 +10,16 @@ xkb_symbols "woynert" {
     // use type default
     // spanish letters
 
-    replace key <AC01> {[ a,         A,     aacute,       Aacute]};     
-    replace key <AD03> {[ e,         E,     eacute,       Eacute]};     
-    replace key <AD08> {[ i,         I,     iacute,       Iacute]};     
-    replace key <AD09> {[ o,         O,     oacute,       Oacute]};     
-    replace key <AD07> {[ u,         U,     uacute,       Uacute]};     
-    replace key <AD07> {[ u,         U,     uacute,       Uacute]};     
-    replace key <AC10> {[ semicolon, colon, ntilde,       Ntilde]};     
-    replace key <AE12> {[ equal,     plus,  questiondown, exclamdown]}; 
+    replace key <AC01> {[         a,     A,       aacute,     Aacute ]};
+    replace key <AD03> {[         e,     E,       eacute,     Eacute ]};
+    replace key <AD08> {[         i,     I,       iacute,     Iacute ]};
+    replace key <AD09> {[         o,     O,       oacute,     Oacute ]};
+    replace key <AD07> {[         u,     U,       uacute,     Uacute ]};
+    replace key <AD07> {[         u,     U,       uacute,     Uacute ]};
+    replace key <AC10> {[ semicolon, colon,       ntilde,     Ntilde ]};
+    replace key <AE12> {[     equal,  plus, questiondown, exclamdown ]};
+    replace key <AB04> {[         v,     V,    downarrow,    uparrow ]};
+    replace key <AB05> {[         b,     B,   rightarrow,  leftarrow ]};
 
     // delete with Ctrl+H
 
@@ -68,3 +70,11 @@ xkb_symbols "latam" {
     replace key <MENU> { [ Control_R, Control_R ] };
     modifier_map Control { Control_L, Control_R, <MENU> };
 };
+
+// Notes:
+// Get keycodes from:
+//     nix-instantiate --eval --strict -A xkeyboard-config.outPath '<nixpkgs>'
+//     /nix/store/...-xkeyboard-config-2.46/share/X11/xkb/symbols/us
+// Get valid characters from:
+//     nix-instantiate --eval --strict -A xorgproto.outPath '<nixpkgs>'
+//     /nix/store/...-xorgproto-2024.1/include/X11/keysymdef.h

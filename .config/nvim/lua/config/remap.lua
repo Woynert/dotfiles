@@ -21,10 +21,14 @@ vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>Y', '"+Y')
 
-vim.keymap.set('n', '<leader>p', '"+p')
-vim.keymap.set('v', '<leader>p', '"+p')
-vim.keymap.set('n', '<leader>P', '"+P')
-vim.keymap.set('v', '<leader>P', '"+P')
+--vim.keymap.set('n', '<leader>p', '"+p')
+--vim.keymap.set('v', '<leader>p', '"+p')
+--vim.keymap.set('n', '<leader>P', '"+P')
+--vim.keymap.set('v', '<leader>P', '"+P')
+
+
+vim.keymap.set('v', '<leader>P', '"_dP')   -- Replace with default register.
+vim.keymap.set('v', '<leader>0', '"_d"0P') -- Replace with lastest yanked.
 
 -- quick file switch
 --vim.keymap.set("n", "<C-n>", ":bp<cr>")
@@ -37,6 +41,13 @@ vim.keymap.set('i', '<C-d>', '<Del>')
 
 -- replace word on cursor
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Replace word under cursor inside last visual selection
+vim.keymap.set('n', '<leader>S', [[:'<,'>s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+
+
+
 
 -- package
 vim.api.nvim_create_user_command('PS', function()

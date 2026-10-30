@@ -20,7 +20,7 @@ vim.opt.smartindent = true
 vim.o.listchars = 'tab:▏ ,trail:·,extends:>,precedes:<'
 vim.o.list = true;
 
-vim.opt.wrap = true
+vim.opt.wrap = false
 
 -- don't allow vim to do any backups.
 -- handle it with undotree
@@ -43,7 +43,7 @@ vim.opt.isfname:append '@-@'
 
 vim.opt.updatetime = 200
 
-vim.opt.colorcolumn = '80'
+--vim.opt.colorcolumn = '80'
 
 vim.g.mapleader = ' '
 
@@ -69,6 +69,10 @@ vim.opt.diffopt = vim.opt.diffopt + 'algorithm:patience'
 vim.opt.diffopt = vim.opt.diffopt + 'indent-heuristic'
 
 vim.opt.foldenable = false
+
+-- Solves the weird error of some curly braces being highlighted red.
+vim.g.c_no_curly_error = 1
+
 
 -- https://www.reddit.com/r/vim/comments/om1uyj/comment/h5jbg2i/?utm_source=share&utm_medium=web2x&context=3
 --set diffopt+=filler
@@ -115,3 +119,34 @@ endfunction
 
 nnoremap <leader>x :call ToggleQuickFix()<cr>
 ]], false)
+
+-- Remember scrolling position between buffer change.
+vim.cmd([[
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
+endif
+]])
+

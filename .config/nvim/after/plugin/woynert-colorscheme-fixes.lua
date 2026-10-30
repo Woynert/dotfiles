@@ -60,9 +60,11 @@ local fix_scheme = function()
         -- from /nix/store/crdw1z6gkrv1n0ymn9hsjfgrag7f6mrk-neovim-0.10.2-woyfork/share/nvim/runtime/colors/blue.vim
         --hi Comment guifg=#00ff00 gui=NONE
         --hi Comment guifg=#00aaaa gui=NONE
-        vim.cmd [[
-            hi Comment guifg=#00dd40 gui=NONE
-        ]]
+
+        -- Make comments green.
+        vim.cmd [[ hi Comment guifg=#00dd40 gui=NONE ]]
+        -- Make search result green.
+        vim.cmd [[ hi Search guibg=black guifg=#00ff00 ]]
 
         -- don't comment code blocks between #ifdef and #endif
         -- highlight clear @lsp.type.comment.cpp

@@ -45,7 +45,7 @@ fi
 
 export HISTSIZE=100000
 export HISTFILESIZE=200000
-export HISTCONTROL=ignoredups:erasedups # avoid duplicate entries
+export HISTCONTROL=ignoreboth:erasedups # avoid duplicate entries
 export EDITOR=vim
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.script"
