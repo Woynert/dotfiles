@@ -76,7 +76,7 @@ return {
 
         'BurntSushi/ripgrep',
 
-        'LinArcX/telescope-command-palette.nvim',
+        --'LinArcX/telescope-command-palette.nvim',
 
         { 
             "nvim-telescope/telescope-live-grep-args.nvim" ,
@@ -154,12 +154,12 @@ return {
 
         -- command_palette
 
-        telescope.load_extension 'command_palette'
+        --telescope.load_extension 'command_palette'
 
-        vim.api.nvim_create_user_command('Palette', function()
-            telescope.extensions.command_palette.command_palette()
-        end, {})
+        --vim.api.nvim_create_user_command('Palette', function()
+            --telescope.extensions.command_palette.command_palette()
+        --end, {})
 
-        vim.keymap.set('n', '<leader>pc', ':Telescope command_palette<CR>')
+        --vim.keymap.set('n', '<leader>pc', ':Telescope command_palette<CR>')
     end
 }
