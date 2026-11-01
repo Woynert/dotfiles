@@ -1,6 +1,8 @@
 return {
-    --"epheien/outline.nvim",
-    dir = '/home/woynert/.config/nvim/lua/localplugins/outline.nvim/',
+    "woynert/outline.nvim",
+    branch = "feat/add-floating-window-ui",
+    --dir = '/home/woynert/.config/nvim/lua/localplugins/outline.nvim/',
+    --dir = '/home/woynert/.config/nvim/lua/localplugins/outline.nvim/',
     config = function()
 
         require("outline").setup {

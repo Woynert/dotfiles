@@ -9,7 +9,7 @@
       #./modules/discord-screenaudio.nix
       #./modules/general-overlays.nix
       #./modules/squid.nix
-      #./modules/sunlight.nix
+      ./modules/sunlight.nix
 
       ./modules/kblayouts
       ./modules/nixos-fhs-compat.nix
@@ -19,9 +19,11 @@
 
       ./modules/aboutlife.nix # Desktop only
       #./modules/auto-shutdown # Desktop only
-      ./modules/git-log.nix
+      #./modules/git-log.nix
     ]
-    ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix;
+    ++ lib.optional (builtins.pathExists ./mounts.nix) ./mounts.nix
+    ++ lib.optional (builtins.pathExists ./streamer.nix) ./streamer.nix
+    ;
 
   # system / hardware
   # ===========================================================================
@@ -123,17 +125,21 @@
     #jack.enable = true; # to use JACK apps
   };
 
-  security.sudo.extraConfig = ''
-    woynert ALL = (root) NOPASSWD: /usr/bin/env iptables *
-    woynert ALL = (root) NOPASSWD: /usr/bin/env ip6tables *
-  '';
+  # I no longer need this.
+  #security.sudo.extraConfig = ''
+    #woynert ALL = (root) NOPASSWD: /usr/bin/env iptables *
+    #woynert ALL = (root) NOPASSWD: /usr/bin/env ip6tables *
+  #'';
 
   # User. Don't forget to set a password with ‘passwd’.
 
   users.users.woynert = {
     isNormalUser = true;
     description = "woynert";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" "docker" "storage" "scanner" "lp" ];
+    extraGroups = [
+      "networkmanager" "wheel" "video" "audio" "libvirtd" "docker" "storage" "scanner" "lp"
+      "plan_dev_streamer"
+    ];
   };
 
   # user space
@@ -340,6 +346,11 @@
     #obsidian
     #ferdium
     #obs-studio
+
+    # streamer
+    librewolf
+    chatterino2
+    xcompmgr
 
     # OBS STUDIO
     (pkgs.wrapOBS {

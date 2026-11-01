@@ -1,6 +1,5 @@
 return {
-    --'caenrique/swap-buffers.nvim',
-    dir = '/home/woynert/.config/nvim/lua/localplugins/swap-buffers',
+    dir = '~/.config/nvim/lua/localplugins/swap-buffers',
     config = function ()
         local swapbuffers = require('swap-buffers')
 

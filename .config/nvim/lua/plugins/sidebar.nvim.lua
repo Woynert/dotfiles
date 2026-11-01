@@ -15,7 +15,8 @@ buffers_highlight_linenr = "LineNr"
 
 return {
         --"https://github.com/Woynert/sidebar.nvim",
-        dir = "/plan/2-dev/fork/sidebar.nvim",
+        "https://github.com/Woynert/sidebar.nvim",
+        --dir = "/plan/2-dev/fork/sidebar.nvim",
 		--cmd = { "SidebarNvimToggle", "SidebarNvimClose" },
         dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
